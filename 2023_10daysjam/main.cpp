@@ -2,7 +2,7 @@
 #include "SceneManager/SceneManager.h"
 
 
-const char kWindowTitle[] = "GC2A_15_タケダ_ミスズ";
+const char kWindowTitle[] = "10DaysJam";
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
