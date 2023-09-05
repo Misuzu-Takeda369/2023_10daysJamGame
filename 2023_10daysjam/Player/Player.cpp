@@ -14,7 +14,7 @@ void Player::Initialize()
 	position_ = { 0.0f,0.0f };
 	color_ = WHITE;
 	speed_ = { 2.0f,2.0f };
-	image_ = Novice::LoadTexture("./Resources/bsorrow.png");
+	image_ = Novice::LoadTexture("./Resources/Images/bsorrow.png");
 
 }
 
