@@ -12,6 +12,9 @@ SceneManager::~SceneManager() {
 
 void SceneManager::Initialize() {
 
+	//シーン番号の初期化
+	sceneNum_ = TitleMode;
+
 	//インスタンス作成
 	title_ = new TitleScene();
 	gameP_ = new GamePScene();
