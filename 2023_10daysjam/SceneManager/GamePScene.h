@@ -56,8 +56,6 @@ private:
 	// 仮シーン変換用キー
 	Input* inputchagekey_ = nullptr;
 
-	//仮挙動
-	uint32_t CountNum_ = 0;
 
 	//プレイヤーのクラス
 	Player* player_ = nullptr;

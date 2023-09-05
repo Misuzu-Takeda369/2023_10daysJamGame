@@ -33,6 +33,7 @@ void Player::Update()
 
 void Player::Draw()
 {
+	//プレイヤーの描写(仮)
 	Novice::DrawEllipse(int(position_.x), int(position_.y), int(radish_.x), int(radish_.y), 0.0f, color_, kFillModeSolid);
 }
 
@@ -69,4 +70,9 @@ void Player::Move(char* keys)
 	else if (keys[DIK_DOWN]) {
 		position_.y += speed_.y;
 	}
+}
+
+void Player::OnCollision()
+{
+
 }

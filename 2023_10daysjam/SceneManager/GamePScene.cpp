@@ -13,7 +13,7 @@ GamePScene::~GamePScene()
 
 void GamePScene::Initialize() 
 {
-	CountNum_ = 0;
+	
 	// 仮シーン変換用キー
 	inputchagekey_ = Input::GetInstance();
 
@@ -30,7 +30,9 @@ void GamePScene::Initialize()
 void GamePScene::Update()
 {
 	
+	//プレイヤーの更新
 	player_->Update();
+
 	//ここのif文でシーン移行出来るかを判別
 	//現在は0を押したときに移動
 	if (inputchagekey_->TriggerKey(DIK_0)) {
@@ -41,7 +43,7 @@ void GamePScene::Update()
 
 void GamePScene::Draw() 
 {
-	Novice::ScreenPrintf(500,500,"%d", CountNum_);
+	//プレイヤーの描写
 	player_->Draw();
 }
 
