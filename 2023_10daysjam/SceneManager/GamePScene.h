@@ -1,6 +1,9 @@
 ﻿#pragma once
 
+#include "Novice.h"
 #include "Input.h"
+#include "Player/Player.h"
+
 /// <summary>
 /// プレイシーンのクラス
 /// </summary>
@@ -55,4 +58,9 @@ private:
 
 	//仮挙動
 	uint32_t CountNum_ = 0;
+
+	//プレイヤーのクラス
+	Player* player_ = nullptr;
+
+	
 };
