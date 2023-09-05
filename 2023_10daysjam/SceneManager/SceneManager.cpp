@@ -118,6 +118,7 @@ void SceneManager::Update() {
 	ImGui::End();
 
 #pragma endregion
+
 }
 
 void SceneManager::Draw() {
