@@ -2,7 +2,6 @@
 
 Player::Player()
 {
-
 }
 
 Player::~Player()
@@ -15,6 +14,7 @@ void Player::Initialize()
 	position_ = { 0.0f,0.0f };
 	color_ = WHITE;
 	speed_ = { 2.0f,2.0f };
+	image_ = Novice::LoadTexture("./Resources/bsorrow.png");
 
 }
 
@@ -35,6 +35,8 @@ void Player::Draw()
 {
 	//プレイヤーの描写(仮)
 	Novice::DrawEllipse(int(position_.x), int(position_.y), int(radish_.x), int(radish_.y), 0.0f, color_, kFillModeSolid);
+
+	Novice::DrawSprite(int(position_.x- radish_.x), int(position_.y- radish_.y), image_,1.0f,1.0f,0.0f,color_);
 }
 
 void Player::Move(char* keys)

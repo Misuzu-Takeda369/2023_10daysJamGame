@@ -83,5 +83,7 @@ private:
 	/// </summary>
 	Vector2 speed_ = { 4.0f,4.0f };
 
+	uint32_t image_ ;
+
 };
 
