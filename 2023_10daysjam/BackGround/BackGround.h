@@ -91,6 +91,12 @@ private:
 	Vector2 playerRadish_ = {0.0f,0.0f};
 
 	/// <summary>
+	/// 背景のサイズ
+	/// </summary>
+	Vector2 backGroundSize_ = { kWindowWidth,kWindowHeight };
+	Vector2 HalfBackGroundSize_ = { khalfWidth,khalfHeight };
+
+	/// <summary>
 	/// 画像
 	/// </summary>
 	uint32_t image_ = 0;

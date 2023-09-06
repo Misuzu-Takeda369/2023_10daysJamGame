@@ -2,10 +2,7 @@
 
 GamePScene::GamePScene() 
 {
-	delete player_;
-	for (FieldChild* fieldChild : fieldChild_) {
-		delete fieldChild;
-	}
+	
 }
 
 GamePScene::~GamePScene() 
