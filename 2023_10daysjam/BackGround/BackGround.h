@@ -44,6 +44,11 @@ public:
 	/// </summary>
 	void Move(char* keys);
 
+	/// <summary>
+	/// 背景が動かなくなる条件
+	/// </summary>
+	void MoveStop(char* keys);
+
 
 	///getter&setter
 
