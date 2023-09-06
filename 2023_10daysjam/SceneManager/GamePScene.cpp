@@ -2,13 +2,20 @@
 
 GamePScene::GamePScene() 
 {
-
+	delete player_;
+	for (FieldChild* fieldChild : fieldChild_) {
+		delete fieldChild;
+	}
 }
 
 GamePScene::~GamePScene() 
 {
 	delete player_;
 	delete backGround_;
+	//子(F)のデリート
+	for (FieldChild* fieldChild : fieldChild_) {
+		delete fieldChild;
+	}
 
 }
 
@@ -45,6 +52,17 @@ void GamePScene::Update()
 	//背景の更新
 	backGround_->Update();
 
+#pragma region 子供(F)のゲームシーン内の処理
+	//子供(F)のゲームシーン内の処理
+	fieldChildWaitTimer_++;
+	if (fieldChildWaitTimer_ >= FieldChild::spawnWaitTime_) {
+		AddFieldChild(player_->GetPlayerPosition());
+		fieldChildWaitTimer_ = 0;
+	}
+	FieldChildUpdate();
+
+#pragma endregion
+
 	//ここのif文でシーン移行出来るかを判別
 	//現在は0を押したときに移動
 	if (inputchagekey_->TriggerKey(DIK_0)) {
@@ -59,5 +77,33 @@ void GamePScene::Draw()
 	backGround_->Draw();
 	//プレイヤーの描写
 	player_->Draw();
+
+	//子供(F)の描写
+	for (FieldChild* fieldChild : fieldChild_) {
+		fieldChild->Draw();
+	}
+}
+
+void GamePScene::AddFieldChild(Vector2 playerPos)
+{
+	FieldChild* obj = new FieldChild;
+
+	obj->Initialize(playerPos);
+	fieldChild_.push_back(obj);
+}
+
+void GamePScene::FieldChildUpdate()
+{
+	fieldChild_.remove_if([](FieldChild* fieldChild) {
+		if (fieldChild->GetIsArrive() == false) {
+			delete fieldChild;
+			return true; //returnをつける
+		}
+		return false;
+		});
+
+	for (FieldChild* fieldChild : fieldChild_) {
+		fieldChild->Update();
+	}
 }
 

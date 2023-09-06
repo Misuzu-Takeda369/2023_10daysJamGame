@@ -4,6 +4,8 @@
 #include "Input.h"
 #include "Player/Player.h"
 #include "BackGround/BackGround.h"
+#include <list>
+#include "FieldChild/FieldChild.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -63,5 +65,10 @@ private:
 	//背景のクラス
 	BackGround* backGround_ = nullptr;
 
-	
+	//子(フィールド)関連
+	void AddFieldChild(Vector2 playerPos);
+	void FieldChildUpdate();
+	std::list<FieldChild*> fieldChild_;
+	int fieldChildWaitTimer_ = 0;
+
 };
