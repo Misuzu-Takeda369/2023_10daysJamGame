@@ -31,7 +31,7 @@ void GamePScene::Initialize()
 	if (backGround_ != nullptr) {
 		delete backGround_;
 	}
-	backGround_ = new BackGround();
+	backGround_ = new BackGround(player_->GetPlayerRadish());
 	backGround_->Initialize();
 	
 

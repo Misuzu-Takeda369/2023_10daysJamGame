@@ -1,7 +1,8 @@
 ﻿#include "BackGround.h"
 
-BackGround::BackGround()
+BackGround::BackGround(Vector2 playerRadish)
 {
+	playerRadish_ = { playerRadish.x,playerRadish.y};
 }
 
 BackGround::~BackGround()
@@ -86,17 +87,24 @@ void BackGround::Move(char* keys)
 void BackGround::MoveStop(char* keys)
 {
 
-	if ((scrollPosition_.x <= -640.0f+32.0f) && keys[DIK_LEFT]) {
+	//スクロールが止まる条件
+	//真ん中から画面の半分分動いたら止まる(画面の半分のサイズ＋プレイヤーの半径の調整)
+	//条件あったらスピードが0、それ以外ならそのまま
+	if ((scrollPosition_.x <= -khalfWidth + playerRadish_.x) && keys[DIK_LEFT]) {
 		speed_.x = 0.0f;
+		scrollPosition_.x = -khalfWidth + playerRadish_.x ;
 	}
-	else if ((scrollPosition_.x >= 640.0f - 32.0f) && keys[DIK_RIGHT]) {
+	else if ((scrollPosition_.x >= khalfWidth - playerRadish_.x ) && keys[DIK_RIGHT]) {
 		speed_.x = 0.0f;
+		scrollPosition_.x = khalfWidth - playerRadish_.x;
 	}
-	else if ((scrollPosition_.y <= -360.0f + 32.0f) && keys[DIK_UP]) {
+	else if ((scrollPosition_.y <= -khalfHeight + playerRadish_.y) && keys[DIK_UP]) {
 		speed_.y = 0.0f;
+		scrollPosition_.y = -khalfHeight + playerRadish_.y;
 	}
-	else if ((scrollPosition_.y >= 360.0f - 32.0f) && keys[DIK_DOWN]) {
+	else if ((scrollPosition_.y >= khalfHeight - playerRadish_.y) && keys[DIK_DOWN]) {
 		speed_.y = 0.0f;
+		scrollPosition_.y = khalfHeight - playerRadish_.y;
 	}
 	else {
 		speed_.x = 2.0f;

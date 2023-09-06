@@ -3,6 +3,7 @@
 #include "Vector2.h"
 #include "DirectXCommon.h"
 #include "ImGuiManager.h"
+#include "ScreenSize.h"
 
 /// <summary>
 /// スクロール(背景)のクラス
@@ -16,7 +17,7 @@ public:
 	/// <summary>
 	/// コンストクラタ
 	/// </summary>
-	BackGround();
+	BackGround(Vector2 playerRadish);
 
 	/// <summary>
 	/// デストラクタ
@@ -53,7 +54,7 @@ public:
 	///getter&setter
 
 	/// <summary>
-	/// スクロールのの場所G
+	/// スクロールの場所(初期位置)G
 	/// </summary>
 	Vector2 GetWorldPosition() { return wouldPosition_; };
 
@@ -61,6 +62,11 @@ public:
 	/// スクロールののスピードG
 	/// </summary>
 	Vector2 GetBackGroundSpeed() { return speed_; };
+
+	/// <summary>
+	/// スクロールした距離G
+	/// </summary>
+	Vector2 GetScrollPosition() { return scrollPosition_; };
 
 private:
 
@@ -78,6 +84,11 @@ private:
 	/// スクロールのスピード
 	/// </summary>
 	Vector2 speed_ = { 2.0f,2.0f };
+
+	/// <summary>
+	/// プレイヤーの半径
+	/// </summary>
+	Vector2 playerRadish_ = {0.0f,0.0f};
 
 	/// <summary>
 	/// 画像

@@ -1,5 +1,6 @@
 #include <Novice.h>
 #include "SceneManager/SceneManager.h"
+#include "ScreenSize.h"
 
 
 const char kWindowTitle[] = "10DaysJam";
@@ -8,7 +9,7 @@ const char kWindowTitle[] = "10DaysJam";
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 
 	// ライブラリの初期化
-	Novice::Initialize(kWindowTitle, 1280, 720);
+	Novice::Initialize(kWindowTitle, kWindowWidth, kWindowHeight);
 
 	// キー入力結果を受け取る箱
 	char keys[256] = {0};

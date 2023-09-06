@@ -166,5 +166,8 @@
     <ClInclude Include="Function\Function.h">
       <Filter>Function</Filter>
     </ClInclude>
+    <ClInclude Include="ScreenSize.h">
+      <Filter>KamataEngine</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
