@@ -4,9 +4,9 @@
 #include "DirectXCommon.h"
 
 /// <summary>
-/// スクロールのクラス
+/// スクロール(背景)のクラス
 /// </summary>
-class Scroll
+class BackGround
 {
 public:
 
@@ -15,12 +15,12 @@ public:
 	/// <summary>
 	/// コンストクラタ
 	/// </summary>
-	Scroll();
+	BackGround();
 
 	/// <summary>
 	/// デストラクタ
 	/// </summary>
-	~Scroll();
+	~BackGround();
 
 	/// <summary>
 	/// 初期化
@@ -43,12 +43,12 @@ public:
 	/// <summary>
 	/// スクロールのの場所G
 	/// </summary>
-	Vector2 GetScrollPosition() { return position_; };
+	Vector2 GetBackGroundPosition() { return position_; };
 
 	/// <summary>
 	/// スクロールののスピードG
 	/// </summary>
-	Vector2 GetScrollSpeed() { return speed_; };
+	Vector2 GetBackGroundSpeed() { return speed_; };
 
 private:
 
