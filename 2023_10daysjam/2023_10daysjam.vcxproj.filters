@@ -20,6 +20,9 @@
     <Filter Include="Player">
       <UniqueIdentifier>{20fed3a1-6fd3-4e07-a1bf-1bb121548ddc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Function">
+      <UniqueIdentifier>{3e2075c5-b4b0-4531-a699-8186c2d0da04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -61,6 +64,12 @@
     </ClCompile>
     <ClCompile Include="Player\Player.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround\BackGround.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Function\Function.cpp">
+      <Filter>Function</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +161,10 @@
     </ClInclude>
     <ClInclude Include="Player\Player.h">
       <Filter>Player</Filter>
+    </ClInclude>
+    <ClInclude Include="BackGround\BackGround.h" />
+    <ClInclude Include="Function\Function.h">
+      <Filter>Function</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
