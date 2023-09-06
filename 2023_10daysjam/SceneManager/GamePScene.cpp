@@ -85,7 +85,7 @@ void GamePScene::AddFieldChild(Vector2 playerPos)
 {
 	FieldChild* obj = new FieldChild;
 
-	obj->Initialize(playerPos);
+	obj->Initialize(playerPos, backGround_->GetScrollPosition());
 	fieldChild_.push_back(obj);
 }
 

@@ -7,7 +7,7 @@ class FieldChild
 public:
 	~FieldChild();
 	FieldChild();
-	void Initialize(Vector2 PlayerPos);
+	void Initialize(Vector2 PlayerPos, Vector2 ScrollPos);
 	void Update(Vector2 ScrollPos);
 	void Draw();
 	bool GetIsArrive() {return isArrive_;}
