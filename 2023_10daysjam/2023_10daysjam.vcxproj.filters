@@ -23,6 +23,12 @@
     <Filter Include="Function">
       <UniqueIdentifier>{3e2075c5-b4b0-4531-a699-8186c2d0da04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FieldChild">
+      <UniqueIdentifier>{12df2790-58ba-4698-a43a-8e4baabb94e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BackGround">
+      <UniqueIdentifier>{bfb8f65b-b1e3-4296-907e-b8a6ab47d2f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -65,11 +71,14 @@
     <ClCompile Include="Player\Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="BackGround\BackGround.cpp">
-      <Filter>KamataEngine</Filter>
-    </ClCompile>
     <ClCompile Include="Function\Function.cpp">
       <Filter>Function</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldChild\FieldChild.cpp">
+      <Filter>FieldChild</Filter>
+    </ClCompile>
+    <ClCompile Include="BackGround\BackGround.cpp">
+      <Filter>BackGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -162,12 +171,15 @@
     <ClInclude Include="Player\Player.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="BackGround\BackGround.h" />
     <ClInclude Include="Function\Function.h">
       <Filter>Function</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenSize.h">
-      <Filter>KamataEngine</Filter>
+    <ClInclude Include="FieldChild\FieldChild.h">
+      <Filter>FieldChild</Filter>
     </ClInclude>
+    <ClInclude Include="BackGround\BackGround.h">
+      <Filter>BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenSize.h" />
   </ItemGroup>
 </Project>
