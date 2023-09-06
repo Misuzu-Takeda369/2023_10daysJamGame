@@ -11,7 +11,7 @@ Player::~Player()
 void Player::Initialize()
 {
 	//プレイヤーのステータスの初期
-	position_ = { 0.0f,0.0f };
+	position_ = { 640.0f,360.0f };
 	color_ = WHITE;
 	speed_ = { 2.0f,2.0f };
 	image_ = Novice::LoadTexture("./Resources/Images/bsorrow.png");
@@ -20,6 +20,7 @@ void Player::Initialize()
 
 void Player::Update()
 {
+	/*
 #pragma region Noviceのキー入力関連
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
@@ -29,6 +30,7 @@ void Player::Update()
 
 	//プレイヤーの移動関数
 	Move(keys);
+	*/
 }
 
 void Player::Draw()

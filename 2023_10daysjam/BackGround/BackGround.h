@@ -2,6 +2,7 @@
 #include "Novice.h"
 #include "Vector2.h"
 #include "DirectXCommon.h"
+#include "ImGuiManager.h"
 
 /// <summary>
 /// スクロール(背景)のクラス
@@ -38,12 +39,18 @@ public:
 	void Draw();
 
 
+	/// <summary>
+	/// 移動処理
+	/// </summary>
+	void Move(char* keys);
+
+
 	///getter&setter
 
 	/// <summary>
 	/// スクロールのの場所G
 	/// </summary>
-	Vector2 GetBackGroundPosition() { return position_; };
+	Vector2 GetWorldPosition() { return wouldPosition_; };
 
 	/// <summary>
 	/// スクロールののスピードG
@@ -53,15 +60,23 @@ public:
 private:
 
 	/// <summary>
-	/// スクロールの場所
+	/// ワールド座標のポジション(画像の初期位置)
 	/// </summary>
-	Vector2 position_ = { 0.0f,0.0f };
-	
+	Vector2 wouldPosition_ = { 0.0f,0.0f };
+
+	/// <summary>
+	/// スクロールのポジション
+	/// </summary>
+	Vector2 scrollPosition_ = { 0.0f,0.0f };
+
 	/// <summary>
 	/// スクロールのスピード
 	/// </summary>
-	Vector2 speed_ = { 0.0f,0.0f };
+	Vector2 speed_ = { 2.0f,2.0f };
 
-	uint32_t image_;
+	/// <summary>
+	/// 画像
+	/// </summary>
+	uint32_t image_ = 0;
 
 };

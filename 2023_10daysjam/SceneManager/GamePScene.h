@@ -3,6 +3,7 @@
 #include "Novice.h"
 #include "Input.h"
 #include "Player/Player.h"
+#include "BackGround/BackGround.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -56,9 +57,11 @@ private:
 	// 仮シーン変換用キー
 	Input* inputchagekey_ = nullptr;
 
-
 	//プレイヤーのクラス
 	Player* player_ = nullptr;
+
+	//背景のクラス
+	BackGround* backGround_ = nullptr;
 
 	
 };
