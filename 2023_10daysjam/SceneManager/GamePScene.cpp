@@ -77,6 +77,7 @@ void GamePScene::Draw()
 
 	//子供(F)の描写
 	for (FieldChild* fieldChild : fieldChild_) {
+		
 		fieldChild->Draw();
 	}
 }
