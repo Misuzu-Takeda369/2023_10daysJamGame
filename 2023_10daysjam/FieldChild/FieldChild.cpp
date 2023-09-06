@@ -30,9 +30,10 @@ void FieldChild::Initialize(Vector2 PlayerPos)
 	}
 	pos_.y = PlayerPos.y + (float(spawnDistance_ * sign.y))+float(plusRange.y*sign.y);
 
+	
 }
 
-void FieldChild::Update()
+void FieldChild::Update(Vector2 ScrollPos)
 {
 	secondCount_++;
 	if (secondCount_ >= 60) {
@@ -42,11 +43,15 @@ void FieldChild::Update()
 	if (waitTime_ >= deadTime_) {
 		isArrive_ = false;
 	}
+
+	scrollPos_ = { ScrollPos.x ,ScrollPos.y };
+	screenPos_ = { pos_.x - scrollPos_.x ,pos_.y - scrollPos_.y };
+	
 }
 
 void FieldChild::Draw()
 {
 	if (isArrive_) {
-		Novice::DrawSprite(int(pos_.x), int(pos_.y), texture_, 1, 1, 0, WHITE);
+		Novice::DrawSprite(int(screenPos_.x), int(screenPos_.y), texture_, 1, 1, 0, WHITE);
 	}
 }

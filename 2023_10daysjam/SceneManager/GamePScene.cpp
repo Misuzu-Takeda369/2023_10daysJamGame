@@ -100,7 +100,7 @@ void GamePScene::FieldChildUpdate()
 		});
 
 	for (FieldChild* fieldChild : fieldChild_) {
-		fieldChild->Update();
+		fieldChild->Update(backGround_->GetScrollPosition());
 	}
 }
 

@@ -8,7 +8,7 @@ public:
 	~FieldChild();
 	FieldChild();
 	void Initialize(Vector2 PlayerPos);
-	void Update();
+	void Update(Vector2 ScrollPos);
 	void Draw();
 	bool GetIsArrive() {return isArrive_;}
 	static const int spawnWaitTime_ = 1 * 60; //スポーンするまでの時間
@@ -22,5 +22,14 @@ private:
 	const int deadTime_ = 7; //デスポーンする時間(秒)
 	bool isArrive_ = true;
 
+	/// <summary>
+	/// スクロール入った分位置(スクリーンでの位置) 
+	/// </summary>
+	Vector2 screenPos_ = {0.0f,0.0f};
+
+	/// <summary>
+	/// スクロール入った分位置(スクリーンでの位置) 
+	/// </summary>
+	Vector2 scrollPos_ = { 0.0f,0.0f };
 };
 
