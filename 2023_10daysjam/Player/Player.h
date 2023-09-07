@@ -44,9 +44,9 @@ public:
 	void Move(char* keys);
 
 	/// <summary>
-	/// 当たった時の処理
+	/// 当たった時の処理(子供(F))
 	/// </summary>
-	void OnCollision();
+	void OnFChildCollision();
 
 	///getter&setter
 

@@ -100,7 +100,7 @@ void GamePScene::Attack()
 
 		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakFCpos.x, cheakFCpos.y, cheakFCradish.x)==true) {
 			//現状プレイヤーが赤くなるぐらい(本来入らない？カウントぐらい)
-			player_->OnCollision();
+			player_->OnFChildCollision();
 			fieldChild->OnCollision();
 			//後ろにいる子供はここでnew入るのか?その1
 		}

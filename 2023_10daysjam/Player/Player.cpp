@@ -86,7 +86,7 @@ void Player::Move(char* keys)
 	}
 }
 
-void Player::OnCollision()
+void Player::OnFChildCollision()
 {
 	//color_ = RED;
 	//ここで子供カウント

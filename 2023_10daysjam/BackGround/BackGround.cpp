@@ -102,7 +102,11 @@ void BackGround::MoveStop(char* keys)
 		speed_.x = 0.0f;
 		scrollPosition_.x = HalfBackGroundSize_.x - playerRadish_.x;
 	}
-	else if ((scrollPosition_.y <= -HalfBackGroundSize_.y + playerRadish_.y) && keys[DIK_UP]) {
+	else {
+		speed_.x = 2.0f;
+	}
+
+	if ((scrollPosition_.y <= -HalfBackGroundSize_.y + playerRadish_.y) && keys[DIK_UP]) {
 		speed_.y = 0.0f;
 		scrollPosition_.y = -HalfBackGroundSize_.y + playerRadish_.y;
 	}
@@ -111,7 +115,6 @@ void BackGround::MoveStop(char* keys)
 		scrollPosition_.y = HalfBackGroundSize_.y - playerRadish_.y;
 	}
 	else {
-		speed_.x = 2.0f;
 		speed_.y = 2.0f;
 	}
 }
