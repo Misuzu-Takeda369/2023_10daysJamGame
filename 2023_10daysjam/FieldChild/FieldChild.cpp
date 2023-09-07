@@ -1,7 +1,7 @@
 ﻿#include "FieldChild.h"
 #include <stdlib.h>
 #include <time.h>
-#include "imgui.h"
+#include "ImGuiManager.h"
 
 FieldChild::~FieldChild()
 {

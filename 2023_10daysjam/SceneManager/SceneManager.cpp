@@ -1,5 +1,9 @@
 ﻿#include "SceneManager/SceneManager.h"
 
+#ifdef _DEBUG
+#include "ImGuiManager.h"
+#endif // DEBUG
+
 SceneManager::SceneManager() {}
 
 SceneManager::~SceneManager() {
@@ -116,11 +120,14 @@ void SceneManager::Update() {
 
 #pragma region ImGui関連
 
+#ifdef _DEBUG
 	ImGui::Begin("SceneModeCheck");
 	ImGui::Text("[DIK_0] sceneNum_ %d", sceneNum_);
 	ImGui::End();
+#endif // DEBUG
 
 #pragma endregion
+
 
 }
 

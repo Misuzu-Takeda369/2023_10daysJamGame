@@ -1,5 +1,9 @@
 ﻿#include "Player.h"
 
+#ifdef _DEBUG
+#include "ImGuiManager.h"
+#endif
+
 Player::Player()
 {
 }
@@ -35,10 +39,11 @@ void Player::Update()
 
 
 #pragma region ImGui関連
-
+#ifdef _DEBUG
 	ImGui::Begin("eggCount_");
 	ImGui::Text(" eggCount_ %d", eggCount_);
 	ImGui::End();
+#endif
 
 #pragma endregion
 }

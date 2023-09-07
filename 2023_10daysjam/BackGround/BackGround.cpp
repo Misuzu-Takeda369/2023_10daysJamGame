@@ -1,5 +1,9 @@
 ﻿#include "BackGround.h"
 
+#ifdef _DEBUG
+#include "ImGuiManager.h"
+#endif
+
 BackGround::BackGround(Vector2 playerRadish)
 {
 	playerRadish_ = { playerRadish.x,playerRadish.y };
@@ -31,10 +35,12 @@ void BackGround::Update()
 	Move(keys);
 
 #pragma region ImGui関連
-
+#ifdef _DEBUG
 	ImGui::Begin("BackGroundMove");
 	ImGui::Text("scrollPosition_ %f,%f", scrollPosition_.x, scrollPosition_.y);
 	ImGui::End();
+
+#endif
 
 #pragma endregion
 }

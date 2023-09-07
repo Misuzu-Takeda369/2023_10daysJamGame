@@ -2,7 +2,6 @@
 #include "Novice.h"
 #include "Vector2.h"
 #include "DirectXCommon.h"
-#include "ImGuiManager.h"
 #include "ScreenSize.h"
 
 /// <summary>

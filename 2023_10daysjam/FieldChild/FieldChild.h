@@ -2,6 +2,8 @@
 #include "Vector2.h"
 #include <Novice.h>
 #include <cstdint>
+#include "ImGuiManager.h"
+
 class FieldChild
 {
 public:
