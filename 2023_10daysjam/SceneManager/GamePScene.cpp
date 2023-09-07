@@ -50,6 +50,7 @@ void GamePScene::Initialize()
 void GamePScene::Update()
 {
 
+	//角度調整用のキー入力
 	memcpy(preKeys, keys, 256);
 	Novice::GetHitKeyStateAll(keys);
 	
@@ -70,7 +71,7 @@ void GamePScene::Update()
 	FieldChildUpdate();
 #pragma endregion
 
-	//ここに子供(Back)
+	//ここに子供(Back)の更新
 	PlayerChildUpdate();
 
 	//ここのif文でシーン移行出来るかを判別
