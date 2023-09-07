@@ -1,4 +1,5 @@
 ﻿#include "GamePScene.h"
+#include "Novice.h"
 
 GamePScene::GamePScene() 
 {
@@ -12,6 +13,10 @@ GamePScene::~GamePScene()
 	//子(F)のデリート
 	for (FieldChild* fieldChild : fieldChild_) {
 		delete fieldChild;
+	}
+	//子(back)のデリート
+	for (PlayerChild* playerChild : playerChild_) {
+		delete playerChild;
 	}
 
 }
@@ -59,8 +64,10 @@ void GamePScene::Update()
 		fieldChildWaitTimer_ = 0;
 	}
 	FieldChildUpdate();
-
 #pragma endregion
+
+	//ここに子供(Back)
+	PlayerChildUpdate();
 
 	//ここのif文でシーン移行出来るかを判別
 	//現在は0を押したときに移動
@@ -73,16 +80,27 @@ void GamePScene::Update()
 
 void GamePScene::Draw() 
 {
+	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
 	//背景の描写
 	backGround_->Draw();
 	//プレイヤーの描写
 	player_->Draw();
+
 
 	//子供(F)の描写
 	for (FieldChild* fieldChild : fieldChild_) {
 		
 		fieldChild->Draw();
 	}
+
+	//子供(Back)の描写
+	for (PlayerChild* playerChild : playerChild_) {
+		playerChild->Draw();
+	}
+
+	//プレイヤーの描写
+	player_->Draw();
+	
 }
 
 void GamePScene::Attack()
@@ -104,6 +122,7 @@ void GamePScene::Attack()
 			player_->OnFChildCollision();
 			fieldChild->OnCollision();
 			//後ろにいる子供はここでnew入るのか?その1
+			AddPlayeChild();
 		}
 		
 		
@@ -152,3 +171,54 @@ void GamePScene::FieldChildUpdate()
 	}
 }
 
+void GamePScene::AddPlayeChild()
+{
+	PlayerChild* obj = new PlayerChild;
+	Vector2 forwardPos;
+	if (childCounter_ == 0) {
+		forwardPos = player_->GetPlayerPosition();
+	}
+	else {
+		for (PlayerChild* playerChild : playerChild_) {
+			forwardPos = playerChild->GetPos();
+		}
+	}
+	childCounter_++;
+	CountNum_++;
+	obj->Initialize(forwardPos, player_->GetPlayerPosition(), backGround_->GetScrollPosition());
+	obj->SetChildNumber(childCounter_);
+	playerChild_.push_back(obj);
+}
+
+void GamePScene::PlayerChildUpdate()
+{
+	playerChild_.remove_if([](PlayerChild* playerChild) {
+		if (playerChild->GetIsArrive() == false) {
+			delete playerChild;
+			return true; //returnをつける
+		}
+		return false;
+		});
+
+	Vector2 forwardPos;
+	for (PlayerChild* playerChild : playerChild_) {
+
+		if (playerChild->GetChildNumber() == 1) {
+			playerChild->SetDirection(preKeys);
+			forwardPos = player_->GetPlayerPosition();
+		}
+		playerChild->Update(forwardPos, player_->GetPlayerPosition(), backGround_->GetScrollPosition());
+		forwardPos = playerChild->GetPos();
+	}
+}
+
+void GamePScene::PlayerChildLost()
+{
+	for (PlayerChild* playerChild : playerChild_) {
+		if (childCounter_ == uint32_t(playerChild->GetChildNumber())) {
+			playerChild->SetIsArrive(false);
+		}
+	}
+	childCounter_--;
+
+}

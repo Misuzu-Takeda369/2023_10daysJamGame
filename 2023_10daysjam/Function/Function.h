@@ -12,6 +12,13 @@
 float DegreeToRadian(float a);
 
 /// <summary>
+/// 角度の変換
+/// </summary>
+/// <param name="a">radian</param>
+/// <returns></returns>
+float RadianToDegree(float a);
+
+/// <summary>
 /// 色の設定(返り値) 10進数を入力
 /// </summary>
 /// /// <param name="R">Rの値</param>

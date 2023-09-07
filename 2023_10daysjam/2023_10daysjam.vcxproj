@@ -119,6 +119,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="FieldChild\FieldChild.cpp" />
     <ClCompile Include="Function\Function.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PlayerChild\PlayerChild.cpp" />
+    <ClCompile Include="PlayerChild\PlayerChildWeapon.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="SceneManager\GameCScene.cpp" />
     <ClCompile Include="SceneManager\GameOScene.cpp" />
@@ -157,6 +159,8 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="C:\KamataEngine\Adapter\Novice.h" />
     <ClInclude Include="FieldChild\FieldChild.h" />
     <ClInclude Include="Function\Function.h" />
+    <ClInclude Include="PlayerChild\PlayerChild.h" />
+    <ClInclude Include="PlayerChild\PlayerChildWeapon.h" />
     <ClInclude Include="Player\Player.h" />
     <ClInclude Include="SceneManager\GameCScene.h" />
     <ClInclude Include="SceneManager\GameOScene.h" />
@@ -164,6 +168,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="SceneManager\SceneManager.h" />
     <ClInclude Include="SceneManager\TitleScene.h" />
     <ClInclude Include="ScreenSize.h" />
+    <ClInclude Include="UtilityStruct.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

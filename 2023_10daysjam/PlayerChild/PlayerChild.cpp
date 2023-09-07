@@ -11,7 +11,7 @@ PlayerChild::PlayerChild()
 {
 }
 
-void PlayerChild::Initialize(const Vector2& forwardPos,const Vector2& playerPos, Vector2 ScrollPos)
+void PlayerChild::Initialize(const Vector2& forwardPos, const Vector2& playerPos, Vector2 ScrollPos)
 {
 	float directionRadian;
 	float directionDegree;
@@ -19,14 +19,14 @@ void PlayerChild::Initialize(const Vector2& forwardPos,const Vector2& playerPos,
 	if (forwardPos.x - playerPos.x == 0 && forwardPos.y - playerPos.y == 0) {
 		//とりあえずプレイヤーの上方向に出す
 		//方向用の変数あればこの辺書き換える
-		pos_.x = playerPos.x+ScrollPos.x;
-		pos_.y = (playerPos.y - distanceRadius)+ScrollPos.y;
+		pos_.x = playerPos.x + ScrollPos.x;
+		pos_.y = (playerPos.y - distanceRadius) + ScrollPos.y;
 		directionDegree = float(playerDirection_);
 		directionRadian = DegreeToRadian(directionDegree);
 	}
 	else {
-		 directionRadian = std::atan2(forwardPos.y - playerPos.y, forwardPos.x - playerPos.x);
-		 directionDegree = RadianToDegree(directionRadian);
+		directionRadian = std::atan2(forwardPos.y - playerPos.y, forwardPos.x - playerPos.x);
+		directionDegree = RadianToDegree(directionRadian);
 		childDirection_ = int(directionDegree);
 		directionDegree = 180 + directionDegree;
 		directionRadian = DegreeToRadian(directionDegree);
@@ -83,11 +83,11 @@ void PlayerChild::Draw()
 	Novice::DrawEllipse(int(pos_.x), int(pos_.y), 100, 100, 0, WHITE, kFillModeWireFrame);
 	if (isGrow_) {
 		//成長済み
-		Novice::DrawSprite(int(pos_.x)-radius_, int(pos_.y)-radius_, adultTexture_, 1, 1, 0, color_.color);
+		Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, adultTexture_, 1, 1, 0, color_.color);
 	}
 	else {
 		//未成長
-		Novice::DrawSprite(int(pos_.x)-radius_, int(pos_.y)-radius_, babyTexture_, 1, 1, 0, color_.color);
+		Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, babyTexture_, 1, 1, 0, color_.color);
 	}
 }
 

@@ -5,6 +5,13 @@ float DegreeToRadian(float a) {
 	return radian;
 }
 
+float RadianToDegree(float a)
+{
+	float degree;
+	degree = a * (180.0f / float(M_PI));
+	return degree;
+}
+
 
 int GetColorValue(int R, int G, int B, int A)
 {

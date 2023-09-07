@@ -7,6 +7,8 @@
 #include <list>
 #include "FieldChild/FieldChild.h"
 #include "Function/Function.h"
+#include "PlayerChild/PlayerChild.h"
+
 
 /// <summary>
 /// プレイシーンのクラス
@@ -86,5 +88,22 @@ private:
 	void FieldChildUpdate();
 	std::list<FieldChild*> fieldChild_;
 	int fieldChildWaitTimer_ = 0;
+
+	//子(プレイヤー)
+	void AddPlayeChild();
+	void PlayerChildUpdate();
+	/// <summary>
+	/// プレイヤーと敵の衝突がtrueの時に使う
+	/// </summary>
+	void PlayerChildLost();
+	std::list<PlayerChild*> playerChild_;
+	uint32_t childCounter_ = 0;
+
+	//仮挙動(多分再利用されてる)
+	uint32_t CountNum_ = 0;
+
+	char keys[256] = { 0 };
+	char preKeys[256] = { 0 };
+
 
 };

@@ -29,6 +29,9 @@
     <Filter Include="BackGround">
       <UniqueIdentifier>{bfb8f65b-b1e3-4296-907e-b8a6ab47d2f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PlayerChild">
+      <UniqueIdentifier>{873ef6cb-1e94-404c-b0c9-58e8cdda0b3c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -79,6 +82,12 @@
     </ClCompile>
     <ClCompile Include="BackGround\BackGround.cpp">
       <Filter>BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerChild\PlayerChild.cpp">
+      <Filter>PlayerChild</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerChild\PlayerChildWeapon.cpp">
+      <Filter>PlayerChild</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -181,5 +190,14 @@
       <Filter>BackGround</Filter>
     </ClInclude>
     <ClInclude Include="ScreenSize.h" />
+    <ClInclude Include="PlayerChild\PlayerChild.h">
+      <Filter>PlayerChild</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerChild\PlayerChildWeapon.h">
+      <Filter>PlayerChild</Filter>
+    </ClInclude>
+    <ClInclude Include="UtilityStruct.h">
+      <Filter>Function</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

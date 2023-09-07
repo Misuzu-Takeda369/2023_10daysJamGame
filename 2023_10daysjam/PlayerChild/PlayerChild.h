@@ -14,7 +14,7 @@ public:
 	/// </summary>
 	/// <param name="forwardPos">最後尾の座標 いなければプレイヤーの座標がはいるように</param>
 	/// <param name="playerPos">プレイヤーの座標</param>
-	void Initialize(const Vector2& forwardPos,const Vector2& playerPos, Vector2 ScrollPos);
+	void Initialize(const Vector2& forwardPos, const Vector2& playerPos, Vector2 ScrollPos);
 	/// <summary>
 	/// 更新
 	/// </summary>
@@ -32,7 +32,7 @@ public:
 	void Attack();
 
 	void SetDirection(char* preKeys);
-	
+
 	Vector2 GetPos() { return pos_; }
 	void SetChildNumber(int num);
 	int GetChildNumber() { return childNumber_; }
@@ -40,7 +40,7 @@ public:
 	bool GetIsArrive() { return isArrive_; }
 
 private:
-	
+
 
 	static const int typeTotal_ = 1; //  タイプ総数
 	/// <summary>
@@ -76,7 +76,7 @@ private:
 	uint32_t adultTexture_ = 0; //成長後
 	int textureSize_ = 64;
 	int radius_ = textureSize_ / 2;
-	
+
 	PlayerChildWeapon* weapon_ = nullptr;
 	int playerDirection_ = 1;
 	int childNumber_ = 0;

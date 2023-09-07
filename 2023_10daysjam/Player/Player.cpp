@@ -53,7 +53,7 @@ void Player::Draw()
 	//プレイヤーの描写(仮)
 	Novice::DrawEllipse(int(position_.x), int(position_.y), int(radish_.x), int(radish_.y), 0.0f, color_, kFillModeSolid);
 	//プレイヤーの画像(仮)
-	//Novice::DrawSprite(int(position_.x- radish_.x), int(position_.y- radish_.y), image_,1.0f,1.0f,0.0f,color_);
+	Novice::DrawSprite(int(position_.x- radish_.x), int(position_.y- radish_.y), image_,1.0f,1.0f,0.0f,color_);
 }
 
 void Player::Move(char* keys)
@@ -93,7 +93,7 @@ void Player::Move(char* keys)
 
 void Player::OnFChildCollision()
 {
-	//color_ = RED;
+	color_ = RED;
 	//ここで子供カウント
 	eggCount_++;
 }
