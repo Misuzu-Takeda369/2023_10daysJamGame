@@ -47,43 +47,36 @@ void BackGround::Draw()
 
 void BackGround::Move(char* keys)
 {
+	MoveStop(keys);
 	//斜め移動
 	if (keys[DIK_LEFT] && keys[DIK_UP]) {
-		MoveStop(keys);
 		scrollPosition_.x -= (speed_.x / 1.41f);
 		scrollPosition_.y -= (speed_.y / 1.41f);
 	}
 	else if (keys[DIK_RIGHT] && keys[DIK_UP]) {
-		MoveStop(keys);
 		scrollPosition_.x += (speed_.x / 1.41f);
 		scrollPosition_.y -= (speed_.y / 1.41f);
 	}
 	else if (keys[DIK_LEFT] && keys[DIK_DOWN]) {
-		MoveStop(keys);
 		scrollPosition_.x -= (speed_.x / 1.41f);
 		scrollPosition_.y += (speed_.y / 1.41f);
 	}
 	else if (keys[DIK_RIGHT] && keys[DIK_DOWN]) {
-		MoveStop(keys);
 		scrollPosition_.x += (speed_.x / 1.41f);
 		scrollPosition_.y += (speed_.y / 1.41f);
 	}
 
 	//直線移動
 	else if (keys[DIK_LEFT]) {
-		MoveStop(keys);
 		scrollPosition_.x -= speed_.x;
 	}
 	else if (keys[DIK_RIGHT]) {
-		MoveStop(keys);
 		scrollPosition_.x += speed_.x;
 	}
 	else if (keys[DIK_UP]) {
-		MoveStop(keys);
 		scrollPosition_.y -= speed_.y;
 	}
 	else if (keys[DIK_DOWN]) {
-		MoveStop(keys);
 		scrollPosition_.y += speed_.y;
 	}
 }
