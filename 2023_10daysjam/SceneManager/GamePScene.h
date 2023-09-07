@@ -59,15 +59,24 @@ public:
 	bool SetFlagChange(bool flagChange) { return this->flagChange_ = flagChange; };
 
 
+	/// <summary>
+	/// たまごの個数(クリアとgameoverの判定用)ゲッター
+	/// </summary>
+	/// <returns></returns>
+	//uint32_t GetEggNum() { return eggNum_; };
+
 private:
 	// シーン変更できるかどうか
 	bool flagChange_ = false;
+	//たまごの個数(クリアとoverを判別するため)
+	//uint32_t eggNum_ = 0;
 
 	// 仮シーン変換用キー
 	Input* inputchagekey_ = nullptr;
 
 	//プレイヤーのクラス
 	Player* player_ = nullptr;
+	
 
 	//背景のクラス
 	BackGround* backGround_ = nullptr;

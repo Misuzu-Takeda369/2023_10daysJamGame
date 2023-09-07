@@ -66,8 +66,12 @@ void SceneManager::Update() {
 		//プレイモードのクラスから変更出来るか否かフラグ貰ってきてtrueだった場合
 		//別のシーンに移行する
 		if (gameP_->GetFlagChange()) {
-			sceneNum_ = GClearMode;
-			gameP_->SetFlagChange(false);
+
+			//if () {
+				sceneNum_ = GClearMode;
+				gameP_->SetFlagChange(false);
+			//}
+			
 
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ(クリアとかでスコア作って表示するなら...) 

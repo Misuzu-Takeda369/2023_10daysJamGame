@@ -47,6 +47,11 @@ public:
 	/// </summary>
 	void OnFChildCollision();
 
+	/// <summary>
+	/// 当たった時の処理(敵)
+	/// </summary>
+	void OnEnemyCollision();
+
 	///getter&setter
 
 	/// <summary>

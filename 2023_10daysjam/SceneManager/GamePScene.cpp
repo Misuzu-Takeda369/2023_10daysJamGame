@@ -37,8 +37,8 @@ void GamePScene::Initialize()
 	}
 	backGround_ = new BackGround(player_->GetPlayerRadish());
 	backGround_->Initialize();
-	
 
+	eggNum_ = 0;
 }
 
 void GamePScene::Update()
