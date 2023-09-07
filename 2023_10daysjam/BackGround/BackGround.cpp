@@ -7,6 +7,7 @@
 BackGround::BackGround(Vector2 playerRadish)
 {
 	playerRadish_ = { playerRadish.x,playerRadish.y };
+	image_ = Novice::LoadTexture("./Resources/Images/BackGround.png");
 }
 
 BackGround::~BackGround()
@@ -15,10 +16,10 @@ BackGround::~BackGround()
 
 void BackGround::Initialize()
 {
-	wouldPosition_ = { 0.0f,0.0f };
+	wouldPosition_ = {-640.0f,-360.0f };
 	scrollPosition_ = { 0.0f,0.0f };
 	speed_ = { 2.0f,2.0f };
-	image_ = 0;
+	//image_ = Novice::LoadTexture("./Resources/Images/BackGround.png");
 }
 
 void BackGround::Update()
@@ -48,6 +49,9 @@ void BackGround::Update()
 void BackGround::Draw()
 {
 	Novice::DrawBox(uint32_t(wouldPosition_.x - scrollPosition_.x), uint32_t(wouldPosition_.y - scrollPosition_.y), 1280, 720, 0.0f, RED, kFillModeWireFrame);
+
+	//画像設置(まだ仮)
+	Novice::DrawSprite(uint32_t(wouldPosition_.x - scrollPosition_.x), uint32_t(wouldPosition_.y - scrollPosition_.y), image_,1.0f,1.0f,0.0f,WHITE);
 }
 
 

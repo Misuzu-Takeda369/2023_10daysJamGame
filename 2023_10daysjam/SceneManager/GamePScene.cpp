@@ -75,7 +75,7 @@ void GamePScene::Update()
 	PlayerChildUpdate();
 
 	//ここのif文でシーン移行出来るかを判別
-	//現在は0を押したときに移動
+	//現在は0を押したときに移動 20でクリアシーンへ移動
 	if (((inputchagekey_->TriggerKey(DIK_0))|| player_->GetEggCount() >= 20)  || flagGameOver_) {
 		flagChange_ = true;
 	}
