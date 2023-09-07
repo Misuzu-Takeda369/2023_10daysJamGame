@@ -49,6 +49,8 @@ void GamePScene::Update()
 	//背景の更新
 	backGround_->Update();
 
+	Attack();
+
 #pragma region 子供(F)のゲームシーン内の処理
 	//子供(F)のゲームシーン内の処理
 	fieldChildWaitTimer_++;
@@ -80,6 +82,41 @@ void GamePScene::Draw()
 		
 		fieldChild->Draw();
 	}
+}
+
+void GamePScene::Attack()
+{
+#pragma region Playerと子供(F)の当たり判定
+	
+	//当たり判定用の変数
+	Vector2 cheakPpos = player_->GetPlayerPosition();
+	Vector2 cheakPradish = player_->GetPlayerRadish();
+
+	for (FieldChild* fieldChild : fieldChild_) {
+
+		Vector2 cheakFCpos = fieldChild->GetScreenPos();
+		Vector2 cheakFCradish = fieldChild->GetRadish();
+		
+
+		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakFCpos.x, cheakFCpos.y, cheakFCradish.x)==true) {
+			//現状プレイヤーが赤くなるぐらい(本来入らない？カウントぐらい)
+			player_->OnCollision();
+			fieldChild->OnCollision();
+			//後ろにいる子供はここでnew入るのか?その1
+		}
+		
+		
+	}
+#pragma endregion
+
+#pragma region PlayerとEnemyの当たり判定
+
+#pragma endregion
+
+#pragma region Enemyと子供(Bullet)の当たり判定
+
+#pragma endregion
+
 }
 
 void GamePScene::AddFieldChild(Vector2 playerPos)

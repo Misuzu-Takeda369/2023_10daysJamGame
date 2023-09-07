@@ -75,3 +75,10 @@ void FieldChild::Draw()
 		Novice::DrawSprite(int(screenPos_.x), int(screenPos_.y), texture_, 1, 1, 0, color_);
 	}
 }
+
+void FieldChild::OnCollision()
+{
+	//この辺に何かしらのアクション入る？
+	//後ろにいる子供はここでnew入るのか?その2
+	isArrive_ = false;
+}

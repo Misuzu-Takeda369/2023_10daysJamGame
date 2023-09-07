@@ -6,6 +6,7 @@
 #include "BackGround/BackGround.h"
 #include <list>
 #include "FieldChild/FieldChild.h"
+#include "Function/Function.h"
 
 /// <summary>
 /// プレイシーンのクラス
@@ -38,7 +39,13 @@ public:
 	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// 当たり判定管理関数
+	/// </summary>
+	void Attack();
 
+	///getter&setter
+	
 	/// <summary>
 	/// シーン変更管理のゲッター
 	/// </summary>

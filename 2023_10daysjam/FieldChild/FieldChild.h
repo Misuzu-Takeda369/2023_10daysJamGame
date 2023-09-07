@@ -13,6 +13,22 @@ public:
 	bool GetIsArrive() {return isArrive_;}
 	static const int spawnWaitTime_ = 1 * 60; //スポーンするまでの時間
 
+	/// <summary>
+	/// スクロール入った分位置のgetter
+	/// </summary>
+	Vector2 GetScreenPos() { return this->screenPos_; };
+
+	/// <summary>
+	/// 半径のgetter
+	/// </summary>
+	/// <returns></returns>
+	Vector2 GetRadish() { return this->radish_; };
+
+	/// <summary>
+	/// 当たった時の処理
+	/// </summary>
+	void OnCollision();
+
 private:
 	Vector2 pos_;
 	const int spawnDistance_ = 200; //プレイヤーからの半径距離(近すぎるところにスポーンしないように)
@@ -34,5 +50,8 @@ private:
 	/// スクロール入った分位置(スクリーンでの位置) 
 	/// </summary>
 	Vector2 scrollPos_ = { 0.0f,0.0f };
+
+	//半径(画像サイズ的に多分) 
+	Vector2 radish_ = {16.0f,16.0f};
 };
 
