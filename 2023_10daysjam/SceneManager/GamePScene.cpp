@@ -43,11 +43,15 @@ void GamePScene::Initialize()
 	backGround_ = new BackGround(player_->GetPlayerRadish());
 	backGround_->Initialize();
 
+	//ゲームオーバーフラグ
 	flagGameOver_ = false;
 }
 
 void GamePScene::Update()
 {
+
+	memcpy(preKeys, keys, 256);
+	Novice::GetHitKeyStateAll(keys);
 	
 	//プレイヤーの更新
 	player_->Update();
@@ -98,8 +102,7 @@ void GamePScene::Draw()
 		playerChild->Draw();
 	}
 
-	//プレイヤーの描写
-	player_->Draw();
+	
 	
 }
 
