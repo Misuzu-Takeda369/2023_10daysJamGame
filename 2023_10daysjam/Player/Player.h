@@ -2,6 +2,7 @@
 #include "Novice.h"
 #include "Vector2.h"
 #include "DirectXCommon.h"
+#include "imgui.h"
 
 /// <summary>
 /// プレイヤーのクラス
@@ -84,6 +85,8 @@ private:
 	Vector2 speed_ = { 4.0f,4.0f };
 
 	uint32_t image_ ;
+
+	uint32_t eggCount_ = 0;
 
 };
 

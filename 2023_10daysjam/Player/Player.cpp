@@ -16,6 +16,7 @@ void Player::Initialize()
 	speed_ = { 2.0f,2.0f };
 	image_ = Novice::LoadTexture("./Resources/Images/bsorrow.png");
 
+	eggCount_ = 0;
 }
 
 void Player::Update()
@@ -31,6 +32,15 @@ void Player::Update()
 	//プレイヤーの移動関数
 	Move(keys);
 	*/
+
+
+#pragma region ImGui関連
+
+	ImGui::Begin("eggCount_");
+	ImGui::Text(" eggCount_ %d", eggCount_);
+	ImGui::End();
+
+#pragma endregion
 }
 
 void Player::Draw()
@@ -38,7 +48,7 @@ void Player::Draw()
 	//プレイヤーの描写(仮)
 	Novice::DrawEllipse(int(position_.x), int(position_.y), int(radish_.x), int(radish_.y), 0.0f, color_, kFillModeSolid);
 	//プレイヤーの画像(仮)
-	//Novice::DrawSprite(int(position_.x- radish_.x), int(position_.y- radish_.y), image_,1.0f,1.0f,0.0f,color_);
+	Novice::DrawSprite(int(position_.x- radish_.x), int(position_.y- radish_.y), image_,1.0f,1.0f,0.0f,color_);
 }
 
 void Player::Move(char* keys)
@@ -80,4 +90,5 @@ void Player::OnCollision()
 {
 	//color_ = RED;
 	//ここで子供カウント
+	eggCount_++;
 }
