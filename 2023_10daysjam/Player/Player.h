@@ -65,6 +65,12 @@ public:
 	/// </summary>
 	Vector2 GetPlayerSpeed() { return speed_; };
 
+	/// <summary>
+	/// 子(F)のカウント
+	/// </summary>
+	/// <returns></returns>
+	uint32_t GetEggCount() { return eggCount_; };
+
 private:
 
 	/// <summary>

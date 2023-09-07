@@ -64,7 +64,7 @@ void GamePScene::Update()
 
 	//ここのif文でシーン移行出来るかを判別
 	//現在は0を押したときに移動
-	if (inputchagekey_->TriggerKey(DIK_0)) {
+	if ((inputchagekey_->TriggerKey(DIK_0))|| player_->GetEggCount() >= 20) {
 		flagChange_ = true;
 	}
 
