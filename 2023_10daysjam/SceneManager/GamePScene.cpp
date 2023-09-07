@@ -38,7 +38,7 @@ void GamePScene::Initialize()
 	backGround_ = new BackGround(player_->GetPlayerRadish());
 	backGround_->Initialize();
 
-	eggNum_ = 0;
+	flagGameOver_ = false;
 }
 
 void GamePScene::Update()
@@ -64,9 +64,10 @@ void GamePScene::Update()
 
 	//ここのif文でシーン移行出来るかを判別
 	//現在は0を押したときに移動
-	if ((inputchagekey_->TriggerKey(DIK_0))|| player_->GetEggCount() >= 20) {
+	if (((inputchagekey_->TriggerKey(DIK_0))|| player_->GetEggCount() >= 20)  || flagGameOver_) {
 		flagChange_ = true;
 	}
+
 
 }
 
@@ -99,7 +100,7 @@ void GamePScene::Attack()
 		
 
 		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakFCpos.x, cheakFCpos.y, cheakFCradish.x)==true) {
-			//現状プレイヤーが赤くなるぐらい(本来入らない？カウントぐらい)
+			//カウント
 			player_->OnFChildCollision();
 			fieldChild->OnCollision();
 			//後ろにいる子供はここでnew入るのか?その1
@@ -110,6 +111,15 @@ void GamePScene::Attack()
 #pragma endregion
 
 #pragma region PlayerとEnemyの当たり判定
+
+	//シーン変換のために(キー1押してたまごのカウントが0だった場合ゲームオーバーに行くようにフラグ) 
+	if ((inputchagekey_->TriggerKey(DIK_1))) {
+
+		if (player_->GetEggCount() == 0) {
+			flagGameOver_ = true;
+		}
+
+	}
 
 #pragma endregion
 

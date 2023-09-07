@@ -60,16 +60,16 @@ public:
 
 
 	/// <summary>
-	/// たまごの個数(クリアとgameoverの判定用)ゲッター
+	/// クリアとoverを判別するためのフラグのゲッター
 	/// </summary>
 	/// <returns></returns>
-	//uint32_t GetEggNum() { return eggNum_; };
+	bool GetFlagGameOver() { return flagGameOver_; };
 
 private:
 	// シーン変更できるかどうか
 	bool flagChange_ = false;
-	//たまごの個数(クリアとoverを判別するため)
-	//uint32_t eggNum_ = 0;
+	//クリアとoverを判別するためのフラグ
+	bool flagGameOver_ = false;
 
 	// 仮シーン変換用キー
 	Input* inputchagekey_ = nullptr;

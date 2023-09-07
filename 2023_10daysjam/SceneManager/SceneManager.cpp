@@ -67,18 +67,20 @@ void SceneManager::Update() {
 		//別のシーンに移行する
 		if (gameP_->GetFlagChange()) {
 
-			//if () {
+			if (gameP_->GetFlagGameOver()) {
+				sceneNum_ = GOverMode;
+			}
+			else {
 				sceneNum_ = GClearMode;
-				gameP_->SetFlagChange(false);
-			//}
-			
+			}
 
+			gameP_->SetFlagChange(false);
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ(クリアとかでスコア作って表示するなら...) 
 			delete gameP_;
 			gameP_ = new GamePScene();
 			gameP_->Initialize();
-			
+
 		}
 		break;
 
@@ -89,9 +91,9 @@ void SceneManager::Update() {
 		//クリアシーンのクラスから変更出来るか否かフラグ貰ってきてtrueだった場合
 		//別のシーンに移行する
 		if (gameC_->GetFlagChange()) {
-			sceneNum_ = GOverMode;
+			sceneNum_ = TitleMode;
 			gameC_->SetFlagChange(false);
-			
+
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
 			delete gameC_;
@@ -109,7 +111,7 @@ void SceneManager::Update() {
 		if (gameO_->GetFlagChange()) {
 			sceneNum_ = TitleMode;
 			gameO_->SetFlagChange(false);
-			
+
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
 			delete gameO_;
@@ -127,6 +129,8 @@ void SceneManager::Update() {
 #ifdef _DEBUG
 	ImGui::Begin("SceneModeCheck");
 	ImGui::Text("[DIK_0] sceneNum_ %d", sceneNum_);
+	ImGui::Text("[DIK_1] if(EggCount=0)_1to3(GameOver)");
+	ImGui::Text("[EggCount=20] 1to2(GameClear)");
 	ImGui::End();
 #endif // DEBUG
 
