@@ -2,8 +2,12 @@
 
 //現在は画面サイズのみ
 
-static const int kWindowWidth = 1280; // 横幅
-static const int kWindowHeight = 720; // 縦幅
+//static const int kWindowWidth = 1280; // 横幅
+//static const int kWindowHeight = 720; // 縦幅
+
+static const int kWindowWidth = 1024; // 横幅
+static const int kWindowHeight = 576; // 縦幅
+
 
 //一番端っこ
 static const int MimWindowWidth = 0;

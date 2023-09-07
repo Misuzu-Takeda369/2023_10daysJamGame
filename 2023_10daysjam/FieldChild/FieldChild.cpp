@@ -62,10 +62,11 @@ void FieldChild::Update(Vector2 ScrollPos)
 	scrollPos_ = { ScrollPos.x ,ScrollPos.y };
 	screenPos_ = { pos_.x - scrollPos_.x  ,pos_.y - scrollPos_.y };
 
+	/*背景ループ型ならイラン
 	if (pos_.x<=0.0f || pos_.x >= 1280.0f || pos_.y <= 0.0f || pos_.y >= 720.0f) {
 		color_ = 0xFFFFFF00;
 	}
-
+	*/
 }
 
 void FieldChild::Draw()

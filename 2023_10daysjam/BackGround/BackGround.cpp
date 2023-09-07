@@ -57,7 +57,7 @@ void BackGround::Draw()
 
 void BackGround::Move(char* keys)
 {
-	MoveStop(keys);
+	//MoveStop(keys);
 	//斜め移動
 	if (keys[DIK_LEFT] && keys[DIK_UP]) {
 		scrollPosition_.x -= (speed_.x / 1.41f);
