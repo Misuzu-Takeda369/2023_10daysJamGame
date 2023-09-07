@@ -66,7 +66,7 @@ void SceneManager::Update() {
 			gameP_->SetFlagChange(false);
 
 			//deleteとnewと初期化(初期化だけでもよさそう感)
-			//動きによっては別な場所へ
+			//動きによっては別な場所へ(クリアとかでスコア作って表示するなら...) 
 			delete gameP_;
 			gameP_ = new GamePScene();
 			gameP_->Initialize();
