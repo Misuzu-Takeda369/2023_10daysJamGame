@@ -10,6 +10,17 @@ struct UnitColor
 	
 };
 
+/// <summary>
+/// 子のタイプ
+/// </summary>
+enum Type
+{
+	None, //0 
+	DefaultType,//1 あとで名前変える
+	Circle, //2
+};
+static const int typeTotal_ = 2; //  タイプ総数
+
 //以下ユニットの向きを変える場合に画像を複数使う時用
 /*
 

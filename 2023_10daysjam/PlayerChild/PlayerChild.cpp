@@ -11,7 +11,7 @@ PlayerChild::PlayerChild()
 {
 }
 
-void PlayerChild::Initialize(const Vector2& forwardPos, const Vector2& playerPos, Vector2 ScrollPos)
+void PlayerChild::Initialize(const Vector2& forwardPos,const Vector2& playerPos, Vector2 ScrollPos)
 {
 	float directionRadian;
 	float directionDegree;
@@ -19,14 +19,14 @@ void PlayerChild::Initialize(const Vector2& forwardPos, const Vector2& playerPos
 	if (forwardPos.x - playerPos.x == 0 && forwardPos.y - playerPos.y == 0) {
 		//とりあえずプレイヤーの上方向に出す
 		//方向用の変数あればこの辺書き換える
-		pos_.x = playerPos.x + ScrollPos.x;
-		pos_.y = (playerPos.y - distanceRadius) + ScrollPos.y;
+		pos_.x = playerPos.x+ScrollPos.x;
+		pos_.y = (playerPos.y - distanceRadius)+ScrollPos.y;
 		directionDegree = float(playerDirection_);
 		directionRadian = DegreeToRadian(directionDegree);
 	}
 	else {
-		directionRadian = std::atan2(forwardPos.y - playerPos.y, forwardPos.x - playerPos.x);
-		directionDegree = RadianToDegree(directionRadian);
+		 directionRadian = std::atan2(forwardPos.y - playerPos.y, forwardPos.x - playerPos.x);
+		 directionDegree = RadianToDegree(directionRadian);
 		childDirection_ = int(directionDegree);
 		directionDegree = 180 + directionDegree;
 		directionRadian = DegreeToRadian(directionDegree);
@@ -89,11 +89,23 @@ void PlayerChild::Draw()
 		//未成長
 		Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, babyTexture_, 1, 1, 0, color_.color);
 	}
+	weapon_->Draw();
 }
 
 void PlayerChild::Attack()
 {
-	weapon_->Update();
+	if (attackCoolTimer_ >= attackCoolTime_) {
+		attackTimer_++;
+	}
+	else {
+		attackCoolTimer_++;
+	}
+	if (attackTimer_ >= attackTime_) {
+		weapon_->SetIsAttacking(true);
+		attackTimer_ = 0;
+		attackCoolTimer_ = 0;
+	}
+	weapon_->Update(pos_);
 }
 
 void PlayerChild::SetDirection(char* preKeys)
@@ -142,6 +154,6 @@ void PlayerChild::SetChildType()
 	int typeNum = RandomRange(1, typeTotal_);
 	adultTexture_ = Novice::LoadTexture("./Resources/Images/childAdult.png");
 	childType_ = Type(typeNum);
-	weapon_->Initialize(int(childType_));
+	weapon_->Initialize(childType_);
 	color_.color = RED;
 }
