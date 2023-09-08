@@ -60,4 +60,25 @@ bool CircleCollision(float aX, float aY, float aRadius, float bX, float bY, floa
 	}
 }
 
+uint32_t AnimationNum(uint32_t animationNum)
+{
+
+	if (animationNum == 0) {
+		animationNum = 1;
+
+	}
+	else if (animationNum == 1) {
+		animationNum = 2;
+
+	}
+	else if (animationNum == 2) {
+		animationNum = 0;
+
+	}
+
+	return animationNum;
+}
+
+
+
 

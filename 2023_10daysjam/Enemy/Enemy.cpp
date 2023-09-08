@@ -47,11 +47,12 @@ void Enemy::Initialize(Vector2 PlayerPos, Vector2 ScrollPos)
 	pos_.y = PlayerPos.y + scrollPos_.y + (float(spawnDistance_ * sign.y)) + float(plusRange.y * sign.y);
 	//スクリーンの座標
 	screenPos_ = { pos_.x ,pos_.y };
+	playerStalkingPos_ = { PlayerPos.x,PlayerPos.y };
 
 #pragma endregion
 
 #pragma region 敵のtype
-	enemyMoveType_ = RandomRange(0, 2);
+	enemyMoveType_ = RandomRange(0, 3);
 
 	switch (enemyMoveType_)
 	{
@@ -123,46 +124,21 @@ void Enemy::Update(Vector2 ScrollPos)
 
 		break;
 	case stalking:
+	
+		MoveStalking();
 
-		speed_ = int(1.5f);
-		break;
 	default:
-		speed_ = 0;
+		//speed_ = 0;
 		break;
 	}
 
 
-
-
-
-
-	////縦の移動
-	//pos_.y += speed_;
-	//if (pos_.y <= 0 + radius_) {
-	//	speed_ = speed_ + 3;
-	//}
-	//if (pos_.y >= kWindowHeight - radius_) {
-	//	speed_ = speed_ - 3;
-	//}
-
-
 #pragma region 敵のアニメーション(後で関数作る)
-	animationFrame--;
+	animationFrame_--;
 
-	if (animationFrame <= 0) {
-
-		if (animationNum_ == 0) {
-			animationNum_ = 1;
-			animationFrame = 60;
-		}
-		else if (animationNum_ == 1) {
-			animationNum_ = 2;
-			animationFrame = 60;
-		}
-		else if (animationNum_ == 2) {
-			animationNum_ = 0;
-			animationFrame = 60;
-		}
+	if (animationFrame_ <= 0) {
+		animationNum_=AnimationNum(animationNum_);
+		animationFrame_ = 30;
 	}
 
 #pragma endregion 
@@ -186,7 +162,7 @@ void Enemy::Update(Vector2 ScrollPos)
 
 void Enemy::Draw()
 {
-	//Novice::DrawEllipse(int(pos_.x), int(pos_.y), int(radius_), int(radius_), 0.0f, int(color_), kFillModeSolid);
+	Novice::DrawEllipse(int(screenPos_.x), int(screenPos_.y), int(radius_), int(radius_), 0.0f, int(color_), kFillModeSolid);
 
 	//Novice::DrawSprite(int(pos_.x - radius_), int(pos_.y - radius_), texture_, 1, 1, 0.0f, color_);
 
@@ -211,9 +187,33 @@ int Enemy::SpeedRam()
 		speed = 3;
 	}
 	else if (enemySpeedType_ == 1) {
-		speed = 9;
+		speed = 12;
 	}
 
 	return speed;
 
+}
+
+void Enemy::MoveStalking()
+{
+	
+	if (screenPos_.x >= playerStalkingPos_.x && screenPos_.y >= playerStalkingPos_.y) {
+		pos_.x -= speed_;
+		pos_.y -= speed_;
+	}
+	else if (screenPos_.x < playerStalkingPos_.x && screenPos_.y >= playerStalkingPos_.y) {
+		pos_.x += speed_;
+		pos_.y -= speed_;
+	}
+
+	else if (screenPos_.x >= playerStalkingPos_.x && screenPos_.y < playerStalkingPos_.y) {
+		pos_.x -= speed_;
+		pos_.y += speed_;
+	}
+	else if (screenPos_.x < playerStalkingPos_.x && screenPos_.y < playerStalkingPos_.y) {
+		pos_.x += speed_;
+		pos_.y += speed_;
+	}
+
+	
 }

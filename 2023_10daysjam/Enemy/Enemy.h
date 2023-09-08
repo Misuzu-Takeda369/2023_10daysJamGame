@@ -48,7 +48,16 @@ public:
 
 	static const int spawnWaitTime_ = 2 * 60; //スポーンするまでの時間
 
+	/// <summary>
+	/// 普通か遅いかを決める関数
+	/// </summary>
+	/// <returns></returns>
 	int SpeedRam();
+
+	/// <summary>
+	/// 敵のストーキングする動き用の関数
+	/// </summary>
+	void MoveStalking();
 	
 private:
 
@@ -62,7 +71,8 @@ private:
 
 	//アニメーション関連
 	uint32_t animationNum_ = 0;
-	uint32_t animationFrame = 30;
+	uint32_t animationFrame_ = 30;
+
 
 
 	
@@ -99,4 +109,9 @@ private:
 	/// 移動量
 	/// </summary>
 	Vector2 enemyMoveCheck_ = {0.0f,0.0f};
+
+	/// <summary>
+	/// ストーキング用のプレイヤーの位置
+	/// </summary>
+	Vector2 playerStalkingPos_ = { 0.0f,0.0f };
 };

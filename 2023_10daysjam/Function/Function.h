@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include <time.h>
+#include <cstdint>
 
 /// <summary>
 /// 角度の変換
@@ -47,3 +48,11 @@ int RandomRange(int min, int max);
 /// <param name="bRadius">円２　半径</param>
 /// <returns></returns>
 bool CircleCollision(float aX, float aY, float aRadius, float bX, float bY, float bRadius);
+
+
+/// <summary>
+/// アニメーション変化関数
+/// </summary>
+/// <param name="animationNum">何番目かの変数</param>
+/// <returns></returns>
+uint32_t AnimationNum(uint32_t animationNum);
