@@ -23,12 +23,12 @@ public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Initialize();
+	void Initialize(Vector2 PlayerPos, Vector2 ScrollPos);
 
 	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
-	void Update();
+	void Update(Vector2 ScrollPos);
 
 	/// <summary>
 	/// 描画
@@ -40,12 +40,63 @@ public:
 	/// </summary>
 	void OnCollision();
 
+	/// <summary>
+	/// 敵が現存しているか確認
+	/// </summary>
+	/// <returns></returns>
+	bool GetIsArrive() { return isArrive_; };
+
+	static const int spawnWaitTime_ = 2 * 60; //スポーンするまでの時間
+
+	int SpeedRam();
+	
 private:
 
 	Vector2 pos_ = { 0.f,0.f };
-	int radius_ = 0;
+	int radius_ = 64;
 	int speed_ = 0;
 	uint32_t color_ = WHITE;
 
-	uint32_t texture_;
+	uint32_t texture_ =0;
+	uint32_t texture2_ = 0;
+
+	//アニメーション関連
+	uint32_t animationNum_ = 0;
+	uint32_t animationFrame = 30;
+
+
+	
+	int waitTime_ = 0; //待機時間
+	int secondCount_ = 0; //秒カウント用
+	const int deadTime_ = 10; //デスポーンする時間(秒)
+	bool isArrive_ = true;
+	const int spawnDistance_ = 200; //プレイヤーからの半径距離(近すぎるところにスポーンしないように)
+
+	/// <summary>
+	/// スクロール入った分位置(スクリーンでの位置) 
+	/// </summary>
+	Vector2 screenPos_ = { 0.0f,0.0f };
+
+	/// <summary>
+	/// スクロール入った分位置(スクリーンでの位置) 
+	/// </summary>
+	Vector2 scrollPos_ = { 0.0f,0.0f };
+
+	/// <summary>
+	/// 敵の動き
+	/// </summary>
+	enum EnemyMovetype {
+		//縦、横、ストーキング、動かん(ない)
+		sideway, vertically,stalking,notMove,
+	};
+	///敵type
+	uint32_t enemyMoveType_ = notMove;
+
+	///スピードtype (0が普通、1が速い)
+	uint32_t enemySpeedType_ = 0;
+
+	/// <summary>
+	/// 移動量
+	/// </summary>
+	Vector2 enemyMoveCheck_ = {0.0f,0.0f};
 };

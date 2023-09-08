@@ -19,6 +19,11 @@ GamePScene::~GamePScene()
 		delete playerChild;
 	}
 
+	//敵のデリート
+	for (Enemy* enemy : enemy_) {
+		delete enemy;
+	}
+	//delete enemy_;
 }
 
 void GamePScene::Initialize() 
@@ -45,6 +50,12 @@ void GamePScene::Initialize()
 
 	//ゲームオーバーフラグ
 	flagGameOver_ = false;
+
+	//敵の初期化
+	//enemy_ = new Enemy();
+	//enemy_->Initialize();
+	
+
 }
 
 void GamePScene::Update()
@@ -59,6 +70,9 @@ void GamePScene::Update()
 	//背景の更新
 	backGround_->Update();
 
+	//敵の更新
+	//enemy_->Update();
+
 	Attack();
 
 #pragma region 子供(F)のゲームシーン内の処理
@@ -70,6 +84,18 @@ void GamePScene::Update()
 	}
 	FieldChildUpdate();
 #pragma endregion
+
+#pragma region 敵のゲームシーン内の処理
+	
+	enemiesWaitTimer_++;
+	if (enemiesWaitTimer_ >= Enemy::spawnWaitTime_) {
+		AddEnemies(player_->GetPlayerPosition());
+		enemiesWaitTimer_ = 0;
+	}
+	EnemiesUpdate();
+#pragma endregion
+
+
 
 	//ここに子供(Back)の更新
 	PlayerChildUpdate();
@@ -103,7 +129,10 @@ void GamePScene::Draw()
 		playerChild->Draw();
 	}
 
-	
+	//enemy_->Draw
+	for (Enemy* enemy : enemy_) {
+		enemy->Draw();
+	}
 	
 }
 
@@ -126,7 +155,7 @@ void GamePScene::Attack()
 			player_->OnFChildCollision();
 			fieldChild->OnCollision();
 			//後ろにいる子供はここでnew入るのか?その1
-			AddPlayeChild();
+			AddPlayerChild();
 		}
 		
 		
@@ -160,6 +189,7 @@ void GamePScene::AddFieldChild(Vector2 playerPos)
 	fieldChild_.push_back(obj);
 }
 
+
 void GamePScene::FieldChildUpdate()
 {
 	fieldChild_.remove_if([](FieldChild* fieldChild) {
@@ -175,7 +205,7 @@ void GamePScene::FieldChildUpdate()
 	}
 }
 
-void GamePScene::AddPlayeChild()
+void GamePScene::AddPlayerChild()
 {
 	PlayerChild* obj = new PlayerChild;
 	Vector2 forwardPos;
@@ -225,4 +255,30 @@ void GamePScene::PlayerChildLost()
 	}
 	childCounter_--;
 
+}
+
+
+void GamePScene::AddEnemies(Vector2 playerPos)
+{
+	Enemy* obj = new Enemy;
+
+	obj->Initialize(playerPos, backGround_->GetScrollPosition());
+	enemy_.push_back(obj);
+
+}
+
+void GamePScene::EnemiesUpdate()
+{
+
+	enemy_.remove_if([](Enemy* enemy) {
+		if (enemy->GetIsArrive() == false) {
+			delete enemy;
+			return true; //returnをつける
+		}
+		return false;
+		});
+
+	for (Enemy* enemy : enemy_) {
+		enemy->Update(backGround_->GetScrollPosition());
+	}
 }

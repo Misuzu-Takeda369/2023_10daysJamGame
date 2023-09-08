@@ -8,6 +8,7 @@
 #include "FieldChild/FieldChild.h"
 #include "Function/Function.h"
 #include "PlayerChild/PlayerChild.h"
+#include "Enemy/Enemy.h"
 
 
 /// <summary>
@@ -46,6 +47,41 @@ public:
 	/// </summary>
 	void Attack();
 
+
+	/// <summary>
+	/// 敵の生成？
+	/// </summary>
+	void AddEnemies(Vector2 playerPos);
+	
+	/// <summary>
+	/// 複数の敵の更新
+	/// </summary>
+	void EnemiesUpdate();
+
+	/// <summary>
+	/// 子供(Back)の生成
+	/// </summary>
+	void AddPlayerChild();
+	/// <summary>
+	/// 子供(Back)の更新
+	/// </summary>
+	void PlayerChildUpdate();
+
+	/// <summary>
+	/// 子供(F)の生成
+	/// </summary>
+	void AddFieldChild(Vector2 playerPos);
+	/// <summary>
+	/// 子供(F)敵の更新
+	/// </summary>
+	void FieldChildUpdate();
+
+	/// <summary>
+	/// プレイヤーと敵の衝突がtrueの時に使う
+	/// </summary>
+	void PlayerChildLost();
+
+
 	///getter&setter
 	
 	/// <summary>
@@ -67,6 +103,8 @@ public:
 	/// <returns></returns>
 	bool GetFlagGameOver() { return flagGameOver_; };
 
+
+
 private:
 	// シーン変更できるかどうか
 	bool flagChange_ = false;
@@ -84,20 +122,20 @@ private:
 	BackGround* backGround_ = nullptr;
 
 	//子(フィールド)関連
-	void AddFieldChild(Vector2 playerPos);
-	void FieldChildUpdate();
 	std::list<FieldChild*> fieldChild_;
 	int fieldChildWaitTimer_ = 0;
 
 	//子(プレイヤー)
-	void AddPlayeChild();
-	void PlayerChildUpdate();
-	/// <summary>
-	/// プレイヤーと敵の衝突がtrueの時に使う
-	/// </summary>
-	void PlayerChildLost();
 	std::list<PlayerChild*> playerChild_;
 	uint32_t childCounter_ = 0;
+
+	
+	
+
+	//敵関連のクラス
+	//Enemy* enemy_ = nullptr;
+	std::list<Enemy*> enemy_;
+	int enemiesWaitTimer_ = 0;
 
 	//仮挙動(多分再利用されてる)
 	uint32_t CountNum_ = 0;

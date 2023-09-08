@@ -50,6 +50,8 @@ void Player::Update()
 
 void Player::Draw()
 {
+	//プレイヤーの範囲？(半径の2倍)
+	Novice::DrawEllipse(int(position_.x), int(position_.y),int(radish_.x)*3, int(radish_.y)*3, 0.0f, color_, kFillModeWireFrame);
 	//プレイヤーの描写(仮)
 	Novice::DrawEllipse(int(position_.x), int(position_.y), int(radish_.x), int(radish_.y), 0.0f, color_, kFillModeSolid);
 	//プレイヤーの画像(仮)

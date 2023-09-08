@@ -17,6 +17,7 @@ void FieldChild::Initialize(Vector2 PlayerPos, Vector2 ScrollPos)
 	//スクロールした値分
 	scrollPos_ = { ScrollPos.x ,ScrollPos.y };
 
+#pragma region 生成関連
 	Vector2 plusRange = { 0.0f,0.0f };
 	Vector2 sign = { 1.0f,1.0f };
 
@@ -42,6 +43,9 @@ void FieldChild::Initialize(Vector2 PlayerPos, Vector2 ScrollPos)
 
 	//子供生成位置をプレイヤーの位置＋背景が動いた分に変更
 	pos_.y = PlayerPos.y + scrollPos_.y + (float(spawnDistance_ * sign.y)) + float(plusRange.y * sign.y);
+
+#pragma endregion
+
 	//スクリーンの座標
 	screenPos_ = { pos_.x ,pos_.y };
 }
