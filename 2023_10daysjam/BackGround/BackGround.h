@@ -7,6 +7,7 @@
 /// <summary>
 /// スクロール(背景)のクラス
 /// </summary>
+
 class BackGround
 {
 public:
@@ -49,6 +50,15 @@ public:
 	/// </summary>
 	void MoveStop(char* keys);
 
+	/// <summary>
+	/// 背景のループ用(ここに来たら移動するよーってやつ)
+	/// </summary>
+	void ChangeBackGround();
+
+	/// <summary>
+	///　画面に映る変数に変換関数
+	/// </summary>
+	void WorldtoScreen();
 
 	///getter&setter
 
@@ -66,6 +76,9 @@ public:
 	/// スクロールした距離G
 	/// </summary>
 	Vector2 GetScrollPosition() { return scrollPosition_; };
+
+	
+
 
 private:
 
@@ -99,5 +112,27 @@ private:
 	/// 画像
 	/// </summary>
 	uint32_t image_ = 0;
+
+	/// <summary>
+	/// ワールド座標のポジション(画像の初期位置)複数
+	/// </summary>
+	Vector2 wouldBacksPos_[9] = {
+
+	};
+
+	/// <summary>
+	/// スクロールのポジション(複数)
+	/// </summary>
+	Vector2 scrollBacksPos_[9] = {
+
+	};
+
+	/// <summary>
+	/// 画面に適応されるやつの変数(複数)
+	/// </summary>
+	Vector2 ScreensPos_[9] = {
+
+	};
+
 
 };

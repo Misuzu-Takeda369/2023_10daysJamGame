@@ -15,7 +15,7 @@ Player::~Player()
 void Player::Initialize()
 {
 	//プレイヤーのステータスの初期
-	position_ = { 640.0f,360.0f };
+	position_ = { float(khalfWidth),float(khalfHeight) };
 	color_ = WHITE;
 	speed_ = { 2.0f,2.0f };
 	image_ = Novice::LoadTexture("./Resources/Images/bsorrow.png");
@@ -53,9 +53,10 @@ void Player::Draw()
 	//プレイヤーの範囲？(半径の2倍)
 	Novice::DrawEllipse(int(position_.x), int(position_.y),int(radius_.x)*3, int(radius_.y)*3, 0.0f, color_, kFillModeWireFrame);
 	//プレイヤーの描写(仮)
-	Novice::DrawEllipse(int(position_.x), int(position_.y), int(radius_.x), int(radius_.y), 0.0f, color_, kFillModeSolid);
+	//Novice::DrawEllipse(int(position_.x), int(position_.y), int(radius_.x), int(radius_.y), 0.0f, color_, kFillModeSolid);
 	//プレイヤーの画像(仮)
 	Novice::DrawSprite(int(position_.x- radius_.x), int(position_.y- radius_.y), image_,1.0f,1.0f,0.0f,color_);
+	//Novice::DrawSpriteRect();
 }
 
 void Player::Move(char* keys)
