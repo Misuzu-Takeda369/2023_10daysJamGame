@@ -24,7 +24,7 @@ public:
 	/// 半径のgetter
 	/// </summary>
 	/// <returns></returns>
-	Vector2 GetRadish() { return this->radish_; };
+	Vector2 GetRadius() { return this->radius_; };
 
 	/// <summary>
 	/// 当たった時の処理
@@ -54,6 +54,6 @@ private:
 	Vector2 scrollPos_ = { 0.0f,0.0f };
 
 	//半径(画像サイズ的に多分) 
-	Vector2 radish_ = {16.0f,16.0f};
+	Vector2 radius_ = {16.0f,16.0f};
 };
 

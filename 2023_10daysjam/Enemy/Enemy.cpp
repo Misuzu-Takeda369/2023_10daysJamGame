@@ -162,13 +162,15 @@ void Enemy::Update(Vector2 ScrollPos)
 
 void Enemy::Draw()
 {
-	Novice::DrawEllipse(int(screenPos_.x), int(screenPos_.y), int(radius_), int(radius_), 0.0f, int(color_), kFillModeSolid);
+	//Novice::DrawEllipse(int(screenPos_.x), int(screenPos_.y), int(radius_), int(radius_), 0.0f, int(color_), kFillModeSolid);
 
 	//Novice::DrawSprite(int(pos_.x - radius_), int(pos_.y - radius_), texture_, 1, 1, 0.0f, color_);
 
-	//画像その1
-	Novice::DrawSpriteRect(int(screenPos_.x - radius_), int(screenPos_.y - radius_), 128 * animationNum_, 0, radius_ * 2, radius_ * 2, texture_, 0.333333333f, 1, 0.0f, color_);
+	if (isArrive_) {
+		//画像その1
+		Novice::DrawSpriteRect(int(screenPos_.x - radius_), int(screenPos_.y - radius_), 128 * animationNum_, 0, radius_ * 2, radius_ * 2, texture_, 0.333333333f, 1, 0.0f, color_);
 
+	}
 	//画像その2
 	//Novice::DrawSpriteRect(int(pos_.x - radius_), int(pos_.y - radius_)+128, 128 * animationNum_, 0, 128, 128, texture2_, 0.333333333f, 1, 0.0f, color_);
 
@@ -176,7 +178,9 @@ void Enemy::Draw()
 
 void Enemy::OnCollision()
 {
-
+	color_ = RED;
+	//多分ここでエフェクト
+	isArrive_ = false;
 }
 
 int Enemy::SpeedRam()

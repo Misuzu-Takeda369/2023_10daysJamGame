@@ -45,7 +45,7 @@ void GamePScene::Initialize()
 	if (backGround_ != nullptr) {
 		delete backGround_;
 	}
-	backGround_ = new BackGround(player_->GetPlayerRadish());
+	backGround_ = new BackGround(player_->GetPlayerRadius());
 	backGround_->Initialize();
 
 	//ゲームオーバーフラグ
@@ -138,16 +138,18 @@ void GamePScene::Draw()
 
 void GamePScene::Attack()
 {
+
+	//当たり判定用の変数(Player) 
+	Vector2 cheakPpos = player_->GetPlayerPosition();
+	Vector2 cheakPradish = player_->GetPlayerRadius();
+
 #pragma region Playerと子供(F)の当たり判定
 	
-	//当たり判定用の変数
-	Vector2 cheakPpos = player_->GetPlayerPosition();
-	Vector2 cheakPradish = player_->GetPlayerRadish();
 
 	for (FieldChild* fieldChild : fieldChild_) {
 
 		Vector2 cheakFCpos = fieldChild->GetScreenPos();
-		Vector2 cheakFCradish = fieldChild->GetRadish();
+		Vector2 cheakFCradish = fieldChild->GetRadius();
 		
 
 		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakFCpos.x, cheakFCpos.y, cheakFCradish.x)==true) {
@@ -164,14 +166,31 @@ void GamePScene::Attack()
 
 #pragma region PlayerとEnemyの当たり判定
 
-	//シーン変換のために(キー1押してたまごのカウントが0だった場合ゲームオーバーに行くようにフラグ) 
-	if ((inputchagekey_->TriggerKey(DIK_1))) {
 
-		if (player_->GetEggCount() == 0) {
-			flagGameOver_ = true;
+	for (Enemy* enemy : enemy_) {
+
+		Vector2 cheakEpos = enemy->GetScreenPos();
+		int cheakEradish = enemy->GetRadius();
+
+		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakEpos.x, cheakEpos.y, float(cheakEradish)) == true) {
+			//カウント
+			player_->OnEnemyCollision();
+			enemy->OnCollision();
+			//子供が減る
+			PlayerChildLost();
 		}
 
 	}
+
+	//シーン変換のために(キー1押してたまごのカウントが0だった場合ゲームオーバーに行くようにフラグ) 
+	
+
+		if (player_->GetEggCount() < 0) {
+			flagGameOver_ = true;
+		}
+		else if ((inputchagekey_->TriggerKey(DIK_1)) && player_->GetEggCount() == 0) {
+			flagGameOver_ = true;
+		}
 
 #pragma endregion
 

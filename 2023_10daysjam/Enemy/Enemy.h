@@ -58,6 +58,18 @@ public:
 	/// 敵のストーキングする動き用の関数
 	/// </summary>
 	void MoveStalking();
+
+	/// <summary>
+	/// スクロール入った分位置のgetter
+	/// </summary>
+	Vector2 GetScreenPos() { return this->screenPos_; };
+
+	/// <summary>
+	/// 半径のgetter
+	/// </summary>
+	/// <returns></returns>
+	int GetRadius() { return this->radius_; };
+
 	
 private:
 

@@ -16,7 +16,7 @@ BackGround::~BackGround()
 
 void BackGround::Initialize()
 {
-	wouldPosition_ = {-640.0f,-360.0f };
+	wouldPosition_ = {0.0f,0.0f };
 	scrollPosition_ = { 0.0f,0.0f };
 	speed_ = { 2.0f,2.0f };
 	//image_ = Novice::LoadTexture("./Resources/Images/BackGround.png");

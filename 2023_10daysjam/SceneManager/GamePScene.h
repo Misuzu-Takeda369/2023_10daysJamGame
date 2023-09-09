@@ -82,6 +82,8 @@ public:
 	void PlayerChildLost();
 
 
+
+
 	///getter&setter
 	
 	/// <summary>

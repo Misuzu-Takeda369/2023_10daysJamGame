@@ -62,7 +62,7 @@ public:
 	/// <summary>
 	/// プレイヤーの半径G
 	/// </summary>
-	Vector2 GetPlayerRadish() { return radish_; };
+	Vector2 GetPlayerRadius() { return radius_; };
 
 	/// <summary>
 	/// プレイヤーのスピードG
@@ -84,7 +84,7 @@ private:
 	/// <summary>
 	/// プレイヤーの半径
 	/// </summary>
-	const Vector2 radish_ = {32.0f,32.0f};
+	const Vector2 radius_ = {32.0f,32.0f};
 	/// <summary>
 	/// プレイヤーの色
 	/// </summary>
