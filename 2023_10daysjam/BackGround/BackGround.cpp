@@ -169,7 +169,7 @@ void BackGround::Move(char* keys)
 
 	}
 
-	BackGroundGetpos();
+	WorldtoScreen();
 
 
 	
@@ -235,7 +235,7 @@ void BackGround::ChangeBackGround()
 
 }
 
-void BackGround::BackGroundGetpos() {
+void BackGround::WorldtoScreen() {
 
 	for (uint32_t now = 0; now < 9; now++) {
 		ScreensPos_[now].x = wouldBacksPos_[now].x - scrollBacksPos_[now].x;

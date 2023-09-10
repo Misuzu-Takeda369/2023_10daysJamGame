@@ -22,5 +22,7 @@ private:
 	uint32_t effectTexture_ = 0;
 	bool isAttacking_ = false;
 	int attackTimer_ = 0;
+
+	Vector2 BulletPos_ = {0.0f,0.0f};
 };
 
