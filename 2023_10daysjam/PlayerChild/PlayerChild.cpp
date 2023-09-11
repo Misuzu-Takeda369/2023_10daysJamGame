@@ -86,12 +86,12 @@ void PlayerChild::Draw()
 	if (isGrow_) {
 		//成長済み
 		Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, adultTexture_, 1, 1, 0, color_.color);
+		weapon_->Draw();
 	}
 	else {
 		//未成長
 		Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, babyTexture_, 1, 1, 0, color_.color);
 	}
-	weapon_->Draw();
 }
 
 void PlayerChild::Attack()

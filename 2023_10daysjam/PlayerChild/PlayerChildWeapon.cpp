@@ -28,7 +28,6 @@ void PlayerChildWeapon::Update(Vector2 child)
 {
 	pos_ = child;
 	BulletMove();
-	screenBulletPos_ = { bulletPos_.x + bulletMovePos_.x ,bulletPos_.y + bulletMovePos_.y };
 	switch (type_)
 	{
 	case None:
@@ -57,6 +56,8 @@ void PlayerChildWeapon::Update(Vector2 child)
 	default:
 		break;
 	}
+
+	screenBulletPos_ = { bulletPos_.x + bulletMovePos_.x ,bulletPos_.y + bulletMovePos_.y };
 }
 
 void PlayerChildWeapon::Draw()
@@ -89,6 +90,7 @@ void PlayerChildWeapon::BulletMove()
 		if ((bulletMovePos_.x* bulletMovePos_.x)+ (bulletMovePos_.y * bulletMovePos_.y) >= ((khalfWidth* khalfHeight)+ (khalfWidth * khalfHeight))) {
 			bulletLive_ = false;
 			bulletMovePos_ = {0.0f,0.0f};
+			screenBulletPos_ = { pos_.x, pos_.y };
 		}
 	}
 }

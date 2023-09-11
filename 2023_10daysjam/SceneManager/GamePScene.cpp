@@ -200,18 +200,33 @@ void GamePScene::Attack()
 			int cheakEradish = enemy->GetRadius();
 
 			for (PlayerChild* playerChild : playerChild_) {
-				Vector2 cheakCbpos = playerChild->GetScreenBulletPos();
+#pragma region 弾発射されてるやつ
+				Vector2 cheakCbBpos = playerChild->GetScreenBulletPos();
 				bool cheakBulletLive = playerChild->GetBulletLive();
-				float cheakCbradish = float(playerChild->GetRadius());
+				float cheakCbBradish = float(playerChild->GetRadius());
 
 				if (cheakBulletLive) {
-					if (CircleCollision(cheakEpos.x, cheakEpos.y, float(cheakEradish), cheakCbpos.x, cheakCbpos.y, cheakCbradish) == true) {
+					if (CircleCollision(cheakEpos.x, cheakEpos.y, float(cheakEradish), cheakCbBpos.x, cheakCbBpos.y, cheakCbBradish) == true) {
 						//カウント
 						enemy->OnCollision();
 
 					}
 				}
 
+#pragma endregion 
+
+#pragma region 子供の直接攻撃
+				Vector2 cheakCbpos = playerChild->GetPos();
+				float cheakCbradish = float(playerChild->GetRadius());
+
+				
+					if (CircleCollision(cheakEpos.x, cheakEpos.y, float(cheakEradish), cheakCbpos.x, cheakCbpos.y, (cheakCbradish*3)) == true) {
+						//カウント
+						enemy->OnCollision();
+
+					}
+				
+#pragma endregion
 
 			}
 

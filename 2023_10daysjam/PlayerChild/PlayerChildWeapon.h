@@ -38,6 +38,7 @@ public:
 	/// <returns></returns>
 	bool GetBulletLive() { return bulletLive_; };
 
+
 private:
 	//攻撃出来るかのモード？
 	Type type_ = Type(0);
