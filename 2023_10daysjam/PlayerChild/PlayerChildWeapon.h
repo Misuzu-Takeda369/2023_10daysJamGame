@@ -26,6 +26,17 @@ public:
 	/// </summary>
 	void BulletBorn();
 
+	/// <summary>
+	/// スクリーンに写る位置のゲッター
+	/// </summary>
+	/// <returns></returns>
+	Vector2 GetScreenBulletPos() { return screenBulletPos_; };
+
+	/// <summary>
+	/// 弾が生存しているかのゲッター
+	/// </summary>
+	/// <returns></returns>
+	bool GetBulletLive() { return bulletLive_; };
 
 private:
 	//攻撃出来るかのモード？
@@ -39,6 +50,9 @@ private:
 
 	//打たれた弾の位置
 	Vector2 bulletPos_ = {0.0f,0.0f};
+
+	//スクリーン用位置(ほぼゲッター用)
+	Vector2 screenBulletPos_ = { 0.0f,0.0f };
 
 	//移動した分
 	Vector2 bulletMovePos_ = {0.0f,0.0f};

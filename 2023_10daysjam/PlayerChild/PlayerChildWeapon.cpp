@@ -93,7 +93,7 @@ void PlayerChildWeapon::BulletMove()
 void PlayerChildWeapon::BulletBorn()
 {
 	//方向を決める
-	bulletDirection_ = RandomRange(0,3);
+	bulletDirection_ = RandomRange(0,7);
 	bulletPos_ = { pos_ };
 #pragma region 角度決定
 	switch (bulletDirection_)
@@ -118,6 +118,29 @@ void PlayerChildWeapon::BulletBorn()
 	case left:
 
 		theta = 180.0f;
+		movePos_ = { cosf(theta),sinf(theta) };
+		break;
+
+	case upRight:
+		theta = 45.0f;
+		movePos_ = { cosf(theta),sinf(theta) };
+		break;
+
+	case downRight:
+		theta = 225.0f;
+		movePos_ = { cosf(theta),sinf(theta) };
+
+		break;
+
+	case downLeft:
+
+		theta = 315.0f;
+		movePos_ = { cosf(theta),sinf(theta) };
+		break;
+
+	case upLeft:
+
+		theta = 135.0f;
 		movePos_ = { cosf(theta),sinf(theta) };
 		break;
 
