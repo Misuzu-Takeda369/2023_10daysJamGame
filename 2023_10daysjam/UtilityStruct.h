@@ -34,6 +34,8 @@ struct UnitTexture4
 	uint32_t down;
 	uint32_t left;
 };
+
+
 /// <summary>
 /// 8方向 上向きから右回り順
 /// </summary>
@@ -46,3 +48,4 @@ struct UnitTexture8
 };
 
 */
+

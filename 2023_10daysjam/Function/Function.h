@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <cstdint>
+#include "Vector2.h"
 
 /// <summary>
 /// 角度の変換
@@ -56,3 +57,11 @@ bool CircleCollision(float aX, float aY, float aRadius, float bX, float bY, floa
 /// <param name="animationNum">何番目かの変数</param>
 /// <returns></returns>
 uint32_t AnimationNum(uint32_t animationNum);
+
+
+/// <summary>
+/// 正規化
+/// </summary>
+/// <param name="v">正規化したい値</param>
+/// <returns></returns>
+Vector2 Normalize(const Vector2& v);

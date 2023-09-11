@@ -80,5 +80,18 @@ uint32_t AnimationNum(uint32_t animationNum)
 }
 
 
+/*
+Vector2 Normalize(const Vector2& v) {
+	Vector2 result = { 0.0f,0.0f };
 
+	float le = sqrt((v.x * v.x) + (v.y * v.y));
 
+	if (le != 0.0f) {
+		result.x = v.x / le;
+		result.y = v.y / le;
+	}
+
+	return result;
+
+}
+*/

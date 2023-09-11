@@ -1,4 +1,5 @@
 ﻿#include "PlayerChildWeapon.h"
+#include "Function/Function.h"
 #include <Novice.h>
 
 PlayerChildWeapon::PlayerChildWeapon()
@@ -13,6 +14,13 @@ void PlayerChildWeapon::Initialize(Type type)
 {
 	type_ = type;
 	GetTexture();
+
+	bulletPos_ = { pos_ };
+	bulletMovePos_ = { 0.0f,0.0f };
+	bulletLive_ = false;
+	bulletDirection_ = none;
+	bulletSpeed_ = { 6.0f,6.0f };
+	movePos_ = { 0.0f,0.0f };
 }
 
 void PlayerChildWeapon::Update(Vector2 child)
@@ -30,17 +38,24 @@ void PlayerChildWeapon::Update(Vector2 child)
 	case Circle:
 		//鎌を振り回す　当たり判定はまだ
 		if (isAttacking_) {
+
+			if (!bulletLive_) {
+				bulletLive_ = true;
+				BulletBorn();
+			}
+
 			attackTimer_++;
 			if (attackTimer_ >= 10) {
 				attackTimer_ = 0;
 				isAttacking_ = false;
 			}
 		}
+
 		break;
 	default:
 		break;
 	}
-	
+	BulletMove();
 }
 
 void PlayerChildWeapon::Draw()
@@ -49,11 +64,67 @@ void PlayerChildWeapon::Draw()
 	if (isAttacking_) {
 		Novice::DrawSprite(int(pos_.x), int(pos_.y), effectTexture_, 1, 1, 0, WHITE);
 	}
+
+	if (bulletLive_){
+		Novice::DrawSprite(int(bulletPos_.x + bulletMovePos_.x), int(bulletPos_.y + bulletMovePos_.y), effectTexture_, 1, 1, 0, WHITE);
+	}
 }
 
 void PlayerChildWeapon::SetIsAttacking(bool flag)
 {
 	isAttacking_ = flag;
+}
+
+
+void PlayerChildWeapon::BulletMove()
+{
+	if (bulletLive_) {
+
+		bulletMovePos_.x += bulletSpeed_.x * movePos_.x;
+		bulletMovePos_.y -= bulletSpeed_.y * movePos_.y;
+
+		if ((bulletMovePos_.x* bulletMovePos_.x)+ (bulletMovePos_.y * bulletMovePos_.y) >= ((khalfWidth* khalfHeight)+ (khalfWidth * khalfHeight))) {
+			bulletLive_ = false;
+			bulletMovePos_ = {0.0f,0.0f};
+		}
+	}
+}
+
+void PlayerChildWeapon::BulletBorn()
+{
+	//方向を決める
+	bulletDirection_ = RandomRange(0,3);
+	bulletPos_ = { pos_ };
+#pragma region 角度決定
+	switch (bulletDirection_)
+	{
+	case up:
+		theta = 90.0f;
+		movePos_ = { cosf(theta),sinf(theta) };
+		break;
+
+	case right:
+		theta = 0.0f;
+		movePos_ = { cosf(theta),sinf(theta) };
+		
+		break;
+
+	case down:
+
+		theta = 270.0f;
+		movePos_ = { cosf(theta),sinf(theta) };
+		break;
+
+	case left:
+
+		theta = 180.0f;
+		movePos_ = { cosf(theta),sinf(theta) };
+		break;
+
+	default:
+		break;
+	}
+#pragma endregion 
 }
 
 void PlayerChildWeapon::GetTexture()
