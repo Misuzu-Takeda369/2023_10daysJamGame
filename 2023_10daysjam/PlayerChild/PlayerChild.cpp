@@ -76,8 +76,6 @@ void PlayerChild::Update(const Vector2& forwardPos, const Vector2& playerPos, Ve
 		Attack();
 	}
 
-	SetBulletLive(weapon_->GetBulletLive());
-	SetScreenBulletPos(weapon_->GetScreenBulletPos());
 }
 
 void PlayerChild::Draw()
@@ -107,6 +105,8 @@ void PlayerChild::Attack()
 		attackTimer_ = 0;
 		attackCoolTimer_ = 0;
 	}
+	SetBulletLive(weapon_->GetBulletLive());
+	SetScreenBulletPos(weapon_->GetScreenBulletPos());
 	weapon_->Update(pos_);
 }
 

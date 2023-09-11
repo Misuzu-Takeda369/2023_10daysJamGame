@@ -21,6 +21,8 @@ void PlayerChildWeapon::Initialize(Type type)
 	bulletDirection_ = none;
 	bulletSpeed_ = { 6.0f,6.0f };
 	movePos_ = { 0.0f,0.0f };
+	screenBulletPos_ = { bulletPos_.x + bulletMovePos_.x ,bulletPos_.y + bulletMovePos_.y };
+
 }
 
 void PlayerChildWeapon::Update(Vector2 child)
@@ -56,6 +58,7 @@ void PlayerChildWeapon::Update(Vector2 child)
 		break;
 	}
 	BulletMove();
+	screenBulletPos_ = { bulletPos_.x + bulletMovePos_.x ,bulletPos_.y + bulletMovePos_.y };
 }
 
 void PlayerChildWeapon::Draw()
