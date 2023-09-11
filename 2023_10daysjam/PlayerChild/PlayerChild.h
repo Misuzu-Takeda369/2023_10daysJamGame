@@ -39,6 +39,40 @@ public:
 	void SetIsArrive(bool flag);
 	bool GetIsArrive() { return isArrive_; }
 
+	/// <summary>
+	/// スクリーンに写る位置のゲッター
+	/// </summary>
+	/// <returns></returns>
+	Vector2 GetScreenBulletPos() { return screenBulletPos_; };
+
+	/// <summary>
+	/// 弾が生存しているかのゲッター
+	/// </summary>
+	/// <returns></returns>
+	bool GetBulletLive() { return bulletLive_; };
+
+	/// <summary>
+	/// スクリーンに写る位置のゲッター
+	/// </summary>
+	/// <returns></returns>
+	void SetScreenBulletPos(Vector2  screenBulletPos)
+	{
+		screenBulletPos_.x = screenBulletPos.x;
+		screenBulletPos_.y = screenBulletPos.y;
+	};
+
+	/// <summary>
+	/// 弾が生存しているかのゲッター
+	/// </summary>
+	/// <returns></returns>
+	void SetBulletLive(bool  bulletLive) { bulletLive_ = bulletLive; };
+
+	/// <summary>
+	/// 半径のゲッター
+	/// </summary>
+	/// <returns></returns>
+	int GetRadius() { return radius_; };
+
 private:
 	/// <summary>
 	/// Initializeの中に入れる
@@ -75,5 +109,8 @@ private:
 	int attackTimer_ = 0;
 	int attackCoolTimer_ = 0;
 
+
+	Vector2 screenBulletPos_ = {};
+	bool bulletLive_ = false;
 };
 

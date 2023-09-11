@@ -195,7 +195,25 @@ void GamePScene::Attack()
 #pragma endregion
 
 #pragma region Enemyと子供(Bullet)の当たり判定
+		for (Enemy* enemy : enemy_) {
+			Vector2 cheakEpos = enemy->GetScreenPos();
+			int cheakEradish = enemy->GetRadius();
 
+			for (PlayerChild* playerChild : playerChild_) {
+				Vector2 cheakCbpos = playerChild->GetScreenBulletPos();
+				bool cheakBulletLive = playerChild->GetBulletLive();
+				float cheakCbradish = float(playerChild->GetRadius());
+
+				if (cheakBulletLive) {
+					if (CircleCollision(cheakEpos.x, cheakEpos.y, float(cheakEradish), cheakCbpos.x, cheakCbpos.y, cheakCbradish) == true) {
+						//カウント
+						enemy->OnCollision();
+
+					}
+				}
+			}
+
+		}
 #pragma endregion
 
 }
