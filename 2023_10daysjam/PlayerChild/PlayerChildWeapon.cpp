@@ -22,13 +22,13 @@ void PlayerChildWeapon::Initialize(Type type)
 	bulletSpeed_ = { 6.0f,6.0f };
 	movePos_ = { 0.0f,0.0f };
 	screenBulletPos_ = { bulletPos_.x + bulletMovePos_.x ,bulletPos_.y + bulletMovePos_.y };
-
 }
 
 void PlayerChildWeapon::Update(Vector2 child)
 {
 	pos_ = child;
-
+	BulletMove();
+	screenBulletPos_ = { bulletPos_.x + bulletMovePos_.x ,bulletPos_.y + bulletMovePos_.y };
 	switch (type_)
 	{
 	case None:
@@ -57,8 +57,6 @@ void PlayerChildWeapon::Update(Vector2 child)
 	default:
 		break;
 	}
-	BulletMove();
-	screenBulletPos_ = { bulletPos_.x + bulletMovePos_.x ,bulletPos_.y + bulletMovePos_.y };
 }
 
 void PlayerChildWeapon::Draw()
@@ -68,9 +66,11 @@ void PlayerChildWeapon::Draw()
 		Novice::DrawSprite(int(pos_.x), int(pos_.y), effectTexture_, 1, 1, 0, WHITE);
 	}
 
+	
 	if (bulletLive_){
-		Novice::DrawSprite(int(bulletPos_.x + bulletMovePos_.x), int(bulletPos_.y + bulletMovePos_.y), effectTexture_, 1, 1, 0, WHITE);
+		Novice::DrawSprite(int(screenBulletPos_.x), int(screenBulletPos_.y), effectTexture_, 1, 1, 0, WHITE);
 	}
+	
 }
 
 void PlayerChildWeapon::SetIsAttacking(bool flag)
@@ -104,6 +104,7 @@ void PlayerChildWeapon::BulletBorn()
 	case up:
 		theta = 90.0f;
 		movePos_ = { cosf(theta),sinf(theta) };
+		
 		break;
 
 	case right:
@@ -116,22 +117,26 @@ void PlayerChildWeapon::BulletBorn()
 
 		theta = 270.0f;
 		movePos_ = { cosf(theta),sinf(theta) };
+		
 		break;
 
 	case left:
 
 		theta = 180.0f;
 		movePos_ = { cosf(theta),sinf(theta) };
+	
 		break;
 
 	case upRight:
 		theta = 45.0f;
 		movePos_ = { cosf(theta),sinf(theta) };
+		
 		break;
 
 	case downRight:
 		theta = 225.0f;
 		movePos_ = { cosf(theta),sinf(theta) };
+		
 
 		break;
 
@@ -139,12 +144,14 @@ void PlayerChildWeapon::BulletBorn()
 
 		theta = 315.0f;
 		movePos_ = { cosf(theta),sinf(theta) };
+		
 		break;
 
 	case upLeft:
 
 		theta = 135.0f;
 		movePos_ = { cosf(theta),sinf(theta) };
+		
 		break;
 
 	default:
