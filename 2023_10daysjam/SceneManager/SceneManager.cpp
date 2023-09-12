@@ -53,9 +53,14 @@ void SceneManager::Update() {
 
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
-			delete title_;
+			/*delete title_;
 			title_ = new TitleScene();
-			title_->Initialize();
+			title_->Initialize();*/
+
+			delete gameP_;
+			gameP_ = new GamePScene();
+			gameP_->Initialize();
+			//gameP_->SetEffectPos(title_->GetEffectPos());
 		}
 		break;
 
@@ -69,17 +74,27 @@ void SceneManager::Update() {
 
 			if (gameP_->GetFlagGameOver()) {
 				sceneNum_ = GOverMode;
+
+				delete gameO_;
+				gameO_ = new GameOScene();
+				gameO_->Initialize();
+				//gameO_->SetEffectPos(gameP_->GetEffectPos());
 			}
 			else {
 				sceneNum_ = GClearMode;
+
+				delete gameC_;
+				gameC_ = new GameCScene();
+				gameC_->Initialize();
+				//gameC_->SetEffectPos(gameP_->GetEffectPos());
 			}
 
 			gameP_->SetFlagChange(false);
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ(クリアとかでスコア作って表示するなら...) 
-			delete gameP_;
+			/*delete gameP_;
 			gameP_ = new GamePScene();
-			gameP_->Initialize();
+			gameP_->Initialize();*/
 
 		}
 		break;
@@ -96,9 +111,14 @@ void SceneManager::Update() {
 
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
-			delete gameC_;
+			/*delete gameC_;
 			gameC_ = new GameCScene();
-			gameC_->Initialize();
+			gameC_->Initialize();*/
+
+			delete title_;
+			title_ = new TitleScene();
+			title_->Initialize(gameC_->GetEffectPos());
+			//title_->SetEffectPos(gameC_->GetEffectPos());
 		}
 		break;
 
@@ -114,9 +134,14 @@ void SceneManager::Update() {
 
 			//deleteとnewと初期化(初期化だけでもよさそう感)
 			//動きによっては別な場所へ
-			delete gameO_;
+			/*delete gameO_;
 			gameO_ = new GameOScene();
-			gameO_->Initialize();
+			gameO_->Initialize();*/
+
+			delete title_;
+			title_ = new TitleScene();
+			title_->Initialize(gameO_->GetEffectPos());
+			//title_->SetEffectPos(gameO_->GetEffectPos());
 		}
 		break;
 
