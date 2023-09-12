@@ -12,6 +12,9 @@ void TitleScene::Initialize()
 	//シーン変換用エフェクト
 	effectFlagEnd_ = false;
 	effectFlagStart_ = true;
+
+	image1_ = Novice::LoadTexture("./Resources/Images/start_background.png");
+	image2_ = Novice::LoadTexture("./Resources/Images/start1.png");
 }
 
 void TitleScene::Initialize(Vector2 effectpos)
@@ -23,6 +26,9 @@ void TitleScene::Initialize(Vector2 effectpos)
 	//シーン変換用エフェクト
 	effectFlagEnd_ = false;
 	effectFlagStart_ = true;
+
+	image1_ = Novice::LoadTexture("./Resources/Images/start_background.png");
+	image2_ = Novice::LoadTexture("./Resources/Images/start1.png");
 }
 
 void TitleScene::Update() 
@@ -50,8 +56,10 @@ void TitleScene::Update()
 void TitleScene::Draw()
 {
 	//Novice::DrawBox(MimWindowWidth, MimWindowHeight, kWindowWidth, kWindowHeight, 0.0f, 0x00000000 ,kFillModeSolid);
-
+	Novice::DrawSprite(MimWindowWidth, MimWindowHeight, image1_,1,1,0.0f,WHITE);
+	Novice::DrawSprite(MimWindowWidth, MimWindowHeight, image2_, 1, 1, 0.0f, WHITE);
 	
+	///シーン変換エフェクト
 	Novice::DrawBox(int(khalfWidth- effectPos_.x), int(khalfHeight- effectPos_.y), int(effectPos_.x*2), int(effectPos_.y * 2), 0, 0x13141AFF, kFillModeSolid);
 }
 
