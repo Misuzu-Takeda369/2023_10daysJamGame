@@ -140,7 +140,7 @@ void Enemy::Update(Vector2 ScrollPos)
 	animationFrame_--;
 
 	if (animationFrame_ <= 0) {
-		animationNum_=AnimationNum(animationNum_,30);
+		animationNum_=AnimationNum(animationNum_,3);
 		animationFrame_ = 30;
 	}
 

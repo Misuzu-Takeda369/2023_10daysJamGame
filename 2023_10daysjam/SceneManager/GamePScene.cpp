@@ -256,6 +256,7 @@ void GamePScene::Attack()
 
 			if (enemy->GetEffectFrag() == false) {
 				player_->OnEnemyCollision();
+				backGround_->MoveStop();
 				//子供が減る
 				PlayerChildLost();
 			}

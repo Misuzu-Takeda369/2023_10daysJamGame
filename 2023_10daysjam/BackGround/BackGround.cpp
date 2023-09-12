@@ -27,7 +27,7 @@ void BackGround::Initialize()
 	scrollBacksPos_[3] = { scrollPosition_.x - kWindowWidth,scrollPosition_.y };
 	scrollBacksPos_[4] = { scrollPosition_.x,scrollPosition_.y };
 	scrollBacksPos_[5] = { scrollPosition_.x + kWindowWidth,scrollPosition_.y };
-	scrollBacksPos_[6] = { scrollPosition_.x -kWindowWidth, scrollPosition_.y + kWindowHeight };
+	scrollBacksPos_[6] = { scrollPosition_.x - kWindowWidth, scrollPosition_.y + kWindowHeight };
 	scrollBacksPos_[7] = { scrollPosition_.x,scrollPosition_.y + kWindowHeight };
 	scrollBacksPos_[8] = { scrollPosition_.x + kWindowWidth,scrollPosition_.y + kWindowHeight };
 
@@ -40,6 +40,9 @@ void BackGround::Initialize()
 		ScreensPos_[now] = { wouldBacksPos_[now].x - scrollBacksPos_[now].x, wouldBacksPos_[now].y - scrollBacksPos_[now].y };
 	}
 
+	stopFrag_ = false;
+
+	stopFrame_ = 30;
 }
 
 void BackGround::Update()
@@ -56,14 +59,31 @@ void BackGround::Update()
 	Move(keys);
 
 	ChangeBackGround();
+
+	if (stopFrag_) {
+		stopFrame_--;
+
+
+		if (stopFrame_ <= 0) {
+			stopFrag_ = false;
+			stopFrame_ = 30;
+		}
+	}
+
+
 #pragma region ImGui関連
 #ifdef _DEBUG
 	ImGui::Begin("BackGroundMove");
 	ImGui::Text("screenPos0_ %f,%f scrollPos0_ %f,%f", ScreensPos_[0].x, wouldBacksPos_[0].y, scrollBacksPos_[0].x, scrollBacksPos_[0].y);
 	ImGui::Text("screenPos1_ %f,%f scrollPos1_ %f,%f", ScreensPos_[1].x, wouldBacksPos_[1].y, scrollBacksPos_[0].x, scrollBacksPos_[0].y);
 	ImGui::Text("screenPos2_ %f,%f scrollPos2_ %f,%f", ScreensPos_[2].x, wouldBacksPos_[2].y, scrollBacksPos_[0].x, scrollBacksPos_[0].y);
+
 	ImGui::End();
 
+	ImGui::Begin("stop");
+	ImGui::Text("stopFrag_  %d", stopFrag_);
+	ImGui::Text("stopFrame_  %d", stopFrame_);
+	ImGui::End();
 #endif
 
 #pragma endregion
@@ -88,83 +108,93 @@ void BackGround::Move(char* keys)
 	//MoveStop(keys);
 	//斜め移動
 
-	if ((keys[DIK_LEFT] && keys[DIK_UP]) || (keys[DIK_A] && keys[DIK_W])) {
-		scrollPosition_.x -= (speed_.x / 1.41f);
-		scrollPosition_.y -= (speed_.y / 1.41f);
-
+	if (stopFrag_ == true) {
 		for (uint32_t now = 0; now < 9; now++) {
-			scrollBacksPos_[now].x -= (speed_.x / 1.41f);
-			scrollBacksPos_[now].y -= (speed_.y / 1.41f);
-		}
-
-	}
-	else if ((keys[DIK_RIGHT] && keys[DIK_UP]) || (keys[DIK_D] && keys[DIK_W])) {
-		scrollPosition_.x += (speed_.x / 1.41f);
-		scrollPosition_.y -= (speed_.y / 1.41f);
-
-
-		for (uint32_t now = 0; now < 9; now++) {
-			scrollBacksPos_[now].x += (speed_.x / 1.41f);
-			scrollBacksPos_[now].y -= (speed_.y / 1.41f);
-		}
-
-	}
-	else if ((keys[DIK_LEFT] && keys[DIK_DOWN] )|| (keys[DIK_A] && keys[DIK_S])) {
-		scrollPosition_.x -= (speed_.x / 1.41f);
-		scrollPosition_.y += (speed_.y / 1.41f);
-
-
-		for (uint32_t now = 0; now < 9; now++) {
-			scrollBacksPos_[now].x -= (speed_.x / 1.41f);
-			scrollBacksPos_[now].y += (speed_.y / 1.41f);
-		}
-
-	}
-	else if ((keys[DIK_RIGHT] && keys[DIK_DOWN]) || (keys[DIK_D] && keys[DIK_S])) {
-		scrollPosition_.x += (speed_.x / 1.41f);
-		scrollPosition_.y += (speed_.y / 1.41f);
-
-
-		for (uint32_t now = 0; now < 9; now++) {
-			scrollBacksPos_[now].x += (speed_.x / 1.41f);
-			scrollBacksPos_[now].y += (speed_.y / 1.41f);
+			scrollBacksPos_[now].x += 0.0f;
+			scrollBacksPos_[now].y += 0.0f;
 		}
 	}
+	else {
 
+		if ((keys[DIK_LEFT] && keys[DIK_UP]) || (keys[DIK_A] && keys[DIK_W])) {
+			scrollPosition_.x -= (speed_.x / 1.41f);
+			scrollPosition_.y -= (speed_.y / 1.41f);
 
-	//直線移動
-	else if (keys[DIK_LEFT]|| keys[DIK_A]) {
-		scrollPosition_.x -= speed_.x;
+			for (uint32_t now = 0; now < 9; now++) {
+				scrollBacksPos_[now].x -= (speed_.x / 1.41f);
+				scrollBacksPos_[now].y -= (speed_.y / 1.41f);
+			}
 
-		for (uint32_t now = 0; now < 9; now++) {
-			scrollBacksPos_[now].x -= speed_.x;
-			//scrollBacksPos_[now].y += scrollPosition_.y;
 		}
-	}
-	else if (keys[DIK_RIGHT] || keys[DIK_D]) {
-		scrollPosition_.x += speed_.x;
+		else if ((keys[DIK_RIGHT] && keys[DIK_UP]) || (keys[DIK_D] && keys[DIK_W])) {
+			scrollPosition_.x += (speed_.x / 1.41f);
+			scrollPosition_.y -= (speed_.y / 1.41f);
 
-		for (uint32_t now = 0; now < 9; now++) {
-			scrollBacksPos_[now].x += speed_.x;
-			//scrollBacksPos_[now].y += scrollPosition_.y;
+
+			for (uint32_t now = 0; now < 9; now++) {
+				scrollBacksPos_[now].x += (speed_.x / 1.41f);
+				scrollBacksPos_[now].y -= (speed_.y / 1.41f);
+			}
+
+		}
+		else if ((keys[DIK_LEFT] && keys[DIK_DOWN]) || (keys[DIK_A] && keys[DIK_S])) {
+			scrollPosition_.x -= (speed_.x / 1.41f);
+			scrollPosition_.y += (speed_.y / 1.41f);
+
+
+			for (uint32_t now = 0; now < 9; now++) {
+				scrollBacksPos_[now].x -= (speed_.x / 1.41f);
+				scrollBacksPos_[now].y += (speed_.y / 1.41f);
+			}
+
+		}
+		else if ((keys[DIK_RIGHT] && keys[DIK_DOWN]) || (keys[DIK_D] && keys[DIK_S])) {
+			scrollPosition_.x += (speed_.x / 1.41f);
+			scrollPosition_.y += (speed_.y / 1.41f);
+
+
+			for (uint32_t now = 0; now < 9; now++) {
+				scrollBacksPos_[now].x += (speed_.x / 1.41f);
+				scrollBacksPos_[now].y += (speed_.y / 1.41f);
+			}
 		}
 
-	}
-	else if (keys[DIK_UP] || keys[DIK_W]) {
-		scrollPosition_.y -= speed_.y;
 
-		for (uint32_t now = 0; now < 9; now++) {
-			//scrollBacksPos_[now].x -= speed_.x;
-			scrollBacksPos_[now].y -= speed_.y;
+		//直線移動
+		else if (keys[DIK_LEFT] || keys[DIK_A]) {
+			scrollPosition_.x -= speed_.x;
+
+			for (uint32_t now = 0; now < 9; now++) {
+				scrollBacksPos_[now].x -= speed_.x;
+				//scrollBacksPos_[now].y += scrollPosition_.y;
+			}
 		}
+		else if (keys[DIK_RIGHT] || keys[DIK_D]) {
+			scrollPosition_.x += speed_.x;
 
-	}
-	else if (keys[DIK_DOWN] || keys[DIK_S]) {
-		scrollPosition_.y += speed_.y;
+			for (uint32_t now = 0; now < 9; now++) {
+				scrollBacksPos_[now].x += speed_.x;
+				//scrollBacksPos_[now].y += scrollPosition_.y;
+			}
 
-		for (uint32_t now = 0; now < 9; now++) {
-			//scrollBacksPos_[now].x -= speed_.x;
-			scrollBacksPos_[now].y += speed_.y;
+		}
+		else if (keys[DIK_UP] || keys[DIK_W]) {
+			scrollPosition_.y -= speed_.y;
+
+			for (uint32_t now = 0; now < 9; now++) {
+				//scrollBacksPos_[now].x -= speed_.x;
+				scrollBacksPos_[now].y -= speed_.y;
+			}
+
+		}
+		else if (keys[DIK_DOWN] || keys[DIK_S]) {
+			scrollPosition_.y += speed_.y;
+
+			for (uint32_t now = 0; now < 9; now++) {
+				//scrollBacksPos_[now].x -= speed_.x;
+				scrollBacksPos_[now].y += speed_.y;
+			}
+
 		}
 
 	}
@@ -172,14 +202,17 @@ void BackGround::Move(char* keys)
 	WorldtoScreen();
 
 
-	
+
 
 }
 
-void BackGround::MoveStop(char* keys)
-{
 
+void BackGround::MoveStop()
+{
+	//未使用関数の使いまわし
 	//スクロールが止まる条件
+
+	/*
 	//真ん中から画面の半分分動いたら止まる(画面の半分のサイズ＋プレイヤーの半径の調整)
 	//条件あったらスピードが0、それ以外ならそのまま
 	if ((scrollPosition_.x <= -HalfBackGroundSize_.x + playerRadish_.x) && keys[DIK_LEFT]) {
@@ -205,7 +238,11 @@ void BackGround::MoveStop(char* keys)
 	else {
 		speed_.y = 2.0f;
 	}
+	*/
+	stopFrag_ = true;
+
 }
+
 
 void BackGround::ChangeBackGround()
 {
@@ -218,19 +255,19 @@ void BackGround::ChangeBackGround()
 			scrollBacksPos_[now].x = kWindowWidth;
 		}
 		else if (ScreensPos_[now].x < -(kWindowWidth)) {
-			scrollBacksPos_[now].x = ( - (kWindowWidth * 2));
+			scrollBacksPos_[now].x = (-(kWindowWidth * 2));
 
 		}
 
-		
+
 		//縦方向のループ
-		if (ScreensPos_[now].y > kWindowHeight * 2)  {
+		if (ScreensPos_[now].y > kWindowHeight * 2) {
 			scrollBacksPos_[now].y = kWindowHeight;
 		}
 		else if (ScreensPos_[now].y < -(kWindowHeight)) {
 			scrollBacksPos_[now].y = -(kWindowHeight * 2);
 		}
-		
+
 	}
 
 }

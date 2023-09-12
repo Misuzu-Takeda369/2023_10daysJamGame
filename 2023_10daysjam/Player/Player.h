@@ -59,6 +59,8 @@ public:
 	/// </summary>
 	void OnPbAttackCollision();
 
+	void PlayerEffect();
+
 	///getter&setter
 
 	/// <summary>
@@ -81,6 +83,7 @@ public:
 	/// </summary>
 	/// <returns></returns>
 	uint32_t GetEggCount() { return eggCount_; };
+
 
 private:
 
@@ -109,5 +112,10 @@ private:
 
 	uint32_t eggCount_ = 0;
 
+	/// <summary>
+	/// エフェクト関連
+	/// </summary>
+	bool effectOn_ = false;
+	uint32_t effeFrame_ = 60;
 };
 

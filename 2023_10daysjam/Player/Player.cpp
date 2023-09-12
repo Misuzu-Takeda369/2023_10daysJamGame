@@ -29,6 +29,11 @@ void Player::Initialize()
 	image_.upRight= Novice::LoadTexture("./Resources/Images/bird_BR.png");
 	nowImage_ = image_.down;
 	eggCount_ = 0;
+
+
+	effectOn_ = false;
+
+	effeFrame_ = 60;
 }
 
 void Player::Update(char*keys)
@@ -51,10 +56,16 @@ void Player::Update(char*keys)
 		animFream_ = animSpeed_;
 	}
 
+	if (effectOn_) {
+		effeFrame_--;
+	}
+	PlayerEffect();
 #pragma region ImGui関連
 #ifdef _DEBUG
 	ImGui::Begin("eggCount_");
 	ImGui::Text(" eggCount_ %d", eggCount_);
+	ImGui::Text(" effeFrame_ %d", effeFrame_);
+
 	ImGui::End();
 #endif
 
@@ -69,7 +80,7 @@ void Player::Draw()
 	//Novice::DrawEllipse(int(position_.x), int(position_.y), int(radius_.x), int(radius_.y), 0.0f, color_, kFillModeSolid);
 	//プレイヤーの画像(仮)
 	//Novice::DrawSprite(int(position_.x- radius_.x), int(position_.y- radius_.y), image_,1.0f,1.0f,0.0f,color_);
-	Novice::DrawSpriteRect(int(position_.x - radius_.x), int(position_.y - radius_.y), 128 * animNum_, 0, 128, 128, nowImage_, (128.0f/(128.0f*6.0f)), 1, 0, WHITE);
+	Novice::DrawSpriteRect(int(position_.x - radius_.x), int(position_.y - radius_.y), 128 * animNum_, 0, 128, 128, nowImage_, (128.0f/(128.0f*6.0f)), 1, 0, color_);
 }
 
 void Player::Move(char* keys)
@@ -117,19 +128,30 @@ void Player::Move(char* keys)
 
 void Player::OnFChildCollision()
 {
-	color_ = RED;
+	//color_ = RED;
 	//ここで子供カウント
 	eggCount_++;
 }
 
 void Player::OnEnemyCollision()
 {
-	color_ = 0x0F0C52FF;
+	color_ = 0x4D6996FF;
 	eggCount_--;
+	effectOn_ = true;
 }
 
 void Player::OnPbAttackCollision()
 {
 	eggCount_--;
+}
+
+void Player::PlayerEffect()
+{
+
+	if (effeFrame_ <= 0) {
+		color_ = WHITE;
+		effectOn_ = false;
+		effeFrame_ = 60;
+	}
 }
 

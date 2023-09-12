@@ -48,7 +48,7 @@ public:
 	/// <summary>
 	/// 背景が動かなくなる条件
 	/// </summary>
-	void MoveStop(char* keys);
+	void MoveStop();
 
 	/// <summary>
 	/// 背景のループ用(ここに来たら移動するよーってやつ)
@@ -133,6 +133,10 @@ private:
 	Vector2 ScreensPos_[9] = {
 
 	};
+
+	bool stopFrag_ = false;
+
+	uint32_t stopFrame_ = 30;
 
 
 };
