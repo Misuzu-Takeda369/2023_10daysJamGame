@@ -90,4 +90,7 @@ private:
 	bool effectFlagEnd_ = false;
 	//エフェクトに使ったフラグその2
 	bool effectFlagStart_ = true;
+
+	uint32_t image1_ = 0;
+	uint32_t image2_ = 0;
 };

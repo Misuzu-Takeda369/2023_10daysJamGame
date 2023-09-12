@@ -8,6 +8,9 @@ void GameCScene::Initialize()
 {
 	// 仮シーン変換用キー
 	inputchagekey_ = Input::GetInstance();
+
+	image1_ = Novice::LoadTexture("./Resources/Images/clear_background.png");
+	image2_ = Novice::LoadTexture("./Resources/Images/clear.png");
 }
 
 
@@ -20,6 +23,9 @@ void GameCScene::Initialize(Vector2 effectpos)
 	effectFlagEnd_ = false;
 	effectFlagStart_ = true;
 	effectPos_ = effectpos;
+
+	image1_ = Novice::LoadTexture("./Resources/Images/clear_background.png");
+	image2_ = Novice::LoadTexture("./Resources/Images/clear.png");
 }
 
 
@@ -49,6 +55,9 @@ void GameCScene::Update()
 
 void GameCScene::Draw()
 {
+	Novice::DrawSprite(MimWindowWidth, MimWindowHeight, image1_, 1, 1, 0.0f, WHITE);
+	Novice::DrawSprite(MimWindowWidth, MimWindowHeight, image2_, 1, 1, 0.0f, WHITE);
+
 	Novice::DrawBox(int(khalfWidth - effectPos_.x), int(khalfHeight - effectPos_.y), int(effectPos_.x * 2), int(effectPos_.y * 2), 0, 0x13141AFF, kFillModeSolid);
 }
 

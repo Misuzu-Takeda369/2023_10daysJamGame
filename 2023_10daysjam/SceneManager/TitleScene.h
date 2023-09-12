@@ -3,6 +3,8 @@
 #include "Input.h"
 #include "Novice.h"
 #include "ScreenSize.h"
+#include "Manual/Manual.h"
+
 /// <summary>
 /// タイトルシーンのクラス
 /// </summary>
@@ -95,4 +97,8 @@ private:
 
 	uint32_t image1_ = 0;
 	uint32_t image2_ = 0;
+
+
+	Manual* manual_ = nullptr;
+
 };

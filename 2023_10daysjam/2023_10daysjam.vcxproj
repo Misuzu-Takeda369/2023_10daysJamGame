@@ -121,6 +121,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClCompile Include="FieldChild\FieldChild.cpp" />
     <ClCompile Include="Function\Function.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Manual\Manual.cpp" />
     <ClCompile Include="PlayerChild\PlayerChild.cpp" />
     <ClCompile Include="PlayerChild\PlayerChildWeapon.cpp" />
     <ClCompile Include="Player\Player.cpp" />
@@ -164,6 +165,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="FieldChild\FieldChild.h" />
     <ClInclude Include="Function\Function.h" />
     <ClInclude Include="Function\UtilityStruct.h" />
+    <ClInclude Include="Manual\Manual.h" />
     <ClInclude Include="PlayerChild\PlayerChild.h" />
     <ClInclude Include="PlayerChild\PlayerChildWeapon.h" />
     <ClInclude Include="Player\Player.h" />
