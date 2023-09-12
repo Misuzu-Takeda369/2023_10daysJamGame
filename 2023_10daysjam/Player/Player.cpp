@@ -103,5 +103,11 @@ void Player::OnFChildCollision()
 
 void Player::OnEnemyCollision()
 {
+	color_ = 0x0F0C52FF;
+	eggCount_--;
+}
+
+void Player::OnPbAttackCollision()
+{
 	eggCount_--;
 }

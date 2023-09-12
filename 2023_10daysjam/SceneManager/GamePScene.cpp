@@ -185,8 +185,10 @@ void GamePScene::Update()
 
 void GamePScene::Draw()
 {
+#ifdef _DEBUG
 	Novice::ScreenPrintf(500, 500, "%d", AttackTime_);
 	Novice::ScreenPrintf(550, 550, "%d", AttackFlag_);
+#endif
 	//背景の描写
 	backGround_->Draw();
 	//プレイヤーの描写
@@ -251,11 +253,13 @@ void GamePScene::Attack()
 
 		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakEpos.x, cheakEpos.y, float(cheakEradish)) == true) {
 
+
 			if (enemy->GetEffectFrag() == false) {
 				player_->OnEnemyCollision();
 				//子供が減る
 				PlayerChildLost();
 			}
+
 			//カウント
 			enemy->OnCollision();
 
@@ -308,7 +312,10 @@ void GamePScene::Attack()
 				//カウント
 				if (enemy->GetEffectFrag() == false) {
 					if (AttackFlag_) {
-						PlayerChildLostAttack();
+
+						if (player_->GetEggCount() >0) {
+							PlayerChildLostAttack();
+						}
 						AttackFlag_ = false;
 					}
 				}
@@ -436,7 +443,7 @@ void GamePScene::PlayerChildLostAttack()
 				playerChild->SetIsArrive(false);
 				childCounter_--;
 				//カウント
-				player_->OnEnemyCollision();
+				player_->OnPbAttackCollision();
 			}
 		}
 	}

@@ -43,6 +43,9 @@ public:
 	/// </summary>
 	void Move(char* keys);
 
+
+	void OnPbAttackCollision();
+
 	/// <summary>
 	/// 当たった時の処理(子供(F))
 	/// </summary>
