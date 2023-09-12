@@ -121,7 +121,7 @@ void GamePScene::Update()
 		Novice::GetHitKeyStateAll(keys);
 
 		//プレイヤーの更新
-		player_->Update();
+		player_->Update(keys);
 		//背景の更新
 		backGround_->Update();
 
@@ -231,7 +231,7 @@ void GamePScene::Attack()
 		Vector2 cheakFCradish = fieldChild->GetRadius();
 
 
-		if (CircleCollision(cheakPpos.x, cheakPpos.y, (cheakPradish.x)*3, cheakFCpos.x, cheakFCpos.y, cheakFCradish.x) == true) {
+		if (CircleCollision(cheakPpos.x, cheakPpos.y, (cheakPradish.x), cheakFCpos.x, cheakFCpos.y, cheakFCradish.x) == true) {
 			//カウント
 			player_->OnFChildCollision();
 			fieldChild->OnCollision();
@@ -251,7 +251,7 @@ void GamePScene::Attack()
 		Vector2 cheakEpos = enemy->GetScreenPos();
 		int cheakEradish = enemy->GetRadius();
 
-		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakEpos.x, cheakEpos.y, float(cheakEradish)) == true) {
+		if (CircleCollision(cheakPpos.x, cheakPpos.y, (cheakPradish.x/2), cheakEpos.x, cheakEpos.y, float(cheakEradish)) == true) {
 
 
 			if (enemy->GetEffectFrag() == false) {
@@ -262,7 +262,6 @@ void GamePScene::Attack()
 
 			//カウント
 			enemy->OnCollision();
-
 		}
 
 	}

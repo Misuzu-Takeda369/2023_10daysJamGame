@@ -163,6 +163,7 @@ xcopy C:\KamataEngine\DirectXGame\Resources "$(OutDirFullPath)NoviceResources" /
     <ClInclude Include="Enemy\EnemyBullet.h" />
     <ClInclude Include="FieldChild\FieldChild.h" />
     <ClInclude Include="Function\Function.h" />
+    <ClInclude Include="Function\UtilityStruct.h" />
     <ClInclude Include="PlayerChild\PlayerChild.h" />
     <ClInclude Include="PlayerChild\PlayerChildWeapon.h" />
     <ClInclude Include="Player\Player.h" />

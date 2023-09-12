@@ -3,6 +3,7 @@
 #include "Vector2.h"
 #include "DirectXCommon.h"
 #include "ScreenSize.h"
+#include "UtilityStruct.h"
 
 /// <summary>
 /// プレイヤーのクラス
@@ -31,7 +32,7 @@ public:
 	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
-	void Update();
+	void Update(char*keys);
 
 	/// <summary>
 	/// 前景描画
@@ -43,9 +44,6 @@ public:
 	/// </summary>
 	void Move(char* keys);
 
-
-	void OnPbAttackCollision();
-
 	/// <summary>
 	/// 当たった時の処理(子供(F))
 	/// </summary>
@@ -55,6 +53,11 @@ public:
 	/// 当たった時の処理(敵)
 	/// </summary>
 	void OnEnemyCollision();
+
+	/// <summary>
+	/// 軍隊あてたときの処理
+	/// </summary>
+	void OnPbAttackCollision();
 
 	///getter&setter
 
@@ -88,7 +91,7 @@ private:
 	/// <summary>
 	/// プレイヤーの半径
 	/// </summary>
-	const Vector2 radius_ = {32.0f,32.0f};
+	const Vector2 radius_ = {64.0f,64.0f};
 	/// <summary>
 	/// プレイヤーの色
 	/// </summary>
@@ -98,7 +101,11 @@ private:
 	/// </summary>
 	Vector2 speed_ = { 4.0f,4.0f };
 
-	uint32_t image_ ;
+	UnitTexture8 image_ ;
+	uint32_t nowImage_;
+	uint32_t animNum_ = 0;
+	const uint32_t animSpeed_ = 7;
+	uint32_t animFream_ = animSpeed_;
 
 	uint32_t eggCount_ = 0;
 

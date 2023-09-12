@@ -60,20 +60,12 @@ bool CircleCollision(float aX, float aY, float aRadius, float bX, float bY, floa
 	}
 }
 
-uint32_t AnimationNum(uint32_t animationNum)
+uint32_t AnimationNum(uint32_t animationNum, uint32_t maxFrame)
 {
 
-	if (animationNum == 0) {
-		animationNum = 1;
-
-	}
-	else if (animationNum == 1) {
-		animationNum = 2;
-
-	}
-	else if (animationNum == 2) {
+	animationNum++;
+	if (animationNum >= maxFrame) {
 		animationNum = 0;
-
 	}
 
 	return animationNum;
@@ -95,3 +87,9 @@ Vector2 Normalize(const Vector2& v) {
 
 }
 */
+
+void TranslateWave(float& pos, const float& theta, float range1, float range2)
+{
+	float num = pos + (range1 * cosf(theta) + range2 * sinf(theta));
+	pos = num;
+}

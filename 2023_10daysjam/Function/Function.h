@@ -55,8 +55,9 @@ bool CircleCollision(float aX, float aY, float aRadius, float bX, float bY, floa
 /// アニメーション変化関数
 /// </summary>
 /// <param name="animationNum">何番目かの変数</param>
+/// /// <param name="maxFrame">アニメーションの合計フレーム数</param>
 /// <returns></returns>
-uint32_t AnimationNum(uint32_t animationNum);
+uint32_t AnimationNum(uint32_t animationNum,uint32_t maxFrame);
 
 
 /// <summary>
@@ -65,3 +66,5 @@ uint32_t AnimationNum(uint32_t animationNum);
 /// <param name="v">正規化したい値</param>
 /// <returns></returns>
 Vector2 Normalize(const Vector2& v);
+
+void TranslateWave(float& pos, const float& theta, float range1, float range2);
