@@ -13,8 +13,8 @@ void GameOScene::Initialize()
 	effectFlagEnd_ = false;
 	effectFlagStart_ = true;
 
-	image1_ = Novice::LoadTexture("./Resources/Images/start_background.png");
-	image2_ = Novice::LoadTexture("./Resources/Images/start1.png");
+	image1_ = Novice::LoadTexture("./Resources/Images/over_background.png");
+	image2_ = Novice::LoadTexture("./Resources/Images/over.png");
 }
 
 
