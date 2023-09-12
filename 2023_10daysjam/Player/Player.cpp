@@ -96,7 +96,7 @@ void Player::Move(char* keys)
 
 void Player::OnFChildCollision()
 {
-	color_ = RED;
+	//color_ = RED;
 	//ここで子供カウント
 	eggCount_++;
 }

@@ -96,6 +96,8 @@ private:
 
 	uint32_t babyTexture_ = 0; //成長前
 	uint32_t adultTexture_ = 0; //成長後
+	uint32_t adultTextureHorn_ = 0; //成長後
+
 	int textureSize_ = 64; //画像サイズ
 	int radius_ = textureSize_ / 2;
 
@@ -114,5 +116,11 @@ private:
 	bool bulletLive_ = false;
 
 	bool isAttacking_ = false;
+
+	/// <summary>
+	/// アニメーション
+	/// </summary>
+	int animationNum_ = 0;
+	//int animationFrame_ = 30;
 };
 

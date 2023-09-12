@@ -346,9 +346,11 @@ void GamePScene::PlayerChildUpdate()
 	for (PlayerChild* playerChild : playerChild_) {
 
 		if (playerChild->GetChildNumber() == 1) {
-			playerChild->SetDirection(preKeys);
+			//1人目の子だけしかアニメーションが反応しないので変更しました
+			//playerChild->SetDirection(preKeys);
 			forwardPos = player_->GetPlayerPosition();
 		}
+		playerChild->SetDirection(preKeys);
 		playerChild->Update(forwardPos, player_->GetPlayerPosition(), backGround_->GetScrollPosition());
 		forwardPos = playerChild->GetPos();
 	}

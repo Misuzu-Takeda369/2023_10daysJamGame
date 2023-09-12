@@ -38,8 +38,11 @@ void PlayerChild::Initialize(const Vector2& forwardPos,const Vector2& playerPos,
 	//成長速度が-1～+2秒変わる 
 	growTime_ = growTimeBase_ + RandomRange(-60, 120);
 
-	babyTexture_ = Novice::LoadTexture("./Resources/Images/childBaby.png");
-
+	babyTexture_ = Novice::LoadTexture("./Resources/Images/bird_child_B.png");
+	adultTexture_ = Novice::LoadTexture("./Resources/Images/bird_child_A.png");
+	adultTextureHorn_ = Novice::LoadTexture("./Resources/Images/bird_child_Type.png");
+	animationNum_ = 0;
+	//animationFrame_ = 30;
 	weapon_ = new PlayerChildWeapon();
 	
 	SetChildType();
@@ -78,6 +81,8 @@ void PlayerChild::Update(const Vector2& forwardPos, const Vector2& playerPos, Ve
 	}
 	SetBulletLive(weapon_->GetBulletLive());
 	SetScreenBulletPos(weapon_->GetScreenBulletPos());
+
+
 }
 
 void PlayerChild::Draw()
@@ -85,12 +90,16 @@ void PlayerChild::Draw()
 	Novice::DrawEllipse(int(pos_.x), int(pos_.y), 100, 100, 0, WHITE, kFillModeWireFrame);
 	if (isGrow_) {
 		//成長済み
-		Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, adultTexture_, 1, 1, 0, color_.color);
+		//Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, adultTextureLeg_, 1, 1, 0, color_.color);
+		Novice::DrawSpriteRect(int(pos_.x) - radius_, int(pos_.y) - radius_, textureSize_ * animationNum_, 0, textureSize_, textureSize_, adultTexture_, 0.25, 1, 0.0f, color_.color);
+		Novice::DrawSpriteRect(int(pos_.x) - radius_, int(pos_.y) - radius_, textureSize_ * 1, 0, textureSize_, textureSize_, adultTextureHorn_, 0.25, 1, 0.0f, color_.color);
 		weapon_->Draw();
 	}
 	else {
 		//未成長
-		Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, babyTexture_, 1, 1, 0, color_.color);
+		//Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, babyTexture_, 1, 1, 0, color_.color);
+		Novice::DrawSpriteRect(int(pos_.x) - radius_, int(pos_.y) - radius_, textureSize_ * animationNum_, 0, textureSize_, textureSize_, babyTexture_, 0.25, 1, 0.0f, color_.color);
+
 	}
 }
 
@@ -116,28 +125,36 @@ void PlayerChild::SetDirection(char* preKeys)
 	//角度設定
 	if ((preKeys[DIK_LEFT] && preKeys[DIK_UP]) || (preKeys[DIK_A] && preKeys[DIK_W])) {
 		playerDirection_ = 45;
+		animationNum_ = 1;
 	}
 	else if ((preKeys[DIK_RIGHT] && preKeys[DIK_UP]) || (preKeys[DIK_D] && preKeys[DIK_W])) {
 		playerDirection_ = 135;
+		animationNum_ = 1;
 	}
 	else if ((preKeys[DIK_LEFT] && preKeys[DIK_DOWN]) || (preKeys[DIK_A] && preKeys[DIK_S])) {
 		playerDirection_ = 315;
+		animationNum_ = 0;
 	}
 	else if ((preKeys[DIK_RIGHT] && preKeys[DIK_DOWN]) || (preKeys[DIK_D] && preKeys[DIK_S])) {
 		playerDirection_ = 225;
+		animationNum_ = 0;
 	}
 
 	else if (preKeys[DIK_LEFT] || preKeys[DIK_A]) {
 		playerDirection_ = 0;
+		animationNum_ = 3;
 	}
 	else if (preKeys[DIK_RIGHT] || preKeys[DIK_D]) {
 		playerDirection_ = 180;
+		animationNum_ = 2;
 	}
 	else if (preKeys[DIK_UP] || preKeys[DIK_W]) {
 		playerDirection_ = 90;
+		animationNum_ = 1;
 	}
 	else if (preKeys[DIK_DOWN] || preKeys[DIK_S]) {
 		playerDirection_ = 270;
+		animationNum_ = 0;
 	}
 }
 
@@ -154,8 +171,8 @@ void PlayerChild::SetIsArrive(bool flag)
 void PlayerChild::SetChildType()
 {
 	int typeNum = RandomRange(1, typeTotal_);
-	adultTexture_ = Novice::LoadTexture("./Resources/Images/childAdult.png");
+	adultTexture_ = Novice::LoadTexture("./Resources/Images/bird_child_A.png");
 	childType_ = Type(typeNum);
 	weapon_->Initialize(childType_);
-	color_.color = RED;
+	color_.color = WHITE;
 }

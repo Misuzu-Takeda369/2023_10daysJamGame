@@ -218,7 +218,7 @@ void BackGround::ChangeBackGround()
 			scrollBacksPos_[now].x = kWindowWidth;
 		}
 		else if (ScreensPos_[now].x < -(kWindowWidth)) {
-			scrollBacksPos_[now].x = -(kWindowWidth*2);
+			scrollBacksPos_[now].x = ( - (kWindowWidth * 2));
 
 		}
 
