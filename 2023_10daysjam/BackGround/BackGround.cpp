@@ -88,7 +88,7 @@ void BackGround::Move(char* keys)
 	//MoveStop(keys);
 	//斜め移動
 
-	if (keys[DIK_LEFT] && keys[DIK_UP]) {
+	if ((keys[DIK_LEFT] && keys[DIK_UP]) || (keys[DIK_A] && keys[DIK_W])) {
 		scrollPosition_.x -= (speed_.x / 1.41f);
 		scrollPosition_.y -= (speed_.y / 1.41f);
 
@@ -98,7 +98,7 @@ void BackGround::Move(char* keys)
 		}
 
 	}
-	else if (keys[DIK_RIGHT] && keys[DIK_UP]) {
+	else if ((keys[DIK_RIGHT] && keys[DIK_UP]) || (keys[DIK_D] && keys[DIK_W])) {
 		scrollPosition_.x += (speed_.x / 1.41f);
 		scrollPosition_.y -= (speed_.y / 1.41f);
 
@@ -109,7 +109,7 @@ void BackGround::Move(char* keys)
 		}
 
 	}
-	else if (keys[DIK_LEFT] && keys[DIK_DOWN]) {
+	else if ((keys[DIK_LEFT] && keys[DIK_DOWN] )|| (keys[DIK_A] && keys[DIK_S])) {
 		scrollPosition_.x -= (speed_.x / 1.41f);
 		scrollPosition_.y += (speed_.y / 1.41f);
 
@@ -120,7 +120,7 @@ void BackGround::Move(char* keys)
 		}
 
 	}
-	else if (keys[DIK_RIGHT] && keys[DIK_DOWN]) {
+	else if ((keys[DIK_RIGHT] && keys[DIK_DOWN]) || (keys[DIK_D] && keys[DIK_S])) {
 		scrollPosition_.x += (speed_.x / 1.41f);
 		scrollPosition_.y += (speed_.y / 1.41f);
 
@@ -133,7 +133,7 @@ void BackGround::Move(char* keys)
 
 
 	//直線移動
-	else if (keys[DIK_LEFT]) {
+	else if (keys[DIK_LEFT]|| keys[DIK_A]) {
 		scrollPosition_.x -= speed_.x;
 
 		for (uint32_t now = 0; now < 9; now++) {
@@ -141,7 +141,7 @@ void BackGround::Move(char* keys)
 			//scrollBacksPos_[now].y += scrollPosition_.y;
 		}
 	}
-	else if (keys[DIK_RIGHT]) {
+	else if (keys[DIK_RIGHT] || keys[DIK_D]) {
 		scrollPosition_.x += speed_.x;
 
 		for (uint32_t now = 0; now < 9; now++) {
@@ -150,7 +150,7 @@ void BackGround::Move(char* keys)
 		}
 
 	}
-	else if (keys[DIK_UP]) {
+	else if (keys[DIK_UP] || keys[DIK_W]) {
 		scrollPosition_.y -= speed_.y;
 
 		for (uint32_t now = 0; now < 9; now++) {
@@ -159,7 +159,7 @@ void BackGround::Move(char* keys)
 		}
 
 	}
-	else if (keys[DIK_DOWN]) {
+	else if (keys[DIK_DOWN] || keys[DIK_S]) {
 		scrollPosition_.y += speed_.y;
 
 		for (uint32_t now = 0; now < 9; now++) {

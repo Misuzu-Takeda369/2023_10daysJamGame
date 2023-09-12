@@ -114,29 +114,29 @@ void PlayerChild::SetDirection(char* preKeys)
 {
 
 	//角度設定
-	if (preKeys[DIK_LEFT] && preKeys[DIK_UP]) {
+	if ((preKeys[DIK_LEFT] && preKeys[DIK_UP]) || (preKeys[DIK_A] && preKeys[DIK_W])) {
 		playerDirection_ = 45;
 	}
-	else if (preKeys[DIK_RIGHT] && preKeys[DIK_UP]) {
+	else if ((preKeys[DIK_RIGHT] && preKeys[DIK_UP]) || (preKeys[DIK_D] && preKeys[DIK_W])) {
 		playerDirection_ = 135;
 	}
-	else if (preKeys[DIK_LEFT] && preKeys[DIK_DOWN]) {
+	else if ((preKeys[DIK_LEFT] && preKeys[DIK_DOWN]) || (preKeys[DIK_A] && preKeys[DIK_S])) {
 		playerDirection_ = 315;
 	}
-	else if (preKeys[DIK_RIGHT] && preKeys[DIK_DOWN]) {
+	else if ((preKeys[DIK_RIGHT] && preKeys[DIK_DOWN]) || (preKeys[DIK_D] && preKeys[DIK_S])) {
 		playerDirection_ = 225;
 	}
 
-	else if (preKeys[DIK_LEFT]) {
+	else if (preKeys[DIK_LEFT] || preKeys[DIK_A]) {
 		playerDirection_ = 0;
 	}
-	else if (preKeys[DIK_RIGHT]) {
+	else if (preKeys[DIK_RIGHT] || preKeys[DIK_D]) {
 		playerDirection_ = 180;
 	}
-	else if (preKeys[DIK_UP]) {
+	else if (preKeys[DIK_UP] || preKeys[DIK_W]) {
 		playerDirection_ = 90;
 	}
-	else if (preKeys[DIK_DOWN]) {
+	else if (preKeys[DIK_DOWN] || preKeys[DIK_S]) {
 		playerDirection_ = 270;
 	}
 }
