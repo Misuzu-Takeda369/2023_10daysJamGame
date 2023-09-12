@@ -166,11 +166,19 @@ void GamePScene::Update()
 
 		//ここのif文でシーン移行出来るかを判別
 		//現在は0を押したときに移動 20でクリアシーンへ移動
-		if (((inputchagekey_->TriggerKey(DIK_0)) || player_->GetEggCount() >= 20) || flagGameOver_) {
+		if (flagGameOver_) {
 			effectFlagEnd_ = true;
 			GameMove_ = false;
 
 		}
+
+#ifdef _DEBUG
+		if (((inputchagekey_->TriggerKey(DIK_0)) || player_->GetEggCount() >= 20)) {
+			effectFlagEnd_ = true;
+			GameMove_ = false;
+
+		}
+#endif // DEBUG
 
 	}
 }
@@ -221,7 +229,7 @@ void GamePScene::Attack()
 		Vector2 cheakFCradish = fieldChild->GetRadius();
 
 
-		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakFCpos.x, cheakFCpos.y, cheakFCradish.x) == true) {
+		if (CircleCollision(cheakPpos.x, cheakPpos.y, (cheakPradish.x)*3, cheakFCpos.x, cheakFCpos.y, cheakFCradish.x) == true) {
 			//カウント
 			player_->OnFChildCollision();
 			fieldChild->OnCollision();
@@ -261,9 +269,12 @@ void GamePScene::Attack()
 	if (player_->GetEggCount() < 0) {
 		flagGameOver_ = true;
 	}
+
+#ifdef _DEBUG
 	else if ((inputchagekey_->TriggerKey(DIK_1)) && player_->GetEggCount() == 0) {
 		flagGameOver_ = true;
 	}
+#endif
 
 #pragma endregion
 

@@ -36,9 +36,12 @@ void TitleScene::Update()
 
 	//ここのif文でシーン移行出来るかを判別
 	//現在は0を押したときに移動
+
+#ifdef _DEBUG
 	if (inputchagekey_->TriggerKey(DIK_0)) {
 		flagChange_ = true;
 	}
+#endif
 
 	if (effectFlagStart_) {
 		TitleEffectStart();
