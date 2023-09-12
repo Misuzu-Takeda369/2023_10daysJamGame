@@ -17,8 +17,15 @@ void GameCScene::Update()
 	if (inputchagekey_->TriggerKey(DIK_0)) {
 		flagChange_ = true;
 	}
+
+	if (inputchagekey_->TriggerKey(DIK_SPACE)) {
+		flagChange_ = true;
+	}
 }
 
-void GameCScene::Draw() {}
+void GameCScene::Draw()
+{
+}
 
-void GameCScene::BackDraw() {}
+
+

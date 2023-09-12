@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 #include "Input.h"
+#include "Novice.h"
+#include "ScreenSize.h"
 /// <summary>
 /// タイトルシーンのクラス
 /// </summary>
@@ -46,6 +48,7 @@ public:
 	/// <returns></returns>
 	bool SetFlagChange(bool flagChange) {  return this->flagChange_ = flagChange; };
 
+	void TitleEffect();
 private:
 
 	//シーン変更できるかどうか
@@ -54,4 +57,7 @@ private:
 	// 仮シーン変換用キー
 	Input* inputchagekey_ = nullptr;
 
+	Vector2 effectPos_ = {0.0f,0.0f};
+
+	bool EffectFlag_ = false;
 };

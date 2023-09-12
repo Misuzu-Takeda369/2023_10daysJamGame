@@ -18,6 +18,10 @@ void GameOScene::Update()
 	if (inputchagekey_->TriggerKey(DIK_0)) {
 		flagChange_ = true;
 	}
+
+	if (inputchagekey_->TriggerKey(DIK_SPACE)) {
+		flagChange_ = true;
+	}
 }
 
 void GameOScene::Draw() {}

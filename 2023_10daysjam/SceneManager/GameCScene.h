@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 #include "Input.h"
+#include "Novice.h"
+#include "ScreenSize.h"
 /// <summary>
 /// ゲームクリアシーンのクラス
 /// </summary>
@@ -32,10 +34,6 @@ public:
 	/// </summary>
 	void Draw();
 
-	/// <summary>
-	/// 背景描画
-	/// </summary>
-	void BackDraw();
 
 	/// <summary>
 	/// シーン変更管理のゲッター
