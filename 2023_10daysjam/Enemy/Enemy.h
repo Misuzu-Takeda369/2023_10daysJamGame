@@ -70,6 +70,10 @@ public:
 	/// <returns></returns>
 	int GetRadius() { return this->radius_; };
 
+	void EnemyEffect();
+
+	bool GetEffectFrag() { return effectFrag_; };
+
 	
 private:
 
@@ -126,4 +130,14 @@ private:
 	/// ストーキング用のプレイヤーの位置
 	/// </summary>
 	Vector2 playerStalkingPos_ = { 0.0f,0.0f };
+
+	/// <summary>
+	/// エフェクトを起動できるか
+	/// </summary>
+	bool effectFrag_ = false;
+	int effectFrame = 10;
+
+	Vector2 rand_ = {0.0f,0.0f};
+
+	int checkRang_ = 12;
 };

@@ -83,7 +83,10 @@ void Enemy::Initialize(Vector2 PlayerPos, Vector2 ScrollPos)
 
 	texture_ = Novice::LoadTexture("./Resources/Images/egg1.png");
 	//texture2_ = Novice::LoadTexture("./Resources/Images/egg2.png");
-
+	effectFrag_ = false;
+	effectFrame = 10;
+	rand_ = { 0.0f,0.0f };
+	checkRang_ = 12;
 }
 
 void Enemy::Update(Vector2 ScrollPos)
@@ -152,6 +155,8 @@ void Enemy::Update(Vector2 ScrollPos)
 		isArrive_ = false;
 	}
 
+	EnemyEffect();
+
 	//スクロールした値分(背景は毎フレーム変動するのでそのリカバリー)
 	scrollPos_ = { ScrollPos.x ,ScrollPos.y };
 	screenPos_ = { pos_.x - scrollPos_.x  ,pos_.y - scrollPos_.y };
@@ -168,7 +173,7 @@ void Enemy::Draw()
 
 	if (isArrive_) {
 		//画像その1
-		Novice::DrawSpriteRect(int(screenPos_.x - radius_), int(screenPos_.y - radius_), 128 * animationNum_, 0, radius_ * 2, radius_ * 2, texture_, 0.333333333f, 1, 0.0f, color_);
+		Novice::DrawSpriteRect(int(screenPos_.x - radius_+ rand_.x), int(screenPos_.y - radius_ - rand_.y), 128 * animationNum_, 0, radius_ * 2, radius_ * 2, texture_, 0.333333333f, 1, 0.0f, color_);
 
 	}
 	//画像その2
@@ -180,7 +185,9 @@ void Enemy::OnCollision()
 {
 	color_ = RED;
 	//多分ここでエフェクト
-	isArrive_ = false;
+	//isArrive_ = false;
+	effectFrag_ = true;
+	speed_ = 0;
 }
 
 int Enemy::SpeedRam()
@@ -221,3 +228,30 @@ void Enemy::MoveStalking()
 
 	
 }
+
+void Enemy::EnemyEffect()
+{
+
+	/*effectFrag_ = false;
+	effectFrame = 10;
+	rand_ = { 0.0f,0.0f };
+	checkRang_ = 12;*/
+	//isArrive_ = false;
+	if (effectFrag_) {
+		rand_.x = float(RandomRange(-effectFrame, effectFrame));
+		rand_.y = float(RandomRange(-effectFrame, effectFrame));
+		effectFrame--;
+
+
+		if (effectFrame<=0) {
+			checkRang_ -= 2;
+			effectFrame = 10;
+		}
+
+
+		if (checkRang_ <= 0) {
+			isArrive_ = false;
+		}
+	}
+}
+

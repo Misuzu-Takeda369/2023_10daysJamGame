@@ -1,12 +1,12 @@
 ﻿#include "GamePScene.h"
 #include "Novice.h"
 
-GamePScene::GamePScene() 
+GamePScene::GamePScene()
 {
-	
+
 }
 
-GamePScene::~GamePScene() 
+GamePScene::~GamePScene()
 {
 	delete player_;
 	delete backGround_;
@@ -26,9 +26,9 @@ GamePScene::~GamePScene()
 	//delete enemy_;
 }
 
-void GamePScene::Initialize() 
+void GamePScene::Initialize()
 {
-	
+
 	// 仮シーン変換用キー
 	inputchagekey_ = Input::GetInstance();
 
@@ -54,8 +54,10 @@ void GamePScene::Initialize()
 	//敵の初期化
 	//enemy_ = new Enemy();
 	//enemy_->Initialize();
-	GameMove_= false;
+	GameMove_ = false;
 
+	AttackTime_ = 180;
+	AttackFlag_ = true;
 }
 
 
@@ -90,6 +92,9 @@ void GamePScene::Initialize(Vector2 effectpos)
 	GameMove_ = false;
 
 	effectPos_ = effectpos;
+
+	AttackTime_ = 180;
+	AttackFlag_ = true;
 }
 
 
@@ -106,7 +111,7 @@ void GamePScene::Update()
 		if (effectFlagEnd_) {
 			GamePEffectEnd();
 		}
-		
+
 	}
 	else if (GameMove_) {
 
@@ -150,6 +155,15 @@ void GamePScene::Update()
 		//ここに子供(Back)の更新
 		PlayerChildUpdate();
 
+		//子供直接攻撃時に子供が一体減ったら暫くは減らないようにする
+		if (!AttackFlag_) {
+			AttackTime_--;
+			if (AttackTime_ <= 0) {
+				AttackFlag_ = true;
+				AttackTime_ = 180;
+			}
+		}
+
 		//ここのif文でシーン移行出来るかを判別
 		//現在は0を押したときに移動 20でクリアシーンへ移動
 		if (((inputchagekey_->TriggerKey(DIK_0)) || player_->GetEggCount() >= 20) || flagGameOver_) {
@@ -161,9 +175,10 @@ void GamePScene::Update()
 	}
 }
 
-void GamePScene::Draw() 
+void GamePScene::Draw()
 {
-	Novice::ScreenPrintf(500, 500, "%d", CountNum_);
+	Novice::ScreenPrintf(500, 500, "%d", AttackTime_);
+	Novice::ScreenPrintf(550, 550, "%d", AttackFlag_);
 	//背景の描写
 	backGround_->Draw();
 	//プレイヤーの描写
@@ -172,7 +187,7 @@ void GamePScene::Draw()
 
 	//子供(F)の描写
 	for (FieldChild* fieldChild : fieldChild_) {
-		
+
 		fieldChild->Draw();
 	}
 
@@ -185,7 +200,7 @@ void GamePScene::Draw()
 	for (Enemy* enemy : enemy_) {
 		enemy->Draw();
 	}
-	
+
 	//エフェクト
 	Novice::DrawBox(int(khalfWidth - effectPos_.x), int(khalfHeight - effectPos_.y), int(effectPos_.x * 2), int(effectPos_.y * 2), 0, 0x13141AFF, kFillModeSolid);
 }
@@ -198,23 +213,23 @@ void GamePScene::Attack()
 	Vector2 cheakPradish = player_->GetPlayerRadius();
 
 #pragma region Playerと子供(F)の当たり判定
-	
+
 
 	for (FieldChild* fieldChild : fieldChild_) {
 
 		Vector2 cheakFCpos = fieldChild->GetScreenPos();
 		Vector2 cheakFCradish = fieldChild->GetRadius();
-		
 
-		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakFCpos.x, cheakFCpos.y, cheakFCradish.x)==true) {
+
+		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakFCpos.x, cheakFCpos.y, cheakFCradish.x) == true) {
 			//カウント
 			player_->OnFChildCollision();
 			fieldChild->OnCollision();
 			//後ろにいる子供はここでnew入るのか?その1
 			AddPlayerChild();
 		}
-		
-		
+
+
 	}
 #pragma endregion
 
@@ -227,64 +242,75 @@ void GamePScene::Attack()
 		int cheakEradish = enemy->GetRadius();
 
 		if (CircleCollision(cheakPpos.x, cheakPpos.y, cheakPradish.x, cheakEpos.x, cheakEpos.y, float(cheakEradish)) == true) {
+
+			if (enemy->GetEffectFrag() == false) {
+				player_->OnEnemyCollision();
+				//子供が減る
+				PlayerChildLost();
+			}
 			//カウント
-			player_->OnEnemyCollision();
 			enemy->OnCollision();
-			//子供が減る
-			PlayerChildLost();
+
 		}
 
 	}
 
 	//シーン変換のために(キー1押してたまごのカウントが0だった場合ゲームオーバーに行くようにフラグ) 
-	
 
-		if (player_->GetEggCount() < 0) {
-			flagGameOver_ = true;
-		}
-		else if ((inputchagekey_->TriggerKey(DIK_1)) && player_->GetEggCount() == 0) {
-			flagGameOver_ = true;
-		}
+
+	if (player_->GetEggCount() < 0) {
+		flagGameOver_ = true;
+	}
+	else if ((inputchagekey_->TriggerKey(DIK_1)) && player_->GetEggCount() == 0) {
+		flagGameOver_ = true;
+	}
 
 #pragma endregion
 
 #pragma region Enemyと子供(Bullet)の当たり判定
-		for (Enemy* enemy : enemy_) {
-			Vector2 cheakEpos = enemy->GetScreenPos();
-			int cheakEradish = enemy->GetRadius();
+	for (Enemy* enemy : enemy_) {
+		Vector2 cheakEpos = enemy->GetScreenPos();
+		int cheakEradish = enemy->GetRadius();
 
-			for (PlayerChild* playerChild : playerChild_) {
+		for (PlayerChild* playerChild : playerChild_) {
 #pragma region 弾発射されてるやつ
-				Vector2 cheakCbBpos = playerChild->GetScreenBulletPos();
-				bool cheakBulletLive = playerChild->GetBulletLive();
-				float cheakCbBradish = float(playerChild->GetRadius());
+			Vector2 cheakCbBpos = playerChild->GetScreenBulletPos();
+			bool cheakBulletLive = playerChild->GetBulletLive();
+			float cheakCbBradish = float(playerChild->GetRadius());
 
-				if (cheakBulletLive) {
-					if (CircleCollision(cheakEpos.x, cheakEpos.y, float(cheakEradish), cheakCbBpos.x, cheakCbBpos.y, cheakCbBradish) == true) {
-						//カウント
-						enemy->OnCollision();
+			if (cheakBulletLive) {
+				if (CircleCollision(cheakEpos.x, cheakEpos.y, float(cheakEradish), cheakCbBpos.x, cheakCbBpos.y, cheakCbBradish) == true) {
+					//カウント
+					enemy->OnCollision();
 
-					}
 				}
+			}
 
 #pragma endregion 
 
 #pragma region 子供の直接攻撃
-				Vector2 cheakCbpos = playerChild->GetPos();
-				float cheakCbradish = float(playerChild->GetRadius());
+			Vector2 cheakCbpos = playerChild->GetPos();
+			float cheakCbradish = float(playerChild->GetRadius());
 
-				
-					if (CircleCollision(cheakEpos.x, cheakEpos.y, float(cheakEradish), cheakCbpos.x, cheakCbpos.y, (cheakCbradish*3)) == true) {
-						//カウント
-						enemy->OnCollision();
 
+			if (CircleCollision(cheakEpos.x, cheakEpos.y, float(cheakEradish), cheakCbpos.x, cheakCbpos.y, (cheakCbradish * 2)) == true) {
+				//カウント
+				if (enemy->GetEffectFrag() == false) {
+					if (AttackFlag_) {
+						PlayerChildLostAttack();
+						AttackFlag_ = false;
 					}
-				
-#pragma endregion
+				}
+				enemy->OnCollision();
 
 			}
 
+
+#pragma endregion
+
 		}
+
+	}
 #pragma endregion
 
 }
@@ -391,6 +417,20 @@ void GamePScene::GamePEffectStart()
 	}
 }
 
+void GamePScene::PlayerChildLostAttack()
+{
+	for (PlayerChild* playerChild : playerChild_) {
+		if (playerChild->GeisGrow() == false) {
+			if (childCounter_ == uint32_t(playerChild->GetChildNumber())) {
+				playerChild->SetIsArrive(false);
+				childCounter_--;
+				//カウント
+				player_->OnEnemyCollision();
+			}
+		}
+	}
+}
+
 
 void GamePScene::AddEnemies(Vector2 playerPos)
 {
@@ -416,3 +456,4 @@ void GamePScene::EnemiesUpdate()
 		enemy->Update(backGround_->GetScrollPosition());
 	}
 }
+

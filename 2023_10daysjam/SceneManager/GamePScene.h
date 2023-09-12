@@ -97,6 +97,8 @@ public:
 	void GamePEffectStart();
 
 
+	void PlayerChildLostAttack();
+
 	///getter&setter
 	
 	/// <summary>
@@ -180,5 +182,9 @@ private:
 
 	//ゲームをうごかしているか
 	bool GameMove_ = false;
+
+	bool AttackFlag_ = true;
+	
+	uint32_t AttackTime_ = 180;
 
 };

@@ -73,6 +73,8 @@ public:
 	/// <returns></returns>
 	int GetRadius() { return radius_; };
 
+	bool GeisGrow() { return isGrow_; };
+
 private:
 	/// <summary>
 	/// Initializeの中に入れる
