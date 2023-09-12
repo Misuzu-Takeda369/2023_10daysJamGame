@@ -33,6 +33,11 @@ public:
 	void Initialize();
 
 	/// <summary>
+	/// 初期化(変数あり)
+	/// </summary>
+	void Initialize(Vector2 effectpos);
+
+	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
 	void Update();
@@ -81,7 +86,15 @@ public:
 	/// </summary>
 	void PlayerChildLost();
 
+	/// <summary>
+	/// エフェクト関連
+	/// </summary>
+	void GamePEffectEnd();
 
+	/// <summary>
+	/// エフェクト関連
+	/// </summary>
+	void GamePEffectStart();
 
 
 	///getter&setter
@@ -105,6 +118,17 @@ public:
 	/// <returns></returns>
 	bool GetFlagGameOver() { return flagGameOver_; };
 
+	/// <summary>
+	/// エフェクト用の位置ゲッター
+	/// </summary>
+	/// <returns></returns>
+	Vector2 GetEffectPos() { return effectPos_; };
+
+	/// <summary>
+	/// エフェクト用の位置セッター
+	/// </summary>
+	/// <returns></returns>
+	Vector2 SetEffectPos(Vector2 effectpos) { effectPos_ = effectpos; };
 
 
 private:
@@ -145,5 +169,16 @@ private:
 	char keys[256] = { 0 };
 	char preKeys[256] = { 0 };
 
+
+	//エフェクトに使った位置
+	Vector2 effectPos_ = { 0.0f,0.0f };
+
+	//エフェクトに使ったフラグその1
+	bool effectFlagEnd_ = false;
+	//エフェクトに使ったフラグその2
+	bool effectFlagStart_ = true;
+
+	//ゲームをうごかしているか
+	bool GameMove_ = false;
 
 };

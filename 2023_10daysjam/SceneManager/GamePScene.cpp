@@ -54,59 +54,111 @@ void GamePScene::Initialize()
 	//敵の初期化
 	//enemy_ = new Enemy();
 	//enemy_->Initialize();
-	
+	GameMove_= false;
 
 }
 
+
+void GamePScene::Initialize(Vector2 effectpos)
+{
+	// 仮シーン変換用キー
+	inputchagekey_ = Input::GetInstance();
+
+	//シーン変換用エフェクト
+	effectFlagEnd_ = false;
+	effectFlagStart_ = true;
+
+	//プレイヤーの初期化
+//空じゃなければ一回デリートする
+	if (player_ != nullptr) {
+		delete player_;
+	}
+	player_ = new Player();
+	player_->Initialize();
+
+	//背景の初期化
+	//空じゃなければ一回デリートする
+	if (backGround_ != nullptr) {
+		delete backGround_;
+	}
+	backGround_ = new BackGround(player_->GetPlayerRadius());
+	backGround_->Initialize();
+
+	//ゲームオーバーフラグ
+	flagGameOver_ = false;
+
+	GameMove_ = false;
+
+	effectPos_ = effectpos;
+}
+
+
+
 void GamePScene::Update()
 {
+	if (!GameMove_) {
 
-	//角度調整用のキー入力
-	memcpy(preKeys, keys, 256);
-	Novice::GetHitKeyStateAll(keys);
-	
-	//プレイヤーの更新
-	player_->Update();
-	//背景の更新
-	backGround_->Update();
+		//解除
+		if (effectFlagStart_) {
+			GamePEffectStart();
+		}
 
-	//敵の更新
-	//enemy_->Update();
+		if (effectFlagEnd_) {
+			GamePEffectEnd();
+		}
+		
+	}
+	else if (GameMove_) {
 
-	Attack();
+
+		//角度調整用のキー入力
+		memcpy(preKeys, keys, 256);
+		Novice::GetHitKeyStateAll(keys);
+
+		//プレイヤーの更新
+		player_->Update();
+		//背景の更新
+		backGround_->Update();
+
+		//敵の更新
+		//enemy_->Update();
+
+		Attack();
 
 #pragma region 子供(F)のゲームシーン内の処理
-	//子供(F)のゲームシーン内の処理
-	fieldChildWaitTimer_++;
-	if (fieldChildWaitTimer_ >= FieldChild::spawnWaitTime_) {
-		AddFieldChild(player_->GetPlayerPosition());
-		fieldChildWaitTimer_ = 0;
-	}
-	FieldChildUpdate();
+		//子供(F)のゲームシーン内の処理
+		fieldChildWaitTimer_++;
+		if (fieldChildWaitTimer_ >= FieldChild::spawnWaitTime_) {
+			AddFieldChild(player_->GetPlayerPosition());
+			fieldChildWaitTimer_ = 0;
+		}
+		FieldChildUpdate();
 #pragma endregion
 
 #pragma region 敵のゲームシーン内の処理
-	
-	enemiesWaitTimer_++;
-	if (enemiesWaitTimer_ >= Enemy::spawnWaitTime_) {
-		AddEnemies(player_->GetPlayerPosition());
-		enemiesWaitTimer_ = 0;
-	}
-	EnemiesUpdate();
+
+		enemiesWaitTimer_++;
+		if (enemiesWaitTimer_ >= Enemy::spawnWaitTime_) {
+			AddEnemies(player_->GetPlayerPosition());
+			enemiesWaitTimer_ = 0;
+		}
+		EnemiesUpdate();
 #pragma endregion
 
 
 
-	//ここに子供(Back)の更新
-	PlayerChildUpdate();
+		//ここに子供(Back)の更新
+		PlayerChildUpdate();
 
-	//ここのif文でシーン移行出来るかを判別
-	//現在は0を押したときに移動 20でクリアシーンへ移動
-	if (((inputchagekey_->TriggerKey(DIK_0))|| player_->GetEggCount() >= 20)  || flagGameOver_) {
-		flagChange_ = true;
+		//ここのif文でシーン移行出来るかを判別
+		//現在は0を押したときに移動 20でクリアシーンへ移動
+		if (((inputchagekey_->TriggerKey(DIK_0)) || player_->GetEggCount() >= 20) || flagGameOver_) {
+			effectFlagEnd_ = true;
+			GameMove_ = false;
+
+		}
+
 	}
-
-
 }
 
 void GamePScene::Draw() 
@@ -134,6 +186,8 @@ void GamePScene::Draw()
 		enemy->Draw();
 	}
 	
+	//エフェクト
+	Novice::DrawBox(int(khalfWidth - effectPos_.x), int(khalfHeight - effectPos_.y), int(effectPos_.x * 2), int(effectPos_.y * 2), 0, 0x13141AFF, kFillModeSolid);
 }
 
 void GamePScene::Attack()
@@ -309,6 +363,30 @@ void GamePScene::PlayerChildLost()
 	}
 	childCounter_--;
 
+}
+
+void GamePScene::GamePEffectEnd()
+{
+	effectPos_.x += 20.0f;
+	effectPos_.y += 20.0f;
+
+	if (effectPos_.x >= 550.0f && (effectPos_.y >= 300.0f)) {
+		flagChange_ = true;
+		effectFlagEnd_ = false;
+	}
+}
+
+void GamePScene::GamePEffectStart()
+{
+	effectPos_.x -= 20.0f;
+	effectPos_.y -= 20.0f;
+
+	if (effectPos_.x <= 0.0f && (effectPos_.y <= 0.0f)) {
+		effectFlagStart_ = false;
+		effectPos_.x = 0.0f;
+		effectPos_.y = 0.0f;
+		GameMove_ = true;
+	}
 }
 
 

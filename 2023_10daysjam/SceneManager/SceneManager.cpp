@@ -59,7 +59,7 @@ void SceneManager::Update() {
 
 			delete gameP_;
 			gameP_ = new GamePScene();
-			gameP_->Initialize();
+			gameP_->Initialize(title_->GetEffectPos());
 			//gameP_->SetEffectPos(title_->GetEffectPos());
 		}
 		break;
@@ -77,7 +77,7 @@ void SceneManager::Update() {
 
 				delete gameO_;
 				gameO_ = new GameOScene();
-				gameO_->Initialize();
+				gameO_->Initialize(gameP_->GetEffectPos());
 				//gameO_->SetEffectPos(gameP_->GetEffectPos());
 			}
 			else {
@@ -85,7 +85,7 @@ void SceneManager::Update() {
 
 				delete gameC_;
 				gameC_ = new GameCScene();
-				gameC_->Initialize();
+				gameC_->Initialize(gameP_->GetEffectPos());
 				//gameC_->SetEffectPos(gameP_->GetEffectPos());
 			}
 

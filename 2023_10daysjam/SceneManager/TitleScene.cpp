@@ -57,8 +57,8 @@ void TitleScene::Draw()
 
 void TitleScene::TitleEffectEnd()
 {
-	effectPos_.x += 40.0f;
-	effectPos_.y += 40.0f;
+	effectPos_.x += 20.0f;
+	effectPos_.y += 20.0f;
 
 	if (effectPos_.x >= 550.0f && (effectPos_.y >= 300.0f)) {
 		flagChange_ = true;
@@ -68,8 +68,8 @@ void TitleScene::TitleEffectEnd()
 
 void TitleScene::TitleEffectStart()
 {
-	effectPos_.x -= 40.0f;
-	effectPos_.y -= 40.0f;
+	effectPos_.x -= 20.0f;
+	effectPos_.y -= 20.0f;
 
 	if (effectPos_.x < 0.0f && (effectPos_.y < 0.0f)) {
 		effectFlagStart_ = false;

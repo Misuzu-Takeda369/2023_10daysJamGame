@@ -11,7 +11,7 @@ void GameOScene::Initialize()
 	inputchagekey_ = Input::GetInstance();
 }
 
-/*
+
 void GameOScene::Initialize(Vector2 effectpos)
 {
 	// 仮シーン変換用キー
@@ -20,8 +20,10 @@ void GameOScene::Initialize(Vector2 effectpos)
 	//シーン変換用エフェクト
 	effectFlagEnd_ = false;
 	effectFlagStart_ = true;
+
+	effectPos_ = effectpos;
 }
-*/
+
 void GameOScene::Update() 
 {
 	//ここのif文でシーン移行出来るかを判別
@@ -50,8 +52,8 @@ void GameOScene::Draw()
 
 void GameOScene::GameOEffectEnd()
 {
-	effectPos_.x += 40.0f;
-	effectPos_.y += 40.0f;
+	effectPos_.x += 20.0f;
+	effectPos_.y += 20.0f;
 
 	if (effectPos_.x >= 550.0f && (effectPos_.y >= 300.0f)) {
 		flagChange_ = true;
@@ -61,8 +63,8 @@ void GameOScene::GameOEffectEnd()
 
 void GameOScene::GameOEffectStart()
 {
-	effectPos_.x -= 40.0f;
-	effectPos_.y -= 40.0f;
+	effectPos_.x -= 20.0f;
+	effectPos_.y -= 20.0f;
 
 	if (effectPos_.x <= 0.0f && (effectPos_.y <= 0.0f)) {
 		effectFlagStart_ = false;
