@@ -87,6 +87,11 @@ void Enemy::Initialize(Vector2 PlayerPos, Vector2 ScrollPos)
 	effectFrame = 10;
 	rand_ = { 0.0f,0.0f };
 	checkRang_ = 12;
+
+	soundEnemyhit_ = Novice::LoadAudio("./Resources/Sounds/Enemyhit.wav");
+
+	//音ならす用変数
+	enemyhittHandle_ = -1;
 }
 
 void Enemy::Update(Vector2 ScrollPos)
@@ -188,6 +193,10 @@ void Enemy::OnCollision()
 	//isArrive_ = false;
 	effectFrag_ = true;
 	speed_ = 0;
+
+	if (Novice::IsPlayingAudio(enemyhittHandle_) == 0 || enemyhittHandle_ == -1) {
+		enemyhittHandle_ = Novice::PlayAudio(soundEnemyhit_, 0, 1);
+	}
 }
 
 int Enemy::SpeedRam()

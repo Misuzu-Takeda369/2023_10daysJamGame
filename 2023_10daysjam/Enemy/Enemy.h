@@ -140,4 +140,11 @@ private:
 	Vector2 rand_ = {0.0f,0.0f};
 
 	int checkRang_ = 12;
+
+	//音楽
+
+	uint32_t soundEnemyhit_ = 0;
+
+	//音ならす用変数
+	int enemyhittHandle_ = -1;
 };
