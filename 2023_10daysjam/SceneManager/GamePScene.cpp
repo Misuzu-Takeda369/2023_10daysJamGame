@@ -198,12 +198,24 @@ void GamePScene::Draw()
 		fieldChild->Draw();
 	}
 
-	//子供(Back)の描写
-	for (PlayerChild* playerChild : playerChild_) {
-		playerChild->Draw();
+	if (player_->GetNowDirection() == 1) {
+		//プレイヤーの描写
+		player_->Draw();
+
+		//子供(Back)の描写
+		for (PlayerChild* playerChild : playerChild_) {
+			playerChild->Draw();
+		}
 	}
-	//プレイヤーの描写
-	player_->Draw();
+	else {
+		//子供(Back)の描写
+		for (PlayerChild* playerChild : playerChild_) {
+			playerChild->Draw();
+		}
+		//プレイヤーの描写
+		player_->Draw();
+
+	}
 
 	//enemy_->Draw
 	for (Enemy* enemy : enemy_) {
