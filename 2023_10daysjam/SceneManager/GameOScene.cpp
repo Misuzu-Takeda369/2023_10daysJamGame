@@ -15,6 +15,12 @@ void GameOScene::Initialize()
 
 	image1_ = Novice::LoadTexture("./Resources/Images/over_background.png");
 	image2_ = Novice::LoadTexture("./Resources/Images/over.png");
+
+	//音ならす用変数
+	overHandle_ = -1;
+	soundOver_ = Novice::LoadAudio("./Resources/Sounds/GameOver.wav");
+	//鳴らした数
+	bgmCount_ = 0;
 }
 
 
@@ -31,6 +37,12 @@ void GameOScene::Initialize(Vector2 effectpos)
 
 	image1_ = Novice::LoadTexture("./Resources/Images/over_background.png");
 	image2_ = Novice::LoadTexture("./Resources/Images/over.png");
+
+	//音ならす用変数
+	overHandle_ = -1;
+	soundOver_ = Novice::LoadAudio("./Resources/Sounds/GameOver.wav");
+	//鳴らした数
+	bgmCount_ = 0;
 }
 
 void GameOScene::Update() 
@@ -45,6 +57,13 @@ void GameOScene::Update()
 
 	if (effectFlagStart_) {
 		GameOEffectStart();
+	}
+
+	if ((!effectFlagStart_ && !effectFlagEnd_) && bgmCount_ == 0) {
+		if (Novice::IsPlayingAudio(overHandle_) == 0 ||overHandle_ == -1) {
+			overHandle_ = Novice::PlayAudio(soundOver_, 0, 1);
+			bgmCount_++;
+		}
 	}
 
 	if ((inputchagekey_->TriggerKey(DIK_SPACE)) && !effectFlagStart_) {

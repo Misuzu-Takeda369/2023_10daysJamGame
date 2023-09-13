@@ -34,7 +34,7 @@ public:
 private:
 	Vector2 pos_;
 	const int spawnDistance_ = 200; //プレイヤーからの半径距離(近すぎるところにスポーンしないように)
-	uint32_t texture_ = Novice::LoadTexture("./Resources/Images/FieldChild.png");
+	uint32_t texture_ = Novice::LoadTexture("./Resources/Images/field_child.png");
 
 	uint32_t color_ = WHITE;
 	
@@ -55,5 +55,9 @@ private:
 
 	//半径(画像サイズ的に多分) 
 	Vector2 radius_ = {16.0f,16.0f};
+
+	//音楽用
+	uint32_t soundGetEgg_ = 0;
+	int getEggHandle_ = 0;
 };
 

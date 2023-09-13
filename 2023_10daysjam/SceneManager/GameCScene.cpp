@@ -11,6 +11,12 @@ void GameCScene::Initialize()
 
 	image1_ = Novice::LoadTexture("./Resources/Images/clear_background.png");
 	image2_ = Novice::LoadTexture("./Resources/Images/clear.png");
+
+	//音ならす用変数
+	clearHandle_  = -1;
+	soundClear_ = Novice::LoadAudio("./Resources/Sounds/GameClear.wav");
+	//鳴らした数
+	bgmCount_ = 0;
 }
 
 
@@ -26,6 +32,12 @@ void GameCScene::Initialize(Vector2 effectpos)
 
 	image1_ = Novice::LoadTexture("./Resources/Images/clear_background.png");
 	image2_ = Novice::LoadTexture("./Resources/Images/clear.png");
+
+	//音ならす用変数
+	clearHandle_ = -1;
+	soundClear_ = Novice::LoadAudio("./Resources/Sounds/GameClear.wav");
+	//鳴らした数
+	bgmCount_ = 0;
 }
 
 
@@ -42,7 +54,13 @@ void GameCScene::Update()
 	if (effectFlagStart_) {
 		GameCEffectStart();
 	}
-	
+
+	if ((!effectFlagStart_&& !effectFlagEnd_)&& bgmCount_== 0) {
+		if (Novice::IsPlayingAudio(clearHandle_) == 0 || clearHandle_ == -1) {
+			clearHandle_ = Novice::PlayAudio(soundClear_, 0, 1);
+			bgmCount_++;
+		}
+	}
 
 	if ((inputchagekey_->TriggerKey(DIK_SPACE)) && !effectFlagStart_) {
 		effectFlagEnd_ = true;

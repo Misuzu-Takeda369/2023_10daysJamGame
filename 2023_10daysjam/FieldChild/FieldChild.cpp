@@ -48,6 +48,10 @@ void FieldChild::Initialize(Vector2 PlayerPos, Vector2 ScrollPos)
 
 	//スクリーンの座標
 	screenPos_ = { pos_.x ,pos_.y };
+
+	//音楽用
+	soundGetEgg_ = Novice::LoadAudio("./Resources/Sounds/GetEgg.wav");
+	getEggHandle_ = -1;
 }
 
 void FieldChild::Update(Vector2 ScrollPos)
@@ -85,5 +89,10 @@ void FieldChild::OnCollision()
 {
 	//この辺に何かしらのアクション入る？
 	//後ろにいる子供はここでnew入るのか?その2
+
+	if (Novice::IsPlayingAudio(getEggHandle_) == 0 || getEggHandle_ == -1) {
+		getEggHandle_ = Novice::PlayAudio(soundGetEgg_, 0, 1);
+	}
+
 	isArrive_ = false;
 }

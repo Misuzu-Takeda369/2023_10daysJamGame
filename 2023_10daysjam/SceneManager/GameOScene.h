@@ -94,4 +94,10 @@ private:
 
 	uint32_t image1_ = 0;
 	uint32_t image2_ = 0;
+
+	//音ならす用変数
+	int overHandle_ = 0;
+	uint32_t soundOver_ = 0;
+	//鳴らした数
+	int bgmCount_ = 0;
 };
