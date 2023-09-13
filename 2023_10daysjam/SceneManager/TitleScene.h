@@ -101,4 +101,13 @@ private:
 
 	Manual* manual_ = nullptr;
 
+	//音楽
+
+	uint32_t soundSelect_ = 0;
+	uint32_t soundDecision_ = 0;
+
+	//音ならす用変数
+	int selectHandle_ = 0;
+	int decisionHandle_ = 0;
+	
 };

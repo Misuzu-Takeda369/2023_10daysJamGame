@@ -23,6 +23,12 @@ void TitleScene::Initialize()
 	manual_ = new Manual();
 	manual_->Initialize();
 
+	soundSelect_ = Novice::LoadAudio("./Resources/Sounds/Select.wav");
+	soundDecision_ = Novice::LoadAudio("./Resources/Sounds/Decision.wav");
+
+	selectHandle_ = -1;
+	decisionHandle_ = -1;
+
 }
 
 void TitleScene::Initialize(Vector2 effectpos)
@@ -44,6 +50,13 @@ void TitleScene::Initialize(Vector2 effectpos)
 	}
 	manual_ = new Manual();
 	manual_->Initialize();
+
+	soundSelect_ = Novice::LoadAudio("./Resources/Sounds/Select.wav");
+	soundDecision_ = Novice::LoadAudio("./Resources/Sounds/Decision.wav");
+
+	selectHandle_ = -1;
+	decisionHandle_ = -1;
+
 }
 
 void TitleScene::Update()
@@ -66,11 +79,18 @@ void TitleScene::Update()
 	if (!manual_->GetFrag()) {
 		if ((inputchagekey_->TriggerKey(DIK_Z)) && !effectFlagStart_) {
 			manual_->SetFrag(true);
+			if (Novice::IsPlayingAudio(selectHandle_) == 0 || selectHandle_ == -1) {
+				selectHandle_ = Novice::PlayAudio(soundSelect_, 0, 1);
+			}
 
 		}
 
 
 		if ((inputchagekey_->TriggerKey(DIK_SPACE)) && !effectFlagStart_) {
+
+			if (Novice::IsPlayingAudio(decisionHandle_) == 0 || decisionHandle_ == -1) {
+				selectHandle_ = Novice::PlayAudio(soundDecision_, 0, 1);
+			}
 			effectFlagEnd_ = true;
 		}
 
