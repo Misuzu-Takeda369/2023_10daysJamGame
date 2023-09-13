@@ -87,7 +87,10 @@ void PlayerChild::Update(const Vector2& forwardPos, const Vector2& playerPos, Ve
 
 void PlayerChild::Draw()
 {
+#ifdef _DEBUG
 	Novice::DrawEllipse(int(pos_.x), int(pos_.y), 100, 100, 0, WHITE, kFillModeWireFrame);
+#endif
+
 	if (isGrow_) {
 		//成長済み
 		//Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, adultTextureLeg_, 1, 1, 0, color_.color);

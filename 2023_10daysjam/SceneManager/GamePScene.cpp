@@ -172,6 +172,11 @@ void GamePScene::Update()
 
 		}
 
+		if ((player_->GetEggCount() >= 20)) {
+			effectFlagEnd_ = true;
+			GameMove_ = false;
+		}
+
 #ifdef _DEBUG
 		if (((inputchagekey_->TriggerKey(DIK_0)) || player_->GetEggCount() >= 20)) {
 			effectFlagEnd_ = true;
@@ -192,9 +197,11 @@ void GamePScene::Draw()
 	//背景の描写
 	backGround_->Draw();
 	//プレイヤーの描写
-	player_->Draw();
+	//player_->Draw();
 
-
+	//UI作ったら消す(リリース用確認)
+	//Novice::ScreenPrintf(550, 550, "%d", player_->GetEggCount());
+	
 	//子供(F)の描写
 	for (FieldChild* fieldChild : fieldChild_) {
 
@@ -205,6 +212,8 @@ void GamePScene::Draw()
 	for (PlayerChild* playerChild : playerChild_) {
 		playerChild->Draw();
 	}
+	//プレイヤーの描写
+	player_->Draw();
 
 	//enemy_->Draw
 	for (Enemy* enemy : enemy_) {

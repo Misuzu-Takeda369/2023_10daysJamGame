@@ -74,8 +74,10 @@ void Player::Update(char*keys)
 
 void Player::Draw()
 {
+#ifdef _DEBUG
 	//プレイヤーの範囲？(半径の2倍)
 	Novice::DrawEllipse(int(position_.x), int(position_.y),int(radius_.x), int(radius_.y), 0.0f, color_, kFillModeWireFrame);
+#endif
 	//プレイヤーの描写(仮)
 	//Novice::DrawEllipse(int(position_.x), int(position_.y), int(radius_.x), int(radius_.y), 0.0f, color_, kFillModeSolid);
 	//プレイヤーの画像(仮)

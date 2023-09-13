@@ -76,6 +76,7 @@ void Manual::Draw()
 	Novice::ScreenPrintf(0,0,"flag %d",frag_);
 	Novice::ScreenPrintf(0, 10, "returnfrag_ %d", returnfrag_);
 	//Novice::ScreenPrintf(0, 40, "cooltime_ %d", cooltime_);
+	Novice::ScreenPrintf(0, 30, "push Z Explanation");
 #endif
 
 	if (frag_) {
