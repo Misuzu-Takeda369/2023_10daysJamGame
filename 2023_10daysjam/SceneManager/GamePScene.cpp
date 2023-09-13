@@ -166,16 +166,14 @@ void GamePScene::Update()
 
 		//ここのif文でシーン移行出来るかを判別
 		//現在は0を押したときに移動 20でクリアシーンへ移動
-		if (flagGameOver_) {
-			effectFlagEnd_ = true;
-			GameMove_ = false;
 
-		}
 
 		if ((player_->GetEggCount() >= 20)) {
 			effectFlagEnd_ = true;
 			GameMove_ = false;
 		}
+
+	
 
 #ifdef _DEBUG
 		if (((inputchagekey_->TriggerKey(DIK_0)) || player_->GetEggCount() >= 20)) {
@@ -191,8 +189,8 @@ void GamePScene::Update()
 void GamePScene::Draw()
 {
 #ifdef _DEBUG
-	Novice::ScreenPrintf(500, 500, "%d", AttackTime_);
-	Novice::ScreenPrintf(550, 550, "%d", AttackFlag_);
+	//Novice::ScreenPrintf(500, 500, "%d", AttackTime_);
+	Novice::ScreenPrintf(550, 450, "%d", flagGameOver_);
 #endif
 	//背景の描写
 	backGround_->Draw();
@@ -200,7 +198,7 @@ void GamePScene::Draw()
 	//player_->Draw();
 
 	//UI作ったら消す(リリース用確認)
-	//Novice::ScreenPrintf(550, 550, "%d", player_->GetEggCount());
+	Novice::ScreenPrintf(550, 550, "%d", player_->GetEggCount());
 	
 	//子供(F)の描写
 	for (FieldChild* fieldChild : fieldChild_) {
@@ -268,23 +266,23 @@ void GamePScene::Attack()
 				backGround_->MoveStop();
 				//子供が減る
 				PlayerChildLost();
+				
 			}
 
 			//カウント
 			enemy->OnCollision();
+
 		}
 
 	}
 
 	//シーン変換のために(キー1押してたまごのカウントが0だった場合ゲームオーバーに行くようにフラグ) 
-
-
 	if (player_->GetEggCount() < 0) {
 		flagGameOver_ = true;
 	}
 
 #ifdef _DEBUG
-	else if ((inputchagekey_->TriggerKey(DIK_1)) && player_->GetEggCount() == 0) {
+	if ((inputchagekey_->TriggerKey(DIK_1)) && player_->GetEggCount() == 0) {
 		flagGameOver_ = true;
 	}
 #endif

@@ -34,6 +34,8 @@ void Player::Initialize()
 	effectOn_ = false;
 
 	effeFrame_ = 60;
+
+	//flagGameOver_ = false;
 }
 
 void Player::Update(char*keys)
@@ -140,6 +142,7 @@ void Player::OnEnemyCollision()
 	color_ = 0x4D6996FF;
 	eggCount_--;
 	effectOn_ = true;
+	
 }
 
 void Player::OnPbAttackCollision()

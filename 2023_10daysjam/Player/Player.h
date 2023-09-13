@@ -84,6 +84,8 @@ public:
 	/// <returns></returns>
 	uint32_t GetEggCount() { return eggCount_; };
 
+	
+
 
 private:
 
@@ -117,5 +119,6 @@ private:
 	/// </summary>
 	bool effectOn_ = false;
 	uint32_t effeFrame_ = 60;
+
 };
 
