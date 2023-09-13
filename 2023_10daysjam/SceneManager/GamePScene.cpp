@@ -60,6 +60,12 @@ void GamePScene::Initialize()
 	AttackFlag_ = true;
 
 	eggCountNum_ = 0;
+
+	//音楽
+	soundBGM_ = Novice::LoadAudio("./Resources/Sounds/BGM.wav");
+
+	//音ならす用変数
+	bgmHandle_ = -1;
 }
 
 
@@ -99,6 +105,12 @@ void GamePScene::Initialize(Vector2 effectpos)
 	AttackFlag_ = true;
 
 	eggCountNum_ = 0;
+
+	//音楽
+	soundBGM_ = Novice::LoadAudio("./Resources/Sounds/BGM.wav");
+
+	//音ならす用変数
+	bgmHandle_ = -1;
 }
 
 
@@ -113,12 +125,16 @@ void GamePScene::Update()
 		}
 
 		if (effectFlagEnd_) {
+			Novice::StopAudio(bgmHandle_);
 			GamePEffectEnd();
 		}
 
 	}
 	else if (GameMove_) {
 
+		if (Novice::IsPlayingAudio(bgmHandle_) == 0 || bgmHandle_ == -1) {
+			bgmHandle_ = Novice::PlayAudio(soundBGM_, 1, 0.5);
+		}
 
 		//角度調整用のキー入力
 		memcpy(preKeys, keys, 256);
