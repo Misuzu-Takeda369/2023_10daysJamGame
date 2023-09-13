@@ -21,6 +21,9 @@ void GameOScene::Initialize()
 	soundOver_ = Novice::LoadAudio("./Resources/Sounds/GameOver.wav");
 	//鳴らした数
 	bgmCount_ = 0;
+
+	soundDecision_ = Novice::LoadAudio("./Resources/Sounds/Decision.wav");
+	decisionHandle_ = -1;
 }
 
 
@@ -43,6 +46,9 @@ void GameOScene::Initialize(Vector2 effectpos)
 	soundOver_ = Novice::LoadAudio("./Resources/Sounds/GameOver.wav");
 	//鳴らした数
 	bgmCount_ = 0;
+
+	soundDecision_ = Novice::LoadAudio("./Resources/Sounds/Decision.wav");
+	decisionHandle_ = -1;
 }
 
 void GameOScene::Update() 
@@ -67,6 +73,9 @@ void GameOScene::Update()
 	}
 
 	if ((inputchagekey_->TriggerKey(DIK_SPACE)) && !effectFlagStart_) {
+		if (Novice::IsPlayingAudio(decisionHandle_) == 0 || decisionHandle_ == -1) {
+			decisionHandle_ = Novice::PlayAudio(soundDecision_, 0, 1);
+		}
 		effectFlagEnd_ = true;
 	}
 

@@ -186,7 +186,7 @@ void GamePScene::Update()
 
 		//ここのif文でシーン移行出来るかを判別
 		//現在は0を押したときに移動 20でクリアシーンへ移動
-		
+		//クリア判定
 		if ((eggCountNum_ >= 20)) {
 			effectFlagEnd_ = true;
 			GameMove_ = false;

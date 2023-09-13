@@ -17,6 +17,9 @@ void GameCScene::Initialize()
 	soundClear_ = Novice::LoadAudio("./Resources/Sounds/GameClear.wav");
 	//鳴らした数
 	bgmCount_ = 0;
+
+	soundDecision_ = Novice::LoadAudio("./Resources/Sounds/Decision.wav");
+	decisionHandle_ = -1;
 }
 
 
@@ -38,6 +41,9 @@ void GameCScene::Initialize(Vector2 effectpos)
 	soundClear_ = Novice::LoadAudio("./Resources/Sounds/GameClear.wav");
 	//鳴らした数
 	bgmCount_ = 0;
+
+	soundDecision_ = Novice::LoadAudio("./Resources/Sounds/Decision.wav");
+	decisionHandle_ = -1;
 }
 
 
@@ -63,6 +69,9 @@ void GameCScene::Update()
 	}
 
 	if ((inputchagekey_->TriggerKey(DIK_SPACE)) && !effectFlagStart_) {
+		if (Novice::IsPlayingAudio(decisionHandle_) == 0 || decisionHandle_ == -1) {
+			decisionHandle_ = Novice::PlayAudio(soundDecision_, 0, 1);
+		}
 		effectFlagEnd_ = true;
 	}
 

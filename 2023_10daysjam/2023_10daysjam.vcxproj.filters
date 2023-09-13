@@ -35,6 +35,9 @@
     <Filter Include="Enemy">
       <UniqueIdentifier>{e897d08a-b41e-45df-afa8-7d514cbd7c6b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manual">
+      <UniqueIdentifier>{b61fd74b-ea47-469f-848e-e0f4e60fe499}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -89,9 +92,6 @@
     <ClCompile Include="Function\Function.cpp">
       <Filter>Function</Filter>
     </ClCompile>
-    <ClCompile Include="Manual\Manual.cpp">
-      <Filter>KamataEngine</Filter>
-    </ClCompile>
     <ClCompile Include="Player\Player.cpp">
       <Filter>Player</Filter>
     </ClCompile>
@@ -100,6 +100,9 @@
     </ClCompile>
     <ClCompile Include="PlayerChild\PlayerChildWeapon.cpp">
       <Filter>PlayerChild</Filter>
+    </ClCompile>
+    <ClCompile Include="Manual\Manual.cpp">
+      <Filter>Manual</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,7 +212,6 @@
       <Filter>Function</Filter>
     </ClInclude>
     <ClInclude Include="UtilityStruct.h" />
-    <ClInclude Include="Manual\Manual.h" />
     <ClInclude Include="Player\Player.h">
       <Filter>Player</Filter>
     </ClInclude>
@@ -218,6 +220,9 @@
     </ClInclude>
     <ClInclude Include="PlayerChild\PlayerChildWeapon.h">
       <Filter>PlayerChild</Filter>
+    </ClInclude>
+    <ClInclude Include="Manual\Manual.h">
+      <Filter>Manual</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

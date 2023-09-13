@@ -89,7 +89,7 @@ void TitleScene::Update()
 		if ((inputchagekey_->TriggerKey(DIK_SPACE)) && !effectFlagStart_) {
 
 			if (Novice::IsPlayingAudio(decisionHandle_) == 0 || decisionHandle_ == -1) {
-				selectHandle_ = Novice::PlayAudio(soundDecision_, 0, 1);
+				decisionHandle_ = Novice::PlayAudio(soundDecision_, 0, 1);
 			}
 			effectFlagEnd_ = true;
 		}

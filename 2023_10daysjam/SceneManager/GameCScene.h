@@ -97,6 +97,9 @@ private:
 	//音ならす用変数
 	int clearHandle_ = 0;
 	uint32_t soundClear_ = 0;
+
+	uint32_t soundDecision_ = 0;
+	int decisionHandle_ = 0;
 	//鳴らした数
 	int bgmCount_ = 0;
 };
