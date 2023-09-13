@@ -80,12 +80,6 @@
     <ClCompile Include="BackGround\BackGround.cpp">
       <Filter>BackGround</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerChild\PlayerChild.cpp">
-      <Filter>PlayerChild</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerChild\PlayerChildWeapon.cpp">
-      <Filter>PlayerChild</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy\Enemy.cpp">
       <Filter>Enemy</Filter>
     </ClCompile>
@@ -95,8 +89,17 @@
     <ClCompile Include="Function\Function.cpp">
       <Filter>Function</Filter>
     </ClCompile>
+    <ClCompile Include="Manual\Manual.cpp">
+      <Filter>KamataEngine</Filter>
+    </ClCompile>
     <ClCompile Include="Player\Player.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerChild\PlayerChild.cpp">
+      <Filter>PlayerChild</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerChild\PlayerChildWeapon.cpp">
+      <Filter>PlayerChild</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -193,12 +196,6 @@
       <Filter>BackGround</Filter>
     </ClInclude>
     <ClInclude Include="ScreenSize.h" />
-    <ClInclude Include="PlayerChild\PlayerChild.h">
-      <Filter>PlayerChild</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerChild\PlayerChildWeapon.h">
-      <Filter>PlayerChild</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy\Enemy.h">
       <Filter>Enemy</Filter>
     </ClInclude>
@@ -211,9 +208,16 @@
     <ClInclude Include="Function\UtilityStruct.h">
       <Filter>Function</Filter>
     </ClInclude>
+    <ClInclude Include="UtilityStruct.h" />
+    <ClInclude Include="Manual\Manual.h" />
     <ClInclude Include="Player\Player.h">
       <Filter>Player</Filter>
     </ClInclude>
-    <ClInclude Include="UtilityStruct.h" />
+    <ClInclude Include="PlayerChild\PlayerChild.h">
+      <Filter>PlayerChild</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerChild\PlayerChildWeapon.h">
+      <Filter>PlayerChild</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

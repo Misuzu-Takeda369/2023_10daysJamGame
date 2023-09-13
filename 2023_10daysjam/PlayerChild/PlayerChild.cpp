@@ -95,7 +95,12 @@ void PlayerChild::Draw()
 		//成長済み
 		//Novice::DrawSprite(int(pos_.x) - radius_, int(pos_.y) - radius_, adultTextureLeg_, 1, 1, 0, color_.color);
 		Novice::DrawSpriteRect(int(pos_.x) - radius_, int(pos_.y) - radius_, textureSize_ * animationNum_, 0, textureSize_, textureSize_, adultTexture_, 0.25, 1, 0.0f, color_.color);
-		Novice::DrawSpriteRect(int(pos_.x) - radius_, int(pos_.y) - radius_, textureSize_ * 1, 0, textureSize_, textureSize_, adultTextureHorn_, 0.25, 1, 0.0f, color_.color);
+		if (childType_ == DefaultType) {
+			Novice::DrawSpriteRect(int(pos_.x) - radius_, int(pos_.y) - radius_, textureSize_ * 1, 0, textureSize_, textureSize_, adultTextureHorn_, 0.25, 1, 0.0f, color_.color);
+		}
+		else if (childType_ == Circle) {
+			Novice::DrawSpriteRect(int(pos_.x) - radius_, int(pos_.y) - radius_, 0, 0, textureSize_, textureSize_, adultTextureHorn_, 0.25, 1, 0.0f, color_.color);
+		}
 		weapon_->Draw();
 	}
 	else {

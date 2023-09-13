@@ -58,6 +58,9 @@ void PlayerChildWeapon::Update(Vector2 child)
 	}
 
 	screenBulletPos_ = { bulletPos_.x + bulletMovePos_.x ,bulletPos_.y + bulletMovePos_.y };
+
+	visualityTheta_+=0.03f;
+	TranslateWave(pos_.y, visualityTheta_, 6, 6);
 }
 
 void PlayerChildWeapon::Draw()

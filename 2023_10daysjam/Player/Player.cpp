@@ -34,8 +34,6 @@ void Player::Initialize()
 	effectOn_ = false;
 
 	effeFrame_ = 60;
-
-	//flagGameOver_ = false;
 }
 
 void Player::Update(char*keys)
@@ -94,39 +92,47 @@ void Player::Move(char* keys)
 		//position_.x -= (speed_.x / 1.41f);
 		//position_.y -= (speed_.y / 1.41f);
 		nowImage_ = image_.upLeft;
+		nowDirection_ = 1;
 	}
 	else if ((keys[DIK_RIGHT] && keys[DIK_UP]) || (keys[DIK_D] && keys[DIK_W])) {
 		//position_.x += (speed_.x / 1.41f);
 		//position_.y -= (speed_.y / 1.41f);
 		nowImage_ = image_.upRight;
+		nowDirection_ = 1;
 	}
 	else if ((keys[DIK_LEFT] && keys[DIK_DOWN]) || (keys[DIK_A] && keys[DIK_S])) {
 		//position_.x -= (speed_.x / 1.41f);
 		//position_.y += (speed_.y / 1.41f);
 		nowImage_ = image_.downLeft;
+		nowDirection_ = 0;
 	}
 	else if ((keys[DIK_RIGHT] && keys[DIK_DOWN]) || (keys[DIK_D] && keys[DIK_S])) {
 		//position_.x += (speed_.x / 1.41f);
 		//position_.y += (speed_.y / 1.41f);
 		nowImage_ = image_.downRight;
+		nowDirection_ = 0;
 	}
 
 	//直線移動
 	else if (keys[DIK_LEFT]||keys[DIK_A]) {
 		//position_.x -= speed_.x;
 		nowImage_ = image_.left;
+		nowDirection_ = 0;
 	}
 	else if (keys[DIK_RIGHT]||keys[DIK_D]) {
 		//position_.x += speed_.x;
 		nowImage_ = image_.right;
+		nowDirection_ = 0;
 	}
 	else if (keys[DIK_UP]||keys[DIK_W]) {
 		//position_.y -= speed_.y;
 		nowImage_ = image_.up;
+		nowDirection_ = 1;
 	}
 	else if (keys[DIK_DOWN]||keys[DIK_S]) {
 		//position_.y += speed_.y;
 		nowImage_ = image_.down;
+		nowDirection_ = 0;
 	}
 }
 
@@ -142,7 +148,6 @@ void Player::OnEnemyCollision()
 	color_ = 0x4D6996FF;
 	eggCount_--;
 	effectOn_ = true;
-	
 }
 
 void Player::OnPbAttackCollision()

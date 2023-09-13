@@ -77,5 +77,8 @@ private:
 	Vector2 movePos_ = {0.0f,0.0f};
 	//角度
 	float theta = 0.0f;
+
+	//外見用
+	float visualityTheta_ = 0.0f;
 };
 

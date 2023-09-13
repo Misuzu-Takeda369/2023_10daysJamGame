@@ -84,8 +84,11 @@ public:
 	/// <returns></returns>
 	uint32_t GetEggCount() { return eggCount_; };
 
-	
-
+	/// <summary>
+	/// 向いてる方向　描画順調整用
+	/// </summary>
+	/// <returns></returns>
+	uint32_t GetNowDirection() { return nowDirection_; }
 
 private:
 
@@ -112,7 +115,7 @@ private:
 	const uint32_t animSpeed_ = 7;
 	uint32_t animFream_ = animSpeed_;
 
-	uint32_t eggCount_ = 0;
+	int eggCount_ = 0;
 
 	/// <summary>
 	/// エフェクト関連
@@ -120,5 +123,6 @@ private:
 	bool effectOn_ = false;
 	uint32_t effeFrame_ = 60;
 
+	uint32_t nowDirection_ = 0;
 };
 
