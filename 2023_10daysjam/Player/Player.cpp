@@ -34,6 +34,10 @@ void Player::Initialize()
 	effectOn_ = false;
 
 	effeFrame_ = 60;
+
+	Beshotsound_ = Novice::LoadAudio("./Resources/Sounds/Playerbeshot.wav");
+	//音ならす用変数
+	BeshotHandle_ = -1;
 }
 
 void Player::Update(char*keys)
@@ -148,6 +152,10 @@ void Player::OnEnemyCollision()
 	color_ = 0x4D6996FF;
 	eggCount_--;
 	effectOn_ = true;
+
+	if (Novice::IsPlayingAudio(BeshotHandle_) == 0 || BeshotHandle_ == -1) {
+		BeshotHandle_ = Novice::PlayAudio(Beshotsound_, 0, 1);
+	}
 }
 
 void Player::OnPbAttackCollision()

@@ -124,5 +124,12 @@ private:
 	uint32_t effeFrame_ = 60;
 
 	uint32_t nowDirection_ = 0;
+
+	/// <summary>
+	/// 音
+	/// </summary>
+	uint32_t Beshotsound_ = 0;
+	//音ならす用変数
+	int BeshotHandle_ = -1;
 };
 

@@ -3,7 +3,7 @@
 #include "ScreenSize.h"
 
 
-const char kWindowTitle[] = "10DaysJam";
+const char kWindowTitle[] = "6088_鳥さん大行列～子供達を振り回せ～";
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {

@@ -98,7 +98,7 @@ void BackGround::Draw()
 	//Novice::DrawSprite(uint32_t(wouldPosition_.x - scrollPosition_.x), uint32_t(wouldPosition_.y - scrollPosition_.y), image_,1.0f,1.0f,0.0f,WHITE);
 
 	for (uint32_t now = 0; now < 9; now++) {
-		Novice::DrawSprite(uint32_t(ScreensPos_[now].x), uint32_t(ScreensPos_[now].y), image_, 1.0f, 1.0f, 0.0f, WHITE);
+		Novice::DrawSprite(uint32_t(ScreensPos_[now].x)-10, uint32_t(ScreensPos_[now].y)-10, image_, 1.0f, 1.0f, 0.0f, WHITE);
 	}
 }
 
